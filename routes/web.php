@@ -19,3 +19,4 @@ Route::get('/', function () {
 
 Route::get('fumetti/create', 'FumettiController@create')->name('fumetti.create');
 Route::post('fumetti/store', 'FumettiController@store')->name('fumetti.store');
+
