@@ -17,8 +17,8 @@
 </head>
 <body>
     <div class="application-wrapper">   
-            <strong>{{  Session::get('success') }}</strong>
-            @yield('content')
+         <strong>{{  Session::get('success') }}</strong>
+        @yield('content')
     </div>
 </body>
 </html>
