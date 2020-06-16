@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use app\Fumetti;
 
 class FumettiController extends Controller
 {
@@ -11,6 +12,9 @@ class FumettiController extends Controller
     } //
 
     public function store(Request $request) {
+        $fumetto = new Fumetti();
+        $fumetto->titolo = $request->get('titolo');
+        $fumetto->save();
         return redirect(route('fumetti.create'))->with('success', 'Il fumetto è stato salvato.');
     }
 }
