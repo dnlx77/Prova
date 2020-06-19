@@ -17,4 +17,12 @@ class FumettiController extends Controller
         $fumetto->save();
         return redirect(route('fumetti.create'))->with('success', 'Il fumetto è stato salvato.');
     }
+
+    public function index()
+    {
+        //
+        return view('fumetti.index', [
+            'fumetti' => Fumetti::all()
+        ]);
+    }
 }
