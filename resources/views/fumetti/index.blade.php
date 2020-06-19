@@ -11,7 +11,7 @@
         @foreach ($fumetti AS $fumetto)
             <tr>
                 <td>{{ $fumetto->titolo}}</td>
-                <td></td>
+                <td>{{ $fumetto->created_at}}</td>
             </tr>
         @endforeach
     </tbody>
