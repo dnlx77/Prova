@@ -21,8 +21,21 @@ class FumettiController extends Controller
     public function index()
     {
         //
-        return view('fumetti.index', [
-            'fumetti' => Fumetti::all()
-        ]);
+        return view('fumetti.index', 
+            [
+                'fumetti' => Fumetti::all()
+            ]);
+    }
+
+    public function edit ($id) {
+        $fumetto = Fumetti::find($id);
+        return view('fumetti.edit',
+            [
+                'fumetto' => $fumetto,
+            ]);
+    } 
+
+    public function update (Request $request) {
+
     }
 }
