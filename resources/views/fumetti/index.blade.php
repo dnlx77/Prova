@@ -4,6 +4,7 @@
     <thead>
         <tr>
             <th>Titolo</th>
+            <th>Modifica</th>
             <th>Data inserimento</th>
             <th>Data aggiornamento</th>
         </tr>
@@ -11,7 +12,8 @@
     <tbody>
         @foreach ($fumetti AS $fumetto)
             <tr>
-                <td><a href="fumetti/{{$fumetto->id}}/edit">{{ $fumetto->titolo}}</a></td>
+                <td>{{ $fumetto->titolo}}</td>
+                <td><a href="fumetti/{{$fumetto->id}}/edit">modifica</a></td>
                 <td>{{ $fumetto->created_at}}</td>
                 <td>{{ $fumetto->updated_at}}</td>
             </tr>
