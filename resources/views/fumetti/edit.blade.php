@@ -6,6 +6,6 @@
 		<label for="titolo">Titolo:</label>
 		<input type="text" class="form-control" name="titolo" value="{{ !empty(old('titolo')) ? old('titolo') : ($fumetto->titolo ? $fumetto->titolo : '') }}"/>
 	</div>
-		<button type="submit" class="btn btn-primary">Aggiungi</button>
+		<button type="submit" class="btn btn-primary">Aggiorna</button>
 </form>
 @endsection

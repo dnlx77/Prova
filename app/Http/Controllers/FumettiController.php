@@ -35,7 +35,10 @@ class FumettiController extends Controller
             ]);
     } 
 
-    public function update (Request $request) {
-
+    public function update (Request $request, $id) {
+        $fumetto = Fumetti::find($id);
+        $fumetto->titolo = $request->get('titolo');
+        $fumetto->save ();
+        return redirect(route('fumetti.index'))->with('success', 'Il fumetto è stato aggiornato.');
     }
 }

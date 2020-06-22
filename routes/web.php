@@ -20,5 +20,5 @@ Route::get('/', function () {
 Route::get('fumetti/create', 'FumettiController@create')->name('fumetti.create');
 Route::post('fumetti/store', 'FumettiController@store')->name('fumetti.store');
 Route::get('fumetti', 'FumettiController@index')->name('fumetti.index');
-Route::get('fumetti/edit', 'FumettiController@edit')->name('fumetti.edit');
+Route::get('fumetti/{id_fumetti}/edit', 'FumettiController@edit')->name('fumetti.edit');
 Route::post('fumetti/{id_fumetti}/update', 'FumettiController@update')->name('fumetti.update');

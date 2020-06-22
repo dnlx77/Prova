@@ -4,7 +4,8 @@
     <thead>
         <tr>
             <th>Titolo</th>
-            <th>Data</th>
+            <th>Data inserimento</th>
+            <th>Data aggiornamento</th>
         </tr>
     </thead>
     <tbody>
@@ -12,6 +13,7 @@
             <tr>
                 <td>{{ $fumetto->titolo}}</td>
                 <td>{{ $fumetto->created_at}}</td>
+                <td>{{ $fumetto->updated_at}}</td>
             </tr>
         @endforeach
     </tbody>
