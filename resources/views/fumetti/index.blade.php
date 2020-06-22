@@ -11,7 +11,7 @@
     <tbody>
         @foreach ($fumetti AS $fumetto)
             <tr>
-                <td>{{ $fumetto->titolo}}</td>
+                <td><a href="fumetti/{{$fumetto->id}}/edit">{{ $fumetto->titolo}}</a></td>
                 <td>{{ $fumetto->created_at}}</td>
                 <td>{{ $fumetto->updated_at}}</td>
             </tr>
