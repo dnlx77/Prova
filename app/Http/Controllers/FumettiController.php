@@ -15,7 +15,7 @@ class FumettiController extends Controller
         $fumetto = new Fumetti();
         $fumetto->titolo = $request->get('titolo');
         $fumetto->save();
-        return redirect(route('fumetti.create'))->with('success', 'Il fumetto è stato salvato.');
+        return redirect(route('fumetti.index'))->with('success', 'Il fumetto è stato salvato.');
     }
 
     public function index()
