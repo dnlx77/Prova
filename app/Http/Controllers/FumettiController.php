@@ -18,21 +18,23 @@ class FumettiController extends Controller
         return redirect(route('fumetti.index'))->with('success', 'Il fumetto è stato salvato.');
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $scope_search = $request->has('scope_search') ? $request->get('scope_search') : '';
+        $sort_by = 'titolo';
+        $order_by = 'asc';
+        $per_page = 3;
+        $fumetti = Fumetti::search($scope_search)->orderBy($sort_by, $order_by)->paginate($per_page);
+
         return view('fumetti.index', 
-            [
-                'fumetti' => Fumetti::all()
-            ]);
+            [ 'fumetti' => $fumetti ], 
+            [ 'scope_search' => $scope_search ]);
     }
 
     public function edit ($id) {
         $fumetto = Fumetti::find($id);
         return view('fumetti.edit',
-            [
-                'fumetto' => $fumetto,
-            ]);
+            [ 'fumetto' => $fumetto ]);
     } 
 
     public function update (Request $request, $id) {
