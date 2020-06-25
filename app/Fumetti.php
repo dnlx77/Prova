@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 /*
 La classe fumetti è un modello per la tabella fumetti presente ne db
 Per default eloquent assume che la primary key abbia nome "id"
+Ridefiniamo la tabella 'fumetti' altrimenti laravel assumerebbe che il nome della tabella sarebbe fummetis
 */
 
 class Fumetti extends Model
