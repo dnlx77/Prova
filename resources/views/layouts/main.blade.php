@@ -16,7 +16,12 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-    <div class="application-wrapper">   
+    <header></header>
+    <div class="menu-container-wrapper">
+    <div class="container">
+    <ul><li>Fumetti</li></ul>
+    </div></div>
+    <div class="content-wrapper">   
          <strong>{{  Session::get('success') }}</strong>
         @yield('content')
     </div>
