@@ -1,1 +1,23 @@
 //
+@import '~bootstrap/scss/bootstrap';
+@import 'variables';
+
+body {
+    margin: 0;
+}
+
+header {
+    height: 150px;
+    background-color: $main_color;
+}
+
+.menu-container-wrapper {
+    background-color: $secondary_color;
+    .main-menu {
+        list-style: none;
+        li {
+            display: inline;
+            margin: 0 20px;
+        }
+    }
+}
