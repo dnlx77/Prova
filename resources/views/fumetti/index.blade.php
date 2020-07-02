@@ -1,6 +1,6 @@
 @extends('layouts.main')
 @section('content')
-<br><br><a href="{{ route('fumetti.create') }}">Aggiungi nuovo fumetto</a><br><br>
+<a href="{{ route('fumetti.create') }}">Aggiungi nuovo fumetto</a>
 
 <form action="{{ route('fumetti.index') }}">
     <input class="form-control" placeholder="cerca" type="search" name="scope_search" value="{{ $scope_search }}">
