@@ -24,9 +24,11 @@
             </ul>
         </div>
     </div>
-    <div class="content-wrapper">   
+    <div class="content-wrapper">  
+        <div class="container"> 
          <strong>{{  Session::get('success') }}</strong>
         @yield('content')
+        </div>
     </div>
 </body>
 </html>

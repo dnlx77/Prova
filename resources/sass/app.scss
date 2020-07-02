@@ -11,13 +11,25 @@ header {
     background-color: $main_color;
 }
 
+a {
+    color: $link_color;
+}
+
+a:hover {
+    color: $link_hover_color;
+    text-decoration: none;
+}
+
 .menu-container-wrapper {
     background-color: $secondary_color;
     .main-menu {
         list-style: none;
+        margin-bottom: 0;
+        padding: 0;
         li {
             display: inline;
             margin: 0 20px;
         }
     }
+    margin-bottom: 10px;
 }

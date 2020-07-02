@@ -10937,12 +10937,24 @@ header {
   background-color: #45e232;
 }
 
+a {
+  color: #111;
+}
+
+a:hover {
+  color: #080808;
+  text-decoration: underline;
+}
+
 .menu-container-wrapper {
   background-color: #e2e2e2;
+  margin-bottom: 10px;
 }
 
 .menu-container-wrapper .main-menu {
   list-style: none;
+  margin-bottom: 0;
+  padding: 0;
 }
 
 .menu-container-wrapper .main-menu li {
