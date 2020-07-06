@@ -17,7 +17,7 @@ class AutoreController extends Controller
         $autore->Cognome = $request->get('cognome');
         $autore->Nome = $request->get('nome');
         $autore->save();
-        return redirect(route('autore.index'))->with('success', 'L autore è stato salvato.');
+        return redirect(route('autore.index'))->with('success', 'L\'autore è stato salvato.');
     }
 
     public function index(Request $request)
@@ -41,6 +41,6 @@ class AutoreController extends Controller
         $autore->Cognome = $request->get('cognome');
         $autore->Nome = $request->get('nome');
         $autore->save ();
-        return redirect(route('autore.index'))->with('success', 'L autore è stato aggiornato.');
+        return redirect(route('autore.index'))->with('success', 'L\'autore è stato aggiornato.');
     }
 }
