@@ -13,6 +13,7 @@
             <th>Nome</th>
             <th>Trama</th>
             <th>Data lettura</th>
+            <th>Modifica</th>
             <th>Data inserimento</th>
             <th>Data aggiornamento</th>
         </tr>
