@@ -16,6 +16,7 @@ class TitoloController extends Controller
         $titolo = new Titolo();
         $titolo->nome = $request->get('nome');
         $titolo->trama = $request->get('trama');
+        $titolo->data_lettura = \DateTime::createFromFormat('d-m-Y', $request->get('data_lettura'));
         $titolo->save();
         return redirect(route('titolo.index'))->with('success', 'L autore è stato salvato.');
     }
@@ -51,6 +52,7 @@ class TitoloController extends Controller
         $titolo = Titolo::find($id);
         $titolo->nome = $request->get('nome');
         $titolo->trama = $request->get('trama');
+        $titolo->data_lettura = \DateTime::createFromFormat('d-m-Y', $request->get('data_lettura'));
         $titolo->save ();
         return redirect(route('titolo.index'))->with('success', 'Il titolo è stato aggiornato.');
     }

@@ -10,7 +10,6 @@
 <table>
     <thead>
         <tr>
-            <th></th>
             <th>Nome</th>
             <th>Trama</th>
             <th>Data lettura</th>
