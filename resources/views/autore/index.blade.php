@@ -15,8 +15,8 @@
     <tbody>
         @foreach ($autore AS $autori)
             <tr>
-                <td>{{ $autori->Cognome }}</td>
-                <td>{{ $autori->Nome }}</td>
+                <td>{{ $autori->cognome }}</td>
+                <td>{{ $autori->nome }}</td>
                 <td><a href="{{ route('autore.edit', $autori->id) }}">modifica</a></td>
                 <td>{{ $autori->created_at }}</td>
                 <td>{{ $autori->updated_at }}</td>
