@@ -20,7 +20,6 @@
     <div class="menu-container-wrapper">
         <div class="container">
             <ul class="main-menu">
-                <li><a href="{{ route('fumetti.index') }}" >Fumetti</a></li>
                 <li><a href="{{ route('ruolo.index') }}" >Ruoli</a></li>
                 <li><a href="{{ route('autore.index') }}" >Autore</a></li>
                 <li><a href="{{ route('titolo.index') }}" >Titolo</a></li>

@@ -2,6 +2,11 @@
 @section('content')
 <br><br><a href="{{ route('titolo.create') }}">Inserisci un nuovo titolo</a><br><br>
 
+<form action="{{ route('titolo.index') }}">
+    <input class="form-control" placeholder="cerca" type="search" name="scope_search" value="{{ $scope_search }}">
+    <button type="submit" class="btn btn-primary">Cerca</button>
+</form>
+
 <table>
     <thead>
         <tr>
