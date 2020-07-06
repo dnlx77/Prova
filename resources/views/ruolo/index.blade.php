@@ -15,7 +15,7 @@
         @foreach ($ruoli AS $ruolo)
             <tr>
                 <td>{{ $ruolo->descrizione }}</td>
-                /* <td><a href="{{ route('fumetti.edit', $fumetto->id) }}">modifica</a></td>*/ 
+                <td><a href="{{ route('ruolo.edit', $ruolo->id) }}">modifica</a></td>
                 <td>{{ $ruolo->created_at }}</td>
                 <td>{{ $ruolo->updated_at }}</td>
             </tr>
