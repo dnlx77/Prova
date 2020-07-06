@@ -30,10 +30,10 @@ class FumettiController extends Controller
         $sort_by = 'titolo';
         $order_by = 'asc';
         $per_page = 3;
-        $fumetti = Fumetti::search($scope_search)->orderBy($sort_by, $order_by)->paginate($per_page);
+        $titolo = Titolo::search($scope_search)->orderBy($sort_by, $order_by)->paginate($per_page);
 
-        return view('fumetti.index', 
-            [ 'fumetti' => $fumetti ], 
+        return view('titolo.index', 
+            [ 'titolo' => $titolo ], 
             [ 'scope_search' => $scope_search ]);
     }
 

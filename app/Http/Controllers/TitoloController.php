@@ -23,11 +23,22 @@ class TitoloController extends Controller
     public function index(Request $request)
     {
                
-        $titolo = Titolo::all();
+        /* 
+        se l'index è stato chiamato dal form di ricerca ed è stata inserita una stringa nel form 
+        la recuperiamo dalla request e la inseriamo nella variabile $scope_search, altrimenti se la form è vuota
+        o se l'index non è stato chiamato dal form di ricerca $scope_search contiene la stringa vuota
+        Quando chiamiamo il metodo search su fumetti viene richiamato in automatico il metodo scopeSearch definito nel model
+        */
+        $scope_search = $request->has('scope_search') ? $request->get('scope_search') : ''; 
+        $sort_by = 'nome';
+        $order_by = 'asc';
+        $per_page = 3;
+        $titolo = Titolo::search($scope_search)->orderBy($sort_by, $order_by)->paginate($per_page);
 
         return view('titolo.index', 
-            [ 'titolo' => $titolo ] 
-            );
+            [ 'titolo' => $titolo ], 
+            [ 'scope_search' => $scope_search ]);
+    
     }
 
     public function edit ($id) {
