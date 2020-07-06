@@ -28,4 +28,17 @@ class RuoloController extends Controller
             [ 'ruoli' => $ruoli ] 
             );
     }
+
+    public function edit ($id) {
+        $ruoli = Ruolo::find($id);
+        return view('ruolo.edit',
+            [ 'ruoli' => $ruoli ]);
+    } 
+
+    public function update (Request $request, $id) {
+        $ruoli = Ruolo::find($id);
+        $ruoli->descrizione = $request->get('descrizione');
+        $ruoli->save ();
+        return redirect(route('ruolo.index'))->with('success', 'Il ruolo è stato aggiornato.');
+    }
 }
