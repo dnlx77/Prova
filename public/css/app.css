@@ -10943,7 +10943,7 @@ a {
 
 a:hover {
   color: #080808;
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 .menu-container-wrapper {
