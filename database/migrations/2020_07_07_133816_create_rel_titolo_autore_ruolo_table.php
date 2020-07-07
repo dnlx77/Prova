@@ -15,7 +15,7 @@ class CreateRelTitoloAutoreRuoloTable extends Migration
     {
         Schema::create('rel_titolo_autore_ruolo', function (Blueprint $table) {
             $table->id();
-            $table->integr('titolo_id');
+            $table->integer('titolo_id');
             $table->integer('autore_id');
             $table->integer('ruolo_id');
             $table->timestamps();

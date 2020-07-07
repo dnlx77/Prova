@@ -28,6 +28,7 @@ Route::post('autore/store', 'AutoreController@store')->name('autore.store');
 Route::get('autore', 'AutoreController@index')->name('autore.index');
 Route::get('autore/{id_autore}/edit', 'AutoreController@edit')->name('autore.edit');
 Route::post('autore/{id_autore}/update', 'AutoreController@update')->name('autore.update');
+Route::get('titolo/{id_titolo}/aggiungi-autore', 'RelTitoloAutoreRuoloController@aggiungiAutore')->name('titolo.aggiungi_autore');
 
 Route::get('titolo/create', 'TitoloController@create')->name('titolo.create');
 Route::post('titolo/store', 'TitoloController@store')->name('titolo.store');
