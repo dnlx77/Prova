@@ -8,7 +8,7 @@
 	</div>	
 	<div class="form-group">
         <label for="data_lettura">Data lettura:</label>
-        <input type="text" class="form-control" name="data_lettura" value="{{ !empty(old('data_lettura')) ? old('data_lettura') : (!empty($titolo->data_lettura) ? $titolo->data_lettura : '') }}"/>
+        <input type="text" class="form-control" name="data_lettura" value="{{ !empty(old('data_lettura')) ? old('data_lettura') : (!empty($titolo->data_lettura) ? date('d-m-Y', strtotime($titolo->data_lettura)) : '') }}"/>
     </div>
     <script>
         $(document).ready(function(){
