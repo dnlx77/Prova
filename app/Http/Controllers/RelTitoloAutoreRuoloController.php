@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Autore;
 use App\Ruolo;
 use App\Titolo;
+use App\RelTitoloAutoreRuolo;
 
 class RelTitoloAutoreRuoloController extends Controller
 {
@@ -26,6 +27,22 @@ class RelTitoloAutoreRuoloController extends Controller
             'ruolo' => 'required',
         ]);
         //SALVARE UNA RIGA PER OGNI RUOLO
+        /*echo ($request -> get('autore'));
+        echo ($request -> get('ruolo'));
+        
+        foreach ($ruoli as $ruolo)
+            echo ($ruolo);
+        */
+        
+        $ruoli = $request -> get ('ruolo');
+        foreach ($ruoli as $ruolo) {
+            $titolo_autore_ruolo = new RelTitoloAutoreRuolo();
+            $titolo_autore_ruolo -> titolo_id = $id_titolo;
+            $titolo_autore_ruolo -> autore_id = $request -> get ('autore');
+            $titolo_autore_ruolo -> ruolo_id = $ruolo;
+            $titolo_autore_ruolo -> save ();
+        }
+        return redirect(route('titolo.index'))->with('success', 'Autori e ruoli aggiunti');
     } 
 
 }
