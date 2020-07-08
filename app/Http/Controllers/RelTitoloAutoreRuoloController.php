@@ -27,8 +27,6 @@ class RelTitoloAutoreRuoloController extends Controller
             'ruolo' => 'required',
         ]);
         //SALVARE UNA RIGA PER OGNI RUOLO
-        /*echo ($request -> get('autore'));
-        echo ($request -> get('ruolo'));*/
         
         $ruoli = $request->get('ruolo');
         foreach ($ruoli as $ruolo) {
