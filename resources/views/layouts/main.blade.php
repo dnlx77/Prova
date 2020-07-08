@@ -28,6 +28,15 @@
     </div>
     <div class="content-wrapper">  
         <div class="container"> 
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div><br />
+            @endif
          <strong>{{  Session::get('success') }}</strong>
         @yield('content')
         </div>
