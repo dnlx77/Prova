@@ -41,4 +41,16 @@ class RelTitoloAutoreRuoloController extends Controller
         return redirect(route('titolo.index'))->with('success', 'Autori e ruoli aggiunti');
     } 
 
+    public function index(Request $request, $id_titolo)
+    {
+        $autore = ['pippo', 'pluto', 'paperino'];
+        $ruolo = ['ruolo1', 'ruolo2', 'ruolo3'];
+
+        return view('rel_titolo_autore_ruolo.titolo_autore', [ 
+            'id_titolo' => $id_titolo,
+            'autore' => $autore,
+            'ruolo' => $ruolo
+            ]);
+    }
+
 }
