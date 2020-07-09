@@ -21,7 +21,7 @@
     <tbody>
         @foreach ($titolo AS $titoli)
             <tr>
-                <td>{{ $titoli->nome }}</td>
+                <td><a href="{{ route('titolo.autore', $titoli->id) }}">{{ $titoli->nome }}</a></td>
                 <td>{{ $titoli->trama }}</td>
                 <td>{{ $titoli->data_lettura }}
                 <td><a href="{{ route('titolo.edit', $titoli->id) }}">modifica</a></td>
