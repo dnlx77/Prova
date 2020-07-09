@@ -46,8 +46,10 @@ class RelTitoloAutoreRuoloController extends Controller
             'pluto' => ['ruolo3', 'ruolo4']
         ];
 
-        return view('rel_titolo_autore_ruolo.titolo_autore', [ 
-            'id_titolo' => $id_titolo,
+        $titolo = Titolo::find($id_titolo);
+
+        return view('rel_titolo_autore_ruolo.titolo_autori', [ 
+            'titolo' => $titolo->nome,
             'info_autori' => $info_autori
             ]);
     }
