@@ -41,13 +41,14 @@ class RelTitoloAutoreRuoloController extends Controller
 
     public function index(Request $request, $id_titolo)
     {
-        $autore = ['pippo', 'pluto', 'paperino'];
-        $ruolo = ['ruolo1', 'ruolo2', 'ruolo3'];
+        $info_autori = [
+            'pippo' => ['ruolo1', 'ruolo2', 'ruolo3'],
+            'pluto' => ['ruolo3', 'ruolo4']
+        ];
 
         return view('rel_titolo_autore_ruolo.titolo_autore', [ 
             'id_titolo' => $id_titolo,
-            'autore' => $autore,
-            'ruolo' => $ruolo
+            'info_autori' => $info_autori
             ]);
     }
 
