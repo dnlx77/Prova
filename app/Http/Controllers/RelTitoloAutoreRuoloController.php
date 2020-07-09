@@ -27,18 +27,28 @@ class RelTitoloAutoreRuoloController extends Controller
             'ruolo' => 'required',
         ]);
         //SALVARE UNA RIGA PER OGNI RUOLO
-        /*echo ($request -> get('autore'));
-        echo ($request -> get('ruolo'));*/
         
-        $ruoli = $request -> get ('ruolo');
+        $ruoli = $request->get('ruolo');
         foreach ($ruoli as $ruolo) {
             $titolo_autore_ruolo = new RelTitoloAutoreRuolo();
-            $titolo_autore_ruolo -> titolo_id = $id_titolo;
-            $titolo_autore_ruolo -> autore_id = $request -> get ('autore');
-            $titolo_autore_ruolo -> ruolo_id = $ruolo;
-            $titolo_autore_ruolo -> save ();
+            $titolo_autore_ruolo->titolo_id = $id_titolo;
+            $titolo_autore_ruolo->autore_id = $request->get('autore');
+            $titolo_autore_ruolo->ruolo_id = $ruolo;
+            $titolo_autore_ruolo->save ();
         }
         return redirect(route('titolo.index'))->with('success', 'Autori e ruoli aggiunti');
     } 
+
+    public function index(Request $request, $id_titolo)
+    {
+        $autore = ['pippo', 'pluto', 'paperino'];
+        $ruolo = ['ruolo1', 'ruolo2', 'ruolo3'];
+
+        return view('rel_titolo_autore_ruolo.titolo_autore', [ 
+            'id_titolo' => $id_titolo,
+            'autore' => $autore,
+            'ruolo' => $ruolo
+            ]);
+    }
 
 }
