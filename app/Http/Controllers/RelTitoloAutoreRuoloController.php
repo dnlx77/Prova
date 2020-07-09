@@ -7,6 +7,7 @@ use App\Autore;
 use App\Ruolo;
 use App\Titolo;
 use App\RelTitoloAutoreRuolo;
+use Illuminate\Support\Facades\DB;
 
 class RelTitoloAutoreRuoloController extends Controller
 {
@@ -41,15 +42,26 @@ class RelTitoloAutoreRuoloController extends Controller
 
     public function index(Request $request, $id_titolo)
     {
-        $info_autori = [
-            'pippo' => ['ruolo1', 'ruolo2', 'ruolo3'],
-            'pluto' => ['ruolo3', 'ruolo4']
-        ];
+        $autori = DB::table('rel_titolo_autore_ruolo')->where('titolo_id', '=', $id_titolo)
+        ->join('autore', 'autore.id', '=', 'rel_titolo_autore_ruolo.autore_id')
+        ->join('ruolo', 'ruolo.id', '=', 'rel_titolo_autore_ruolo.ruolo_id')
+        ->get(['autore.id AS autore_id', 'autore.nome', 'autore.cognome', 'ruolo.id AS ruolo_id', 'ruolo.descrizione']);
+        
+        $info_autori = [];
+
+        foreach($autori AS $current_autore){
+            if(!isset($info_autori[$current_autore->autore_id])){
+                $info_autori[$current_autore->autore_id] = [];
+                $info_autori[$current_autore->autore_id]['nome'] = $current_autore->nome . ' ' . $current_autore->cognome;
+                $info_autori[$current_autore->autore_id]['ruoli'] = [];
+            }
+            $info_autori[$current_autore->autore_id]['ruoli'][$current_autore->ruolo_id] = $current_autore->descrizione;
+        }
 
         $titolo = Titolo::find($id_titolo);
 
         return view('rel_titolo_autore_ruolo.titolo_autori', [ 
-            'titolo' => $titolo->nome,
+            'titolo' => $titolo,
             'info_autori' => $info_autori
             ]);
     }
