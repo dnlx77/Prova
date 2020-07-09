@@ -13,9 +13,14 @@ class AutoreController extends Controller
     } 
 
     public function store(Request $request) {
+        $request->validate([
+            'cognome' => 'required',
+            'nome' => 'required',
+        ]);
+
         $autore = new Autore();
-        $autore->Cognome = $request->get('cognome');
-        $autore->Nome = $request->get('nome');
+        $autore->cognome = $request->get('cognome');
+        $autore->nome = $request->get('nome');
         $autore->save();
         return redirect(route('autore.index'))->with('success', 'L\'autore è stato salvato.');
     }
@@ -37,6 +42,11 @@ class AutoreController extends Controller
     } 
 
     public function update (Request $request, $id) {
+        $request->validate([
+            'cognome' => 'required',
+            'nome' => 'required',
+        ]);
+
         $autore = Autore::find($id);
         $autore->Cognome = $request->get('cognome');
         $autore->Nome = $request->get('nome');
