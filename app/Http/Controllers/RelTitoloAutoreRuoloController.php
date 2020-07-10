@@ -24,8 +24,8 @@ class RelTitoloAutoreRuoloController extends Controller
 
     public function storeAutore (Request $request, $id_titolo) {
         $request->validate([
-            'autore' => 'required | string | max:511',
-            'ruolo' => 'required | string | max:511',
+            'autore' => 'required | max:511',
+            'ruolo' => 'required | max:511',
         ]);
         //SALVARE UNA RIGA PER OGNI RUOLO
         
@@ -74,7 +74,17 @@ class RelTitoloAutoreRuoloController extends Controller
         POI SE PROPRIO TI REGGE GOOGOLA PER VEDERE COME CAMBIARE IL VALORE DI UNA SELECT
         MULTIPLA TRAMITE JSON
         */
-        return json_encode('afafafa');
+
+        $ruoli = DB::table('rel_titolo_autore_ruolo')->where('titolo_id', '=', $id_titolo)->where('autore_id', '=', $id_autore)
+        ->join('autore', 'autore.id', '=', 'rel_titolo_autore_ruolo.autore_id')
+        ->join('ruolo', 'ruolo.id', '=', 'rel_titolo_autore_ruolo.ruolo_id')
+        ->get(['ruolo.descrizione', 'ruolo.id AS ruolo_id']);
+
+        $ruoli_array = [];
+        foreach($ruoli AS $ruolo)
+            $ruoli_array[$ruolo->ruolo_id] = $ruolo->descrizione;
+
+        return json_encode($ruoli_array);
     }
 
 }
