@@ -13,6 +13,11 @@ class TitoloController extends Controller
     } 
 
     public function store(Request $request) {
+        $request->validate([
+            'nome' => 'required | string | max:511',
+            'trama' => 'required | string | max:511',
+        ]);
+
         $titolo = new Titolo();
         $titolo->nome = $request->get('nome');
         $titolo->trama = $request->get('trama');
@@ -49,6 +54,11 @@ class TitoloController extends Controller
     } 
 
     public function update (Request $request, $id) {
+        $request->validate([
+            'nome' => 'required | string | max:511',
+            'trama' => 'required | string | max:511',
+        ]);
+
         $titolo = Titolo::find($id);
         $titolo->nome = $request->get('nome');
         $titolo->trama = $request->get('trama');

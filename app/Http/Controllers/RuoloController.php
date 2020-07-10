@@ -13,6 +13,10 @@ class RuoloController extends Controller
     } 
 
     public function store(Request $request) {
+        $request->validate([
+            'descrizione' => 'required | string | max:511',
+        ]);
+
         $ruolo = new Ruolo();
         $ruolo->descrizione = $request->get('descrizione');
         $ruolo->save();
@@ -36,6 +40,10 @@ class RuoloController extends Controller
     } 
 
     public function update (Request $request, $id) {
+        $request->validate([
+            'descrizione' => 'required | string | max:511',
+        ]);
+
         $ruoli = Ruolo::find($id);
         $ruoli->descrizione = $request->get('descrizione');
         $ruoli->save ();
