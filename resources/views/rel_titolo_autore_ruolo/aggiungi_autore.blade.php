@@ -5,6 +5,7 @@
     <div class="form-group">
         <label for="titolo">Autore:</label>
         <select name="autore">
+            <option value=""></option>
             @foreach ($lista_autori as $current_autore)
                 <option value="{{ $current_autore->id }}">{{ $current_autore->nome . ' ' . $current_autore->cognome }}</option>
             @endforeach
@@ -20,4 +21,11 @@
     </div>
 	<button type="submit" class="btn btn-primary">Salva</button>
 </form>
+<script>
+    $(document).ready(function(){
+        $('[name=autore]').on('change', function(){
+            console.log($(this).val());
+        });
+    });
+</script>
 @endsection
