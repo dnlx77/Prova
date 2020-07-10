@@ -66,4 +66,15 @@ class RelTitoloAutoreRuoloController extends Controller
             ]);
     }
 
+    public function getRuoliJson($id_titolo, $id_autore) {
+        /*
+        FAI LA QUERY CHE RESTITUISCE UN ARRAY MONODIMENSIONALE DI RUOLI A
+        PARTIRE DA TITOLO E AUTORE. POI PASSA L'ARRAY ALLA FUNZIONE JSON_ENCODE.
+        VERIFICA CHE IN CONSOLE COMPAIONO I VALORI CORRETTI.
+        POI SE PROPRIO TI REGGE GOOGOLA PER VEDERE COME CAMBIARE IL VALORE DI UNA SELECT
+        MULTIPLA TRAMITE JSON
+        */
+        return json_encode('afafafa');
+    }
+
 }
