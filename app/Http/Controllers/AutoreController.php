@@ -14,8 +14,8 @@ class AutoreController extends Controller
 
     public function store(Request $request) {
         $request->validate([
-            'cognome' => 'required',
-            'nome' => 'required',
+            'cognome' => 'required | string | max:511',
+            'nome' => 'required | string | max:511',
         ]);
 
         $autore = new Autore();
@@ -43,8 +43,8 @@ class AutoreController extends Controller
 
     public function update (Request $request, $id) {
         $request->validate([
-            'cognome' => 'required',
-            'nome' => 'required',
+            'cognome' => 'required | string | max:511',
+            'nome' => 'required | string | max:511',
         ]);
 
         $autore = Autore::find($id);

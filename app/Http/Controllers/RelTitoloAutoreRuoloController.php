@@ -24,8 +24,8 @@ class RelTitoloAutoreRuoloController extends Controller
 
     public function storeAutore (Request $request, $id_titolo) {
         $request->validate([
-            'autore' => 'required',
-            'ruolo' => 'required',
+            'autore' => 'required | string | max:511',
+            'ruolo' => 'required | string | max:511',
         ]);
         //SALVARE UNA RIGA PER OGNI RUOLO
         
