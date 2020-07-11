@@ -13,7 +13,7 @@
     </div>
     <div class="form-group">
         <label for="titolo">Ruolo:</label>
-        <select name="ruolo[]" multiple="multiple">
+        <select id="ruolo_select" name="ruolo[]" multiple="multiple">
             @foreach ($lista_ruoli as $current_ruolo)
                 <option value="{{ $current_ruolo->id }}">{{ $current_ruolo->descrizione }}</option>
             @endforeach
@@ -31,7 +31,14 @@
             dataType: 'json',
             success:function(result)
             {
-				console.log(result);
+                //var json=JSON.parse (result);
+                console.log(result);
+                /*var $el =$("#ruolo_select");
+                $el.empty();
+                $el.each(result, function(key, value) {
+                     $el.append($("<option></option>")
+                    .attr("value", value).text(key));
+                });*/
             },
             error:function()
             {
@@ -39,7 +46,6 @@
             }
             });
         });
-        //AGGIUNGERE AGGIORNAMENTO SELECT QUI
     });
 </script>
 @endsection
