@@ -31,14 +31,13 @@
             dataType: 'json',
             success:function(result)
             {
-                //var json=JSON.parse (result);
                 console.log(result);
-                /*var $el =$("#ruolo_select");
+                var $el =$("#ruolo_select");
                 $el.empty();
-                $el.each(result, function(key, value) {
+                $.each(result, function(key, value) {
                      $el.append($("<option></option>")
-                    .attr("value", value).text(key));
-                });*/
+                    .attr("value", key).text(value));
+                });
             },
             error:function()
             {
