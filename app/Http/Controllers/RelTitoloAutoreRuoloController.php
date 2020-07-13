@@ -66,6 +66,31 @@ class RelTitoloAutoreRuoloController extends Controller
             ]);
     }
 
+    public function editAutore(Request $request, $id_titolo)
+    {
+        $lista_autori = Autore::all();
+        $lista_ruoli = Ruolo::all();
+        $titolo = Titolo::find($id_titolo);
+        return view('rel_titolo_autore_ruolo.edit_autore',
+            [ 'lista_autori' => $lista_autori,
+            'lista_ruoli' => $lista_ruoli,
+            'id_titolo' => $id_titolo ]);
+    }
+
+    public function updateAutore(Request $request, $id_titolo)
+    {
+        $ruoli_attuali = DB::table('rel_titolo_autore_ruolo')->where('titolo_id', '=', $id_titolo)
+        ->where('autore_id', '=', $request->get('autore'))
+        ->get(['ruolo.id']);
+
+        $ruoli_nuovi = $request->get('ruolo');
+        $i;
+        foreach($ruoli_attuali as $ruolo)
+            if(!isset(ruoli_nuovi[$ruolo])) 
+                $ruoli_da_cancellare[$i++] = $ruoli;
+        print_r($ruoli_attuali);
+    }
+
     public function getRuoliJson($id_titolo, $id_autore) {
         /*
         FAI LA QUERY CHE RESTITUISCE UN ARRAY MONODIMENSIONALE DI RUOLI A
