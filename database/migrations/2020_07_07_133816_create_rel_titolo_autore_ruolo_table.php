@@ -14,11 +14,11 @@ class CreateRelTitoloAutoreRuoloTable extends Migration
     public function up()
     {
         Schema::create('rel_titolo_autore_ruolo', function (Blueprint $table) {
-            $table->id();
             $table->integer('titolo_id');
             $table->integer('autore_id');
             $table->integer('ruolo_id');
             $table->timestamps();
+            $table->primary(['titolo_id', 'autore_id', 'ruolo_id']);
         });
 
         Schema::table('rel_titolo_autore_ruolo', function(Blueprint $table) {

@@ -1,7 +1,6 @@
 @extends('layouts.main')
 @section('content')
 <a href="{{ route('titolo.aggiungi_autore', $titolo->id) }}">Aggiungi autori</a> di {{ $titolo->nome }}<br/>
-<a href="{{ route('titolo.edit_autore', $titolo->id) }}">Modifica autori</a> di {{ $titolo->nome }}
 <table>
     <thead>
         <tr>

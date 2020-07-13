@@ -31,8 +31,6 @@ Route::post('autore/{id_autore}/update', 'AutoreController@update')->name('autor
 
 Route::get('titolo/{id_titolo}/aggiungi-autore', 'RelTitoloAutoreRuoloController@aggiungiAutore')->name('titolo.aggiungi_autore');
 Route::post('titolo/{id_titolo}/store-autore', 'RelTitoloAutoreRuoloController@storeAutore')->name('titolo.store_autore');
-Route::get('titolo/{id_titolo}/edit-autore', 'RelTitoloAutoreRuoloController@editAutore')->name('titolo.edit_autore');
-Route::post('autore/{id_titolo}/update', 'RelTitoloAutoreRuoloController@updateAutore')->name('titolo.update_autore');
 Route::get('titolo/{id_titolo}/autori', 'RelTitoloAutoreRuoloController@index')->name('titolo.autore');
 Route::get('titolo/{id_titolo}/{id_autore}/services/get-ruoli-json', 'RelTitoloAutoreRuoloController@getRuoliJson')->name('titolo.get_ruoli_json');
 
