@@ -82,7 +82,7 @@ class RelTitoloAutoreRuoloController extends Controller
 
         $ruoli_array = [];
         foreach($ruoli AS $ruolo)
-            $ruoli_array[$ruolo->ruolo_id] = $ruolo->descrizione;
+            $ruoli_array[] = $ruolo->ruolo_id;
 
         return json_encode($ruoli_array);
     }

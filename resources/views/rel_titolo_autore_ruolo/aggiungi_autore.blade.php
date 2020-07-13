@@ -33,11 +33,12 @@
             {
                 console.log(result);
                 var $el =$("#ruolo_select");
-                $el.empty();
+                /*$el.empty();
                 $.each(result, function(key, value) {
                      $el.append($("<option></option>")
                     .attr("value", key).text(value));
-                });
+                });*/
+                $el.val(result);
             },
             error:function()
             {
