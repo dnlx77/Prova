@@ -7,6 +7,7 @@ use App\Autore;
 use App\Ruolo;
 use App\Titolo;
 use App\RelTitoloAutoreRuolo;
+use Exception;
 use Illuminate\Support\Facades\DB;
 
 class RelTitoloAutoreRuoloController extends Controller
@@ -28,18 +29,25 @@ class RelTitoloAutoreRuoloController extends Controller
             'ruolo' => 'required | max:511',
         ]);
         //SALVARE UNA RIGA PER OGNI RUOLO
-
-        $rimuovi_ruoli = RelTitoloAutoreRuolo::where('titolo_id', '=', $id_titolo)->where('autore_id', '=', $request->get('autore'))->delete();
-        
-        $ruoli = $request->get('ruolo');
-        foreach ($ruoli as $ruolo) {
-            $titolo_autore_ruolo = new RelTitoloAutoreRuolo();
-            $titolo_autore_ruolo->titolo_id = $id_titolo;
-            $titolo_autore_ruolo->autore_id = $request->get('autore');
-            $titolo_autore_ruolo->ruolo_id = $ruolo;
-            $titolo_autore_ruolo->save ();
+        DB::beginTransaction();
+        try {
+            $rimuovi_ruoli = RelTitoloAutoreRuolo::where('titolo_id', '=', $id_titolo)->where('autore_id', '=', $request->get('autore'))->delete();
+            
+            $ruoli = $request->get('ruolo');
+            foreach ($ruoli as $ruolo) {
+                $titolo_autore_ruolo = new RelTitoloAutoreRuolo();
+                $titolo_autore_ruolo->titolo_id = $id_titolo;
+                $titolo_autore_ruolo->autore_id = $request->get('autore');
+                $titolo_autore_ruolo->ruolo_id = $ruolo;
+                $titolo_autore_ruolo->save ();
+            }
+            DB::commit();
+            return redirect(route('titolo.index'))->with('success', 'Autori e ruoli aggiunti');
         }
-        return redirect(route('titolo.index'))->with('success', 'Autori e ruoli aggiunti');
+        catch(Exception $e){
+            DB::rollBack();
+            return redirect(route('titolo.index'))->with('success', 'Si è verificato un problema. L\'operazione non è stata eseguita.');
+        }
     } 
 
     public function index(Request $request, $id_titolo)
@@ -67,20 +75,6 @@ class RelTitoloAutoreRuoloController extends Controller
             'info_autori' => $info_autori
             ]);
     }
-
-    /*public function updateAutore(Request $request, $id_titolo)
-    {
-        $ruoli_attuali = DB::table('rel_titolo_autore_ruolo')->where('titolo_id', '=', $id_titolo)
-        ->where('autore_id', '=', $request->get('autore'))
-        ->get(['ruolo.id']);
-
-        $ruoli_nuovi = $request->get('ruolo');
-        $i;
-        foreach($ruoli_attuali as $ruolo)
-            if(!isset(ruoli_nuovi[$ruolo])) 
-                $ruoli_da_cancellare[$i++] = $ruolo;
-
-    }*/
 
     public function getRuoliJson($id_titolo, $id_autore) {
         /*
