@@ -48,6 +48,16 @@ class RelTitoloAutoreRuoloController extends Controller
             DB::rollBack();
             return redirect(route('titolo.index'))->with('success', 'Si è verificato un problema. L\'operazione non è stata eseguita.');
         }
+        RelTitoloAutoreRuolo::where('titolo_id', '=', $id_titolo)->where('autore_id', '=', $request->get('autore'))->delete();
+        
+        $ruoli = $request->get('ruolo');
+        foreach ($ruoli as $ruolo) {
+            $titolo_autore_ruolo = new RelTitoloAutoreRuolo();
+            $titolo_autore_ruolo->titolo_id = $id_titolo;
+            $titolo_autore_ruolo->autore_id = $request->get('autore');
+            $titolo_autore_ruolo->ruolo_id = $ruolo;
+            $titolo_autore_ruolo->save ();
+        }
     } 
 
     public function index(Request $request, $id_titolo)
