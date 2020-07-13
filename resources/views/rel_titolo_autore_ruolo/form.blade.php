@@ -10,6 +10,7 @@
 <div class="form-group">
     <label for="titolo">Ruolo:</label>
     <select id="ruolo_select" name="ruolo[]" multiple="multiple">
+        <option value=""></option>
         @foreach ($lista_ruoli as $current_ruolo)
             <option value="{{ $current_ruolo->id }}">{{ $current_ruolo->descrizione }}</option>
         @endforeach
