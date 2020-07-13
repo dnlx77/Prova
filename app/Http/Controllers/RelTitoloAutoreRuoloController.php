@@ -42,7 +42,7 @@ class RelTitoloAutoreRuoloController extends Controller
                 $titolo_autore_ruolo->save ();
             }
             DB::commit();
-            return redirect(route('titolo.autore'))->with('success', 'Autori e ruoli aggiunti');
+            return redirect(route('titolo.autore', $id_titolo))->with('success', 'Autori e ruoli aggiunti');
         }
         catch(Exception $e){
             DB::rollBack();
