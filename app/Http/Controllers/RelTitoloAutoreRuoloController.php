@@ -29,7 +29,7 @@ class RelTitoloAutoreRuoloController extends Controller
         ]);
         //SALVARE UNA RIGA PER OGNI RUOLO
 
-        $rimuovi_ruoli = RelTitoloAutoreRuolo::where('titolo_id', '=', $id_titolo)->where('autore_id', '=', $request->get('autore'))->delete();
+        RelTitoloAutoreRuolo::where('titolo_id', '=', $id_titolo)->where('autore_id', '=', $request->get('autore'))->delete();
         
         $ruoli = $request->get('ruolo');
         foreach ($ruoli as $ruolo) {
