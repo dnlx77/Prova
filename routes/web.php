@@ -41,4 +41,3 @@ Route::post('titolo/store', 'TitoloController@store')->name('titolo.store');
 Route::get('titolo', 'TitoloController@index')->name('titolo.index');
 Route::get('titolo/{id_titolo}/edit', 'TitoloController@edit')->name('titolo.edit');
 Route::post('titolo/{id_titolo}/update', 'TitoloController@update')->name('titolo.update');
-Route::get('titolo/{id_titolo}/aggiungi-autore', 'RelTitoloAutoreRuoloController@aggiungiAutore')->name('titolo.aggiungi_autore');
