@@ -78,16 +78,16 @@ class RelTitoloAutoreRuoloController extends Controller
 
     public function eliminaAutoreForm ($id_titolo, $id_autore) {
         return view('rel_titolo_autore_ruolo.elimina_autore_form', [
-            'titolo' => $id_titolo,
-            'autore' => $id_autore
+            'id_titolo' => $id_titolo,
+            'id_autore' => $id_autore
         ]);
     }
 
-    public function eliminaAutoreExecute (Request $request)
+    public function eliminaAutoreExecute (Request $request, $id_titolo, $id_autore)
     {
         try {
             DB::beginTransaction();
-            RelTitoloAutoreRuolo::where('titolo_id', '=', $request->get('titolo'))->where('autore_id', '=', $request->get('autore'))->delete(); 
+            RelTitoloAutoreRuolo::where('titolo_id', '=', $id_titolo)->where('autore_id', '=', $id_autore)->delete(); 
             DB::commit();
             return redirect(route('titolo.autore', $id_titolo))->with('success', 'Autore eliminato');
         }
