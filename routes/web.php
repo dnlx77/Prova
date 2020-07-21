@@ -33,6 +33,8 @@ Route::get('titolo/{id_titolo}/aggiungi-autore', 'RelTitoloAutoreRuoloController
 Route::post('titolo/{id_titolo}/store-autore', 'RelTitoloAutoreRuoloController@storeAutore')->name('titolo.store_autore');
 Route::get('titolo/{id_titolo}/autori', 'RelTitoloAutoreRuoloController@index')->name('titolo.autore');
 Route::get('titolo/{id_titolo}/{id_autore}/services/get-ruoli-json', 'RelTitoloAutoreRuoloController@getRuoliJson')->name('titolo.get_ruoli_json');
+Route::get('titolo/elimina-autore-form/{id_titolo}/{id_autore}', 'RelTitoloAutoreRuoloController@eliminaAutoreForm')->name('titolo.elimina_autore_form');
+Route::post('titolo/elimina-autore-execute/{id_titolo}/{id_autore}', 'RelTitoloAutoreRuoloController@eliminaAutoreExecute')->name('titolo.elimina_autore_execute');
 
 Route::get('titolo/create', 'TitoloController@create')->name('titolo.create');
 Route::post('titolo/store', 'TitoloController@store')->name('titolo.store');

@@ -76,6 +76,27 @@ class RelTitoloAutoreRuoloController extends Controller
             ]);
     }
 
+    public function eliminaAutoreForm ($id_titolo, $id_autore) {
+        return view('rel_titolo_autore_ruolo.elimina_autore_form', [
+            'titolo' => $id_titolo,
+            'autore' => $id_autore
+        ]);
+    }
+
+    public function eliminaAutoreExecute (Request $request)
+    {
+        try {
+            DB::beginTransaction();
+            RelTitoloAutoreRuolo::where('titolo_id', '=', $request->get('titolo'))->where('autore_id', '=', $request->get('autore'))->delete(); 
+            DB::commit();
+            return redirect(route('titolo.autore', $id_titolo))->with('success', 'Autore eliminato');
+        }
+        catch(Exception $e){
+            DB::rollBack();
+            return redirect(route('titolo.index'))->with('success', 'Si è verificato un problema. L\'operazione non è stata eseguita.');
+        }
+    }
+
     public function getRuoliJson($id_titolo, $id_autore) {
         /*
         FAI LA QUERY CHE RESTITUISCE UN ARRAY MONODIMENSIONALE DI RUOLI A
