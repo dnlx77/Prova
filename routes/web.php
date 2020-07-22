@@ -33,12 +33,6 @@ Route::post('editore/{id_editore}/update', 'EditoreController@update')->name('ed
 Route::get('editore/{id_editore}/elimina-form', 'EditoreController@editoreEliminaForm')->name('editore.elimina_form');
 Route::post('editore/{id_editore}/elimina-execute', 'EditoreController@editoreEliminaExecute')->name('editore.elimina_execute');
 
-Route::get('editore/create', 'EditoreController@create')->name('editore.create');
-Route::post('editore/store', 'EditoreController@store')->name('editore.store');
-Route::get('editore', 'EditoreController@index')->name('editore.index');
-Route::get('editore/{id_editore}/edit', 'EditoreController@edit')->name('editore.edit');
-Route::post('editore/{id_editore}/update', 'EditoreController@update')->name('editore.update');
-
 Route::get('autore/create', 'AutoreController@create')->name('autore.create');
 Route::post('autore/store', 'AutoreController@store')->name('autore.store');
 Route::get('autore', 'AutoreController@index')->name('autore.index');
