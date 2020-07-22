@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Ruolo;
+use App\RelTitoloAutoreRuolo;
+use Exception;
+use Illuminate\Support\Facades\DB;
 
 class RuoloController extends Controller
 {
@@ -21,6 +24,26 @@ class RuoloController extends Controller
         $ruolo->descrizione = $request->get('descrizione');
         $ruolo->save();
         return redirect(route('ruolo.index'))->with('success', 'Il ruolo è stato salvato.');
+    }
+
+    public function ruoloEliminaForm($id_ruolo) {
+        return view('ruolo.elimina_form', [
+            'id_ruolo' => $id_ruolo
+        ]);
+    }
+
+    public function ruoloEliminaExecute($id_ruolo) {
+        try {
+            DB::beginTransaction();
+            RelTitoloAutoreRuolo::where('ruolo_id', '=', $id_ruolo)->delete();
+            Ruolo::where('id', '=', $id_ruolo)->delete();
+            DB::commit();
+            return redirect(route('ruolo.index'))->with('success', 'Ruolo eliminato');
+        }
+        catch(Exception $e){
+            DB::rollBack();
+            return redirect(route('ruolo.index'))->with('success', 'Si è verificato un problema. L\'operazione non è stata eseguita.');
+        }
     }
 
     public function index(Request $request)

@@ -8,6 +8,7 @@
             <th>Cognome</th>
             <th>Nome</th>
             <th>Modifica</th>
+            <th>Elimina</th>
             <th>Data inserimento</th>
             <th>Data aggiornamento</th>
         </tr>
@@ -18,6 +19,7 @@
                 <td>{{ $autori->cognome }}</td>
                 <td>{{ $autori->nome }}</td>
                 <td><a href="{{ route('autore.edit', $autori->id) }}">modifica</a></td>
+                <td><a href="{{ route('autore.elimina_form', $autori->id) }}">elimina</a></td>
                 <td>{{ $autori->created_at }}</td>
                 <td>{{ $autori->updated_at }}</td>
             </tr>

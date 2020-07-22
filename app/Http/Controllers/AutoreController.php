@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Autore;
+use App\RelTitoloAutoreRuolo;
+use Exception;
+use Illuminate\Support\Facades\DB;
 
 class AutoreController extends Controller
 {
@@ -11,6 +14,26 @@ class AutoreController extends Controller
     public function create(){
         return view('autore.create');
     } 
+
+    public function autoreEliminaForm($id_autore) {
+        return view('autore.elimina_form', [
+            'id_autore' => $id_autore
+        ]);
+    }
+
+    public function autoreEliminaExecute($id_autore) {
+        try {
+            DB::beginTransaction();
+            RelTitoloAutoreRuolo::where('autore_id', '=', $id_autore)->delete();
+            Autore::where('id', '=', $id_autore)->delete();
+            DB::commit();
+            return redirect(route('autore.index'))->with('success', 'Autore eliminato');
+        }
+        catch(Exception $e){
+            DB::rollBack();
+            return redirect(route('autore.index'))->with('success', 'Si è verificato un problema. L\'operazione non è stata eseguita.');
+        }
+    }
 
     public function store(Request $request) {
         $request->validate([

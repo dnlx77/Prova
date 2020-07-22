@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Titolo;
+use App\RelTitoloAutoreRuolo;
+use Exception;
+use Illuminate\Support\Facades\DB;
 
 class TitoloController extends Controller
 {
@@ -24,6 +27,26 @@ class TitoloController extends Controller
         $titolo->data_lettura = \DateTime::createFromFormat('d-m-Y', $request->get('data_lettura'));
         $titolo->save();
         return redirect(route('titolo.index'))->with('success', 'Il titolo è stato salvato.');
+    }
+
+    public function titoloEliminaForm($id_titolo) {
+        return view('titolo.elimina_form', [
+            'id_titolo' => $id_titolo
+        ]);
+    }
+
+    public function titoloEliminaExecute($id_titolo) {
+        try {
+            DB::beginTransaction();
+            RelTitoloAutoreRuolo::where('titolo_id', '=', $id_titolo)->delete();
+            Titolo::where('id', '=', $id_titolo)->delete();
+            DB::commit();
+            return redirect(route('titolo.index'))->with('success', 'Titolo eliminato');
+        }
+        catch(Exception $e){
+            DB::rollBack();
+            return redirect(route('titolo.index'))->with('success', 'Si è verificato un problema. L\'operazione non è stata eseguita.');
+        }
     }
 
     public function index(Request $request)

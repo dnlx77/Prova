@@ -22,12 +22,24 @@ Route::post('ruolo/store', 'RuoloController@store')->name('ruolo.store');
 Route::get('ruolo', 'RuoloController@index')->name('ruolo.index');
 Route::get('ruolo/{id_ruolo}/edit', 'RuoloController@edit')->name('ruolo.edit');
 Route::post('ruolo/{id_ruolo}/update', 'RuoloController@update')->name('ruolo.update');
+Route::get('ruolo/{id_ruolo}/elimina-form', 'RuoloController@ruoloEliminaForm')->name('ruolo.elimina_form');
+Route::post('ruolo/{id_ruolo}/elimina-execute', 'RuoloController@ruoloEliminaExecute')->name('ruolo.elimina_execute');
+
+Route::get('editore/create', 'EditoreController@create')->name('editore.create');
+Route::post('editore/store', 'EditoreController@store')->name('editore.store');
+Route::get('editore', 'EditoreController@index')->name('editore.index');
+Route::get('editore/{id_editore}/edit', 'EditoreController@edit')->name('editore.edit');
+Route::post('editore/{id_editore}/update', 'EditoreController@update')->name('editore.update');
+Route::get('editore/{id_editore}/elimina-form', 'EditoreController@editoreEliminaForm')->name('editore.elimina_form');
+Route::post('editore/{id_editore}/elimina-execute', 'EditoreController@editoreEliminaExecute')->name('editore.elimina_execute');
 
 Route::get('autore/create', 'AutoreController@create')->name('autore.create');
 Route::post('autore/store', 'AutoreController@store')->name('autore.store');
 Route::get('autore', 'AutoreController@index')->name('autore.index');
 Route::get('autore/{id_autore}/edit', 'AutoreController@edit')->name('autore.edit');
 Route::post('autore/{id_autore}/update', 'AutoreController@update')->name('autore.update');
+Route::get('autore/{id_autore}/elimina-form', 'AutoreController@autoreEliminaForm')->name('autore.elimina_form');
+Route::post('autore/{id_autore}/elimina-execute', 'AutoreController@autoreEliminaExecute')->name('autore.elimina_execute');
 
 Route::get('titolo/{id_titolo}/aggiungi-autore', 'RelTitoloAutoreRuoloController@aggiungiAutore')->name('titolo.aggiungi_autore');
 Route::post('titolo/{id_titolo}/store-autore', 'RelTitoloAutoreRuoloController@storeAutore')->name('titolo.store_autore');
@@ -41,3 +53,5 @@ Route::post('titolo/store', 'TitoloController@store')->name('titolo.store');
 Route::get('titolo', 'TitoloController@index')->name('titolo.index');
 Route::get('titolo/{id_titolo}/edit', 'TitoloController@edit')->name('titolo.edit');
 Route::post('titolo/{id_titolo}/update', 'TitoloController@update')->name('titolo.update');
+Route::get('titolo/{id_titolo}/elimina-form', 'TitoloController@titoloEliminaForm')->name('titolo.elimina_form');
+Route::post('titolo/{id_titolo}/elimina-execute', 'TitoloController@titoloEliminaExecute')->name('titolo.elimina_execute');

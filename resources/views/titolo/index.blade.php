@@ -15,6 +15,7 @@
             <th>Data lettura</th>
             <th>Modifica</th>
             <th>Autori</th>
+            <th>Elimina</th>
             <th>Data inserimento</th>
             <th>Data aggiornamento</th>
         </tr>
@@ -27,6 +28,7 @@
                 <td>{{ $titoli->data_lettura }}
                 <td><a href="{{ route('titolo.edit', $titoli->id) }}">modifica</a></td>
                 <td><a href="{{ route('titolo.autore', $titoli->id) }}">autori</a></td>
+                <td><a href="{{ route('titolo.elimina_form', $titoli->id) }}">elimina</a></td>
                 <td>{{ $titoli->created_at }}</td>
                 <td>{{ $titoli->updated_at }}</td>
             </tr>
