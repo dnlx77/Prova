@@ -23,6 +23,12 @@ Route::get('ruolo', 'RuoloController@index')->name('ruolo.index');
 Route::get('ruolo/{id_ruolo}/edit', 'RuoloController@edit')->name('ruolo.edit');
 Route::post('ruolo/{id_ruolo}/update', 'RuoloController@update')->name('ruolo.update');
 
+Route::get('editore/create', 'EditoreController@create')->name('editore.create');
+Route::post('editore/store', 'EditoreController@store')->name('editore.store');
+Route::get('editore', 'EditoreController@index')->name('editore.index');
+Route::get('editore/{id_editore}/edit', 'EditoreController@edit')->name('editore.edit');
+Route::post('editore/{id_editore}/update', 'EditoreController@update')->name('editore.update');
+
 Route::get('autore/create', 'AutoreController@create')->name('autore.create');
 Route::post('autore/store', 'AutoreController@store')->name('autore.store');
 Route::get('autore', 'AutoreController@index')->name('autore.index');
