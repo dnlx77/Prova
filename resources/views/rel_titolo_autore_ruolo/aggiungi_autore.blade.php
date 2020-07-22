@@ -17,11 +17,7 @@
             {
                 console.log(result);
                 var $el =$("#ruolo_select");
-                /*$el.empty();
-                $.each(result, function(key, value) {
-                     $el.append($("<option></option>")
-                    .attr("value", key).text(value));
-                });*/
+                
                 $el.val(result);
             },
             error:function()
@@ -30,6 +26,10 @@
             }
             });
         });
+        @if (!empty($id_autore_default)) 
+            $('[name=autore]').val({{ $id_autore_default }});
+            $('[name=autore]').trigger('change');
+        @endif
     });
 </script>
 @endsection
