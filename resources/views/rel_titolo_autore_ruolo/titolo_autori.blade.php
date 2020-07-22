@@ -6,6 +6,7 @@
         <tr>
             <th>Autori</th>
             <th>Ruoli</th>
+            <th>Modifica</th>
             <th>Elimina</th>
         </tr>
     </thead>
@@ -17,7 +18,8 @@
             <td>
                 <?php print implode($info_autore['ruoli'], '<br/>') ?>
             </td>
-        <td><a href="{{ route('titolo.elimina_autore_form', array($titolo->id, $id_autore)) }}">Elimina</a></td>
+        <td><a href="{{ route('titolo.aggiungi_autore', [$titolo->id, 'autore_id' => $id_autore]) }}">Modifica</a></td>
+        <td><a href="{{ route('titolo.elimina_autore_form', [$titolo->id, $id_autore]) }}">Elimina</a></td>
         </tr>
         @endforeach
     </tbody>
