@@ -13,14 +13,18 @@ use Illuminate\Support\Facades\DB;
 class RelTitoloAutoreRuoloController extends Controller
 {
     //
-    public function aggiungiAutore ($id_titolo) {
+    public function aggiungiAutore ($id_titolo, Request $request) {
         $lista_autori = Autore::all();
         $lista_ruoli = Ruolo::all();
         $titolo = Titolo::find($id_titolo);
+        $id_autore_default = (!empty($request->get('autore_id')))?$request->get('autore_id'):"";
+
         return view('rel_titolo_autore_ruolo.aggiungi_autore',
             [ 'lista_autori' => $lista_autori,
             'lista_ruoli' => $lista_ruoli,
-            'id_titolo' => $id_titolo ]);
+            'id_titolo' => $id_titolo,
+            'id_autore_default' => $id_autore_default
+            ]);
     } 
 
     public function storeAutore (Request $request, $id_titolo) {
