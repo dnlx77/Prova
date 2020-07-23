@@ -55,3 +55,11 @@ Route::get('titolo/{id_titolo}/edit', 'TitoloController@edit')->name('titolo.edi
 Route::post('titolo/{id_titolo}/update', 'TitoloController@update')->name('titolo.update');
 Route::get('titolo/{id_titolo}/elimina-form', 'TitoloController@titoloEliminaForm')->name('titolo.elimina_form');
 Route::post('titolo/{id_titolo}/elimina-execute', 'TitoloController@titoloEliminaExecute')->name('titolo.elimina_execute');
+
+Route::get('collana/create', 'CollanaController@create')->name('collana.create');
+Route::post('collana/store', 'CollanaController@store')->name('collana.store');
+Route::get('collana', 'CollanaController@index')->name('collana.index');
+Route::get('collana/{id_collana}/edit', 'CollanaController@edit')->name('collana.edit');
+Route::post('collana/{id_collana}/update', 'CollanaController@update')->name('collana.update');
+Route::get('collana/{id_collana}/elimina-form', 'CollanaController@collanaEliminaForm')->name('collana.elimina_form');
+Route::post('collana/{id_collana}/elimina-execute', 'CollanaController@collanaEliminaExecute')->name('collana.elimina_execute');
