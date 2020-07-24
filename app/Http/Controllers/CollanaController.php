@@ -6,12 +6,16 @@ use Illuminate\Http\Request;
 use App\Collana;
 use Exception;
 use Illuminate\Support\Facades\DB;
+use BenSampo\Enum\Enum;
 
 class CollanaController extends Controller
 {
     //
     public function create(){
-        return view('collana.create');
+        $tipo_collana_list = TipoCollanaEnum::toSelectArray();
+        return view('collana.create', [
+            'tipo_collana_list' => $tipo_collana_list
+        ]);
     } 
 
     public function store(Request $request) {

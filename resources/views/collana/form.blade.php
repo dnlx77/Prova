@@ -7,7 +7,7 @@
 <div class="form-group">
     <label for="titolo">Stato:</label>
     <select id="stato_select" name="stato">
-        <option value="in_corso">In corso</option>
-        <option value="completa">Completa</option>
+        @foreach($tipo_collana_list AS $option_value => $option_description)
+            <option value="{{ $option_value }}">{{ option_description }}</option>  
     </select>
 </div>
