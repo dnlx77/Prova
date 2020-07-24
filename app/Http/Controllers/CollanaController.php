@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Collana;
+use App\Enums\TipoCollanaEnum;
 use Exception;
 use Illuminate\Support\Facades\DB;
 use BenSampo\Enum\Enum;
