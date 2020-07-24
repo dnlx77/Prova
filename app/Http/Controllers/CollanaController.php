@@ -55,15 +55,18 @@ class CollanaController extends Controller
 
     public function index(Request $request)
     {
-               
+        $tipo_collana_list = TipoCollanaEnum::toSelectArray();
         $collane = Collana::all();
 
         return view('collana.index', 
-            [ 'collane' => $collane ] 
+            [ 'collane' => $collane,
+            'tipo_collana_list' => $tipo_collana_list ] 
             );
     }
 
     public function edit ($id) {
+
+        $tipo_collana_list = TipoCollanaEnum::toSelectArray();
         $collane = Collana::find($id);
         $tipo_collana_list = TipoCollanaEnum::toSelectArray();
         return view('collana.edit',
