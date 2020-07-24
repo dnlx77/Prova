@@ -19,7 +19,7 @@
             <tr>
                 <td>{{ $collana->nome }}</td>
                 <td>{{ $collana->num_albi }}</td>
-                <td>{{ $collana->stato }}</td>
+                <td>{{ \App\Enums\TipoCollanaEnum::getDescription($collana->stato) }}</td>
                 <td><a href="{{ route('collana.edit', $collana->id) }}">modifica</a></td>
                 <td><a href="{{ route('collana.elimina_form', $collana->id) }}">elimina</a></td>
                 <td>{{ $collana->created_at }}</td>

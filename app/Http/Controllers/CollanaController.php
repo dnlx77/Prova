@@ -65,8 +65,13 @@ class CollanaController extends Controller
 
     public function edit ($id) {
         $collane = Collana::find($id);
+        $tipo_collana_list = TipoCollanaEnum::toSelectArray();
         return view('collana.edit',
-            [ 'collane' => $collane ]);
+            [ 
+                'collane' => $collane,
+                'tipo_collana_list' => $tipo_collana_list,
+            ]
+        );
     } 
 
     public function update (Request $request, $id) {

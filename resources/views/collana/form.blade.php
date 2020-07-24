@@ -8,7 +8,7 @@
     <label for="titolo">Stato:</label>
     <select id="stato_select" name="stato">
         @foreach($tipo_collana_list AS $option_value => $option_description)
-            <option value="{{ $option_value }}">{{ option_description }}</option> 
+            <option value="{{ $option_value }}" {{ !empty(old('option_value')) && old('option_value') == $option_value ? 'selected' : (!empty($collane->stato) && $collane->stato == $option_value ? 'selected' : '') }}>{{ $option_description }}</option> 
         @endforeach
     </select>
 </div>
