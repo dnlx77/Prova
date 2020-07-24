@@ -7,7 +7,7 @@
 <div class="form-group">
     <label for="titolo">Stato:</label>
     <select id="stato_select" name="stato">
-        <option value="1">In corso</option>
-        <option value="2">Completa</option>
+        <option value="in_corso">In corso</option>
+        <option value="completa">Completa</option>
     </select>
 </div>
