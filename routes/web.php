@@ -63,3 +63,7 @@ Route::get('collana/{id_collana}/edit', 'CollanaController@edit')->name('collana
 Route::post('collana/{id_collana}/update', 'CollanaController@update')->name('collana.update');
 Route::get('collana/{id_collana}/elimina-form', 'CollanaController@collanaEliminaForm')->name('collana.elimina_form');
 Route::post('collana/{id_collana}/elimina-execute', 'CollanaController@collanaEliminaExecute')->name('collana.elimina_execute');
+
+Route::get('albo/create', 'AlboController@create')->name('albo.create');
+Route::post('albo/store', 'AlboController@store')->name('albo.store');
+Route::get('albo', 'AlboController@index')->name('albo.index');

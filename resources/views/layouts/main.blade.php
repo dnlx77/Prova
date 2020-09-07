@@ -25,6 +25,7 @@
                 <li><a href="{{ route('titolo.index') }}" >Titolo</a></li>
                 <li><a href="{{ route('editore.index') }}" >Editore</a></li>
                 <li><a href="{{ route('collana.index') }}" >Collana</a></li>
+                <li><a href="{{ route('albo.index') }}" >Albo</a></li>
             </ul>
         </div>
     </div>
