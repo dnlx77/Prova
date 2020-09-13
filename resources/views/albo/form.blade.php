@@ -1,6 +1,6 @@
 <div class="form-group">
     <label for="num_pagine">Numero di pagine:</label>
-    <input type="text" class="form-control" name="num_pagine" value="{{ !empty(old('num_pagine')) ? old('num_pagine') : (!empty($albo->num_pagine) ? $albo->pagine : '') }}"/>
+    <input type="text" class="form-control" name="num_pagine" value="{{ !empty(old('num_pagine')) ? old('num_pagine') : (!empty($albo->num_pagine) ? $albo->num_pagine : '') }}"/>
 </div>
 <div class="form-group">
     <label for="barcode">Barcode:</label>
@@ -8,7 +8,7 @@
 </div>
 <div class="form-group">
     <label for="prezzo">Prezzo:</label>
-    <input type="number" class="form-control" name="prezzo" value="{{ !empty(old('prezzo')) ? old('prezzo') : (!empty($albo->prezzo) ? $albo->prezzo : '') }}"/>
+    <input type="number" class="form-control" name="prezzo" step="any" value="{{ !empty(old('prezzo')) ? old('prezzo') : (!empty($albo->prezzo) ? $albo->prezzo : '') }}"/>
 </div>
 <div class="form-group">
     <label for="copertina">Copertina albo:</label>
