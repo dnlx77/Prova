@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Albo;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
+use Exception;
+use Illuminate\Support\Facades\DB;
 
 class AlboController extends Controller
 {
@@ -66,5 +68,28 @@ class AlboController extends Controller
         $albo->barcode = $request->get('barcode');
         $albo->save ();
         return redirect(route('albo.index'))->with('success', 'L\'albo è stato aggiornato.');
+    }
+
+    public function alboEliminaForm($id_albo) {
+        return view('albo.elimina_form', [
+            'id_albo' => $id_albo
+        ]);
+    }
+
+    public function alboEliminaExecute($id_albo) {
+
+        $copertina = Albo::find($id_albo)->filename;
+        
+        try {
+            DB::beginTransaction();
+            Albo::where('id', '=', $id_albo)->delete();
+            DB::commit();
+            Storage::disk('public')->delete($copertina);
+            return redirect(route('albo.index'))->with('success', 'Albo eliminato');
+        }
+        catch(Exception $e){
+            DB::rollBack();
+            return redirect(route('albo.index'))->with('success', 'Si è verificato un problema. L\'operazione non è stata eseguita.');
+        }
     }
 }

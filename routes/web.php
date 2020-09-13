@@ -69,3 +69,5 @@ Route::post('albo/store', 'AlboController@store')->name('albo.store');
 Route::get('albo', 'AlboController@index')->name('albo.index');
 Route::get('albo/{id_albo}/edit', 'AlboController@edit')->name('albo.edit');
 Route::post('albo/{id_albo}/update', 'AlboController@update')->name('albo.update');
+Route::get('albo/{id_albo}/elimina-form', 'AlboController@alboEliminaForm')->name('albo.elimina_form');
+Route::post('albo/{id_albo}/elimina-execute', 'AlboController@alboEliminaExecute')->name('albo.elimina_execute');
