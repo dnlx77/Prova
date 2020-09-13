@@ -61,11 +61,20 @@ class AlboController extends Controller
             'barcode' => 'required | integer',
             'prezzo' => 'required | min:0 | max:100',
         ]);
+        
+
+        $copertina = $request->file('copertina');
+        $estensione = $copertina->getClientOriginalExtension();
+        Storage::disk('public')->put($copertina->getFilename().'.'.$estensione, File::get($copertina));
 
         $albo = Albo::find($id);
         $albo->num_pagine = $request->get('num_pagine');
         $albo->prezzo = $request->get('prezzo');
         $albo->barcode = $request->get('barcode');
+        $albo->mime = $copertina->getClientMimeType();
+        $albo->original_filename = $copertina->getClientOriginalName();
+        Storage::disk('public')->delete($albo->filename);
+        $albo->filename = $copertina->getFilename().'.'.$estensione;
         $albo->save ();
         return redirect(route('albo.index'))->with('success', 'L\'albo è stato aggiornato.');
     }
