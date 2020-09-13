@@ -12,5 +12,5 @@
 </div>
 <div class="form-group">
     <label for="copertina">Copertina albo:</label>
-    <input type="file" class="form-control" name="copertina" value="{{ !empty(old('copertina')) ? old('copertina') : (!empty($albo->copertina) ? $albo->copertina : '') }}"/>
+    <input type="file" class="form-control" name="copertina" value="{{ !empty(old('copertina')) ? old('copertina') : (!empty($albo->filename) ? $albo->filename : '') }}"/>
 </div>
