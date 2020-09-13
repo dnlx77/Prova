@@ -21,7 +21,7 @@
                 <td>{{ $albi->prezzo }}</td>
                 <td>{{ $albi->barcode}}</td>
                 <td><a href="{{ route('albo.edit', $albi->id) }}">modifica</a></td>
-                <td><a href="{{ route('collana.elimina_form', $albi->id) }}">elimina</a></td>
+                <td><a href="{{ route('albo.elimina_form', $albi->id) }}">elimina</a></td>
                 <td>{{ $albi->created_at }}</td>
                 <td>{{ $albi->updated_at }}</td>
             </tr>
