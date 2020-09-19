@@ -1,7 +1,7 @@
 @extends('layouts.main')
 @section('content')
 <a href="{{ route('titolo.aggiungi_autore', $titolo->id) }}">Aggiungi autori</a> di {{ $titolo->nome }}<br/>
-<table>
+<table class="table table-hover table-bordered">
     <thead>
         <tr>
             <th>Autori</th>
