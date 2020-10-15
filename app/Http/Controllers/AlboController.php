@@ -58,7 +58,7 @@ class AlboController extends Controller
 
     public function update (Request $request, $id) {
         $request->validate([
-            'num_pagine' => 'required | string | max:511',
+            'num_pagine' => 'required | integer',
             'barcode' => 'required | integer',
             'prezzo' => 'required | min:0 | max:100',
         ]);
