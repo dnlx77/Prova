@@ -1,6 +1,6 @@
 <div class="form-group">
     <label for="num_pagine">Numero di pagine:</label>
-    <input type="text" class="form-control" name="num_pagine" value="{{ !empty(old('num_pagine')) ? old('num_pagine') : (!empty($albo->num_pagine) ? $albo->num_pagine : '') }}"/>
+    <input type="number" class="form-control" name="num_pagine" value="{{ !empty(old('num_pagine')) ? old('num_pagine') : (!empty($albo->num_pagine) ? $albo->num_pagine : '') }}"/>
 </div>
 <div class="form-group">
     <label for="barcode">Barcode:</label>
