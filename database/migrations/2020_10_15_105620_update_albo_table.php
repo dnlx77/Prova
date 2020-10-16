@@ -16,12 +16,12 @@ class UpdateAlboTable extends Migration
         Schema::table('albo', function (Blueprint $table) {
             $table->integer('numero');
             $table->string('titolo', 511);
-            $table->integer('collana_id');
-            $table->integer('editore_id');
+            $table->bigInteger('collana_id')->unsigned()->nullable();
+            $table->bigInteger('editore_id')->unsigned();
         });
 
         Schema::table('albo', function (Blueprint $table) {
-            $table->foreign('collana_id')->nullable()->references('id')->on('collana');
+            $table->foreign('collana_id')->references('id')->on('collana');
             $table->foreign('editore_id')->references('id')->on('editore');
         });
     }
