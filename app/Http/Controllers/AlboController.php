@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Albo;
+use App\Collana;
+use App\Editore;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use Exception;
@@ -13,7 +15,12 @@ class AlboController extends Controller
 {
     //
     public function create(){
-        return view('albo.create');
+        $lista_collane = Collana::all();
+        $lista_editori = Editore::all();
+        return view('albo.create',
+            ['lista_collane' => $lista_collane,
+             'lista_editori' => $lista_editori
+            ]);
     } 
 
     public function store(Request $request){
@@ -35,6 +42,10 @@ class AlboController extends Controller
         $albo->mime = $copertina->getClientMimeType();
         $albo->original_filename = $copertina->getClientOriginalName();
         $albo->filename = $copertina->getFilename().'.'.$estensione;
+        $albo->numero = $request->get('numero');
+        $albo->titolo = $request->get('titolo');
+        $albo->collana_id = $request->get('collana');
+        $albo->editore_id = $request->get('editore');
 
         $albo->save();
         return redirect(route('albo.index'))->with('success', 'L\'albo è stata salvato.');
@@ -51,9 +62,14 @@ class AlboController extends Controller
     }
 
     public function edit ($id) {
-        $albo = ALbo::find($id);
+        $albo = Albo::find($id);
+        $lista_collane = Collana::all();
+        $lista_editori = Editore::all();
         return view('albo.edit',
-            [ 'albo' => $albo ]);
+            [ 'albo' => $albo,
+              'lista_collane' => $lista_collane,
+              'lista_editori' => $lista_editori
+            ]);
     } 
 
     public function update (Request $request, $id) {

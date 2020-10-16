@@ -8,4 +8,5 @@ class Collana extends Model
 {
     //
     protected $table ='collana';
+
 }
