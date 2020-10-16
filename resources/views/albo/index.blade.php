@@ -9,10 +9,10 @@
             <th>Numero di pagine</th>
             <th>Prezzo</th>
             <th>Codice a barre</th>
+            <th>Numero albo</th>
+            <th>Titolo</th>
             <th>Modifica</th>
             <th>Elimina</th>
-            <th>Data inserimento</th>
-            <th>Data aggiornamento</th>
         </tr>
     </thead>
     <tbody>
@@ -28,11 +28,11 @@
                 </td>
                 <td>{{ $albi->num_pagine }}</td>
                 <td>{{ $albi->prezzo }}</td>
-                <td>{{ $albi->barcode}}</td>
+                <td>{{ $albi->barcode }}</td>
+                <td>{{ $albi->numero }}</td>
+                <td>{{ $albi->titolo }}</td>
                 <td><a href="{{ route('albo.edit', $albi->id) }}">modifica</a></td>
                 <td><a href="{{ route('albo.elimina_form', $albi->id) }}">elimina</a></td>
-                <td>{{ $albi->created_at }}</td>
-                <td>{{ $albi->updated_at }}</td>
             </tr>
         @endforeach
     </tbody>

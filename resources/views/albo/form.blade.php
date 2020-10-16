@@ -20,14 +20,14 @@
 </div>
 <div class="form-group">
     <label for="copertina">Copertina albo:</label>
-    <input type="file" class="form-control" name="copertina" value="{{ !empty(old('copertina')) ? old('copertina') : (!empty($albo->filename) ? $albo->filename : '') }}"/>
+    <input type="file" class="form-control" name="copertina"/>
 </div>
 <div class="form-group">
     <label for="collana">Collana albo:</label>
     <select name="collana">
         <option value=""></option>
         @foreach ($lista_collane as $current_collana)
-            <option value="{{ $current_collana->id }}" {{ !empty(old('current_collana')) && old('current_collana') == $current_collana->id ? 'selected' : '' }}>{{ $current_collana->nome }}</option>
+            <option value="{{ $current_collana->id }}" {{ !empty($albo->collana_id) && $albo->collana_id == $current_collana->id ? 'selected' : '' }}>{{ $current_collana->nome }}</option>
         @endforeach
     </select>
     <div class="form-group">
@@ -35,7 +35,7 @@
         <select name="editore">
             <option value=""></option>
             @foreach ($lista_editori as $current_editore)
-                <option value="{{ $current_editore->id }}">{{ $current_editore->nome }}</option>
+                <option value="{{ $current_editore->id }}" {{ !empty($albo->editore_id) && $albo->editore_id == $current_editore->id ? 'selected' : '' }}>{{ $current_editore->nome }}</option>
             @endforeach
         </select>
 </div>

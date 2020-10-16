@@ -90,6 +90,10 @@ class AlboController extends Controller
         $albo->num_pagine = $request->get('num_pagine');
         $albo->prezzo = $request->get('prezzo');
         $albo->barcode = $request->get('barcode');
+        $albo->numero = $request->get('numero');
+        $albo->titolo = $request->get('titolo');
+        $albo->collana_id = $request->get('collana');
+        $albo->editore_id = $request->get('editore');
         
         if ($copertina) {
             $albo->mime = $copertina->getClientMimeType();
