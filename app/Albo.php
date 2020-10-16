@@ -10,7 +10,7 @@ class Albo extends Model
     protected $table = 'albo';
 
     public function collana() {
-        return $this->hasMany(Collana::class, 'collana_id');
+        return $this->hasOne(Collana::class, 'collana_id');
 
     }
 
