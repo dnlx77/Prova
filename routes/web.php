@@ -41,20 +41,20 @@ Route::post('autore/{id_autore}/update', 'AutoreController@update')->name('autor
 Route::get('autore/{id_autore}/elimina-form', 'AutoreController@autoreEliminaForm')->name('autore.elimina_form');
 Route::post('autore/{id_autore}/elimina-execute', 'AutoreController@autoreEliminaExecute')->name('autore.elimina_execute');
 
-Route::get('titolo/{id_titolo}/aggiungi-autore', 'RelTitoloAutoreRuoloController@aggiungiAutore')->name('titolo.aggiungi_autore');
-Route::post('titolo/{id_titolo}/store-autore', 'RelTitoloAutoreRuoloController@storeAutore')->name('titolo.store_autore');
-Route::get('titolo/{id_titolo}/autori', 'RelTitoloAutoreRuoloController@index')->name('titolo.autore');
-Route::get('titolo/{id_titolo}/{id_autore}/services/get-ruoli-json', 'RelTitoloAutoreRuoloController@getRuoliJson')->name('titolo.get_ruoli_json');
-Route::get('titolo/elimina-autore-form/{id_titolo}/{id_autore}', 'RelTitoloAutoreRuoloController@eliminaAutoreForm')->name('titolo.elimina_autore_form');
-Route::post('titolo/elimina-autore-execute/{id_titolo}/{id_autore}', 'RelTitoloAutoreRuoloController@eliminaAutoreExecute')->name('titolo.elimina_autore_execute');
+Route::get('storia/{id_storia}/aggiungi-autore', 'RelStoriaAutoreRuoloController@aggiungiAutore')->name('storia.aggiungi_autore');
+Route::post('storia/{id_storia}/store-autore', 'RelStoriaAutoreRuoloController@storeAutore')->name('storia.store_autore');
+Route::get('storia/{id_storia}/autori', 'RelStoriaAutoreRuoloController@index')->name('storia.autore');
+Route::get('storia/{id_storia}/{id_autore}/services/get-ruoli-json', 'RelStoriaAutoreRuoloController@getRuoliJson')->name('storia.get_ruoli_json');
+Route::get('storia/elimina-autore-form/{id_storia}/{id_autore}', 'RelStoriaAutoreRuoloController@eliminaAutoreForm')->name('storia.elimina_autore_form');
+Route::post('storia/elimina-autore-execute/{id_storia}/{id_autore}', 'RelStoriaAutoreRuoloController@eliminaAutoreExecute')->name('storia.elimina_autore_execute');
 
-Route::get('titolo/create', 'TitoloController@create')->name('titolo.create');
-Route::post('titolo/store', 'TitoloController@store')->name('titolo.store');
-Route::get('titolo', 'TitoloController@index')->name('titolo.index');
-Route::get('titolo/{id_titolo}/edit', 'TitoloController@edit')->name('titolo.edit');
-Route::post('titolo/{id_titolo}/update', 'TitoloController@update')->name('titolo.update');
-Route::get('titolo/{id_titolo}/elimina-form', 'TitoloController@titoloEliminaForm')->name('titolo.elimina_form');
-Route::post('titolo/{id_titolo}/elimina-execute', 'TitoloController@titoloEliminaExecute')->name('titolo.elimina_execute');
+Route::get('storia/create', 'StoriaController@create')->name('storia.create');
+Route::post('storia/store', 'StoriaController@store')->name('storia.store');
+Route::get('storia', 'StoriaController@index')->name('storia.index');
+Route::get('storia/{id_storia}/edit', 'StoriaController@edit')->name('storia.edit');
+Route::post('storia/{id_storia}/update', 'StoriaController@update')->name('storia.update');
+Route::get('storia/{id_storia}/elimina-form', 'StoriaController@storiaEliminaForm')->name('storia.elimina_form');
+Route::post('storia/{id_storia}/elimina-execute', 'StoriaController@storiaEliminaExecute')->name('storia.elimina_execute');
 
 Route::get('collana/create', 'CollanaController@create')->name('collana.create');
 Route::post('collana/store', 'CollanaController@store')->name('collana.store');

@@ -1,8 +1,8 @@
 @extends('layouts.main')
 @section('content')
-<form enctype="multipart/form-data" method="post" action="{{ route('titolo.update', $titolo->id) }}">
+<form enctype="multipart/form-data" method="post" action="{{ route('storia.update', $storia->id) }}">
     @csrf
-	@include('titolo.form', [])
+	@include('storia.form', [])
 		<button type="submit" class="btn btn-primary">Aggiorna</button>
 </form>
 @endsection

@@ -17,7 +17,6 @@ class CreateCollanaTable extends Migration
             $table->id();
             $table->string('nome', 511);
             $table->integer('num_albi');
-            $table->string('stato', 511);
             $table->timestamps();
         });
     }

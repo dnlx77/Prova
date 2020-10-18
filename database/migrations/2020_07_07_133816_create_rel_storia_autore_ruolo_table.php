@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRelTitoloAutoreRuoloTable extends Migration
+class CreateRelStoriaAutoreRuoloTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,16 @@ class CreateRelTitoloAutoreRuoloTable extends Migration
      */
     public function up()
     {
-        Schema::create('rel_titolo_autore_ruolo', function (Blueprint $table) {
-            $table->bigInteger('titolo_id')->unsigned();
+        Schema::create('rel_storia_autore_ruolo', function (Blueprint $table) {
+            $table->bigInteger('storia_id')->unsigned();
             $table->bigInteger('autore_id')->unsigned();
             $table->bigInteger('ruolo_id')->unsigned();
             $table->timestamps();
-            $table->primary(['titolo_id', 'autore_id', 'ruolo_id']);
+            $table->primary(['storia_id', 'autore_id', 'ruolo_id']);
         });
 
-        Schema::table('rel_titolo_autore_ruolo', function(Blueprint $table) {
-            $table->foreign('titolo_id')->references('id')->on('titolo');
+        Schema::table('rel_storia_autore_ruolo', function(Blueprint $table) {
+            $table->foreign('storia_id')->references('id')->on('storia');
             $table->foreign('autore_id')->references('id')->on('autore');
             $table->foreign('ruolo_id')->references('id')->on('ruolo');
         });
@@ -35,6 +35,6 @@ class CreateRelTitoloAutoreRuoloTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rel_titolo_autore_ruolo');
+        Schema::dropIfExists('rel_storia_autore_ruolo');
     }
 }

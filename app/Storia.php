@@ -4,10 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Titolo extends Model
+class Storia extends Model
 {
     //
-    protected $table = 'titolo';
+    protected $table = 'storia';
 
     /*I local scope ci permettono di definire una serie di vincoli riusabili
     per far ciò si fa precedre la keyword scope al nome della funzione poi la funzione sarà richiamabile soltanto

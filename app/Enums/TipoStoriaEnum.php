@@ -9,7 +9,7 @@ use BenSampo\Enum\Enum;
  * @method static static OptionTwo()
  * @method static static OptionThree()
  */
-final class TipoCollanaEnum extends Enum
+final class TipoStoriaEnum extends Enum
 {
     const IN_CORSO = 'in_corso';
     const FINITA = 'finita';
