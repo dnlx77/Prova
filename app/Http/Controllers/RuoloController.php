@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Ruolo;
-use App\RelTitoloAutoreRuolo;
+use App\RelStoriaAutoreRuolo;
 use Exception;
 use Illuminate\Support\Facades\DB;
 
@@ -35,7 +35,7 @@ class RuoloController extends Controller
     public function ruoloEliminaExecute($id_ruolo) {
         try {
             DB::beginTransaction();
-            RelTitoloAutoreRuolo::where('ruolo_id', '=', $id_ruolo)->delete();
+            RelStoriaAutoreRuolo::where('ruolo_id', '=', $id_ruolo)->delete();
             Ruolo::where('id', '=', $id_ruolo)->delete();
             DB::commit();
             return redirect(route('ruolo.index'))->with('success', 'Ruolo eliminato');

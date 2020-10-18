@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Autore;
-use App\RelTitoloAutoreRuolo;
+use App\RelStoriaAutoreRuolo;
 use Exception;
 use Illuminate\Support\Facades\DB;
 
@@ -24,7 +24,7 @@ class AutoreController extends Controller
     public function autoreEliminaExecute($id_autore) {
         try {
             DB::beginTransaction();
-            RelTitoloAutoreRuolo::where('autore_id', '=', $id_autore)->delete();
+            RelStoriaAutoreRuolo::where('autore_id', '=', $id_autore)->delete();
             Autore::where('id', '=', $id_autore)->delete();
             DB::commit();
             return redirect(route('autore.index'))->with('success', 'Autore eliminato');
