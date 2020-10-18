@@ -7,7 +7,7 @@
     <button type="submit" class="btn btn-primary">Cerca</button>
 </form>
 
-<table>
+<table class="table table-hover table-bordered">
     <thead>
         <tr>
             <th>Nome</th>
@@ -17,8 +17,6 @@
             <th>Modifica</th>
             <th>Autori</th>
             <th>Elimina</th>
-            <th>Data inserimento</th>
-            <th>Data aggiornamento</th>
         </tr>
     </thead>
     <tbody>
@@ -31,8 +29,6 @@
                 <td><a href="{{ route('storia.edit', $storie->id) }}">modifica</a></td>
                 <td><a href="{{ route('storia.autore', $storie->id) }}">autori</a></td>
                 <td><a href="{{ route('storia.elimina_form', $storie->id) }}">elimina</a></td>
-                <td>{{ $storie->created_at }}</td>
-                <td>{{ $storie->updated_at }}</td>
             </tr>
         @endforeach
     </tbody>

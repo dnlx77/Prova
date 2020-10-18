@@ -2,7 +2,7 @@
 @section('content')
 <br><br><a href="{{ route('collana.create') }}">Definisci una nuova collana</a><br><br>
 
-<table>
+<table class="table table-hover table-bordered">
     <thead>
         <tr>
             <th>Collana</th>

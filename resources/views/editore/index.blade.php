@@ -2,7 +2,7 @@
 @section('content')
 <br><br><a href="{{ route('editore.create') }}">Definisci un nuovo editore</a><br><br>
 
-<table>
+<table class="table table-hover table-bordered">
     <thead>
         <tr>
             <th>Editore</th>

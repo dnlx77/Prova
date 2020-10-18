@@ -2,7 +2,7 @@
 @section('content')
 <br><br><a href="{{ route('autore.create') }}">Inserisci un nuovo autore</a><br><br>
 
-<table>
+<table class="table table-hover table-bordered">
     <thead>
         <tr>
             <th>Cognome</th>

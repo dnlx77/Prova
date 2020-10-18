@@ -44,6 +44,7 @@ class AlboController extends Controller
         $albo->filename = $copertina->getFilename().'.'.$estensione;
         $albo->numero = $request->get('numero');
         $albo->titolo = $request->get('titolo');
+        $albo->data_pubblicazione = \DateTime::createFromFormat('d-m-Y', $request->get('data_pubblicazione'));
         $albo->collana_id = $request->get('collana');
         $albo->editore_id = $request->get('editore');
 
@@ -92,6 +93,7 @@ class AlboController extends Controller
         $albo->barcode = $request->get('barcode');
         $albo->numero = $request->get('numero');
         $albo->titolo = $request->get('titolo');
+        $albo->data_pubblicazione = \DateTime::createFromFormat('d-m-Y', $request->get('data_pubblicazione'));
         $albo->collana_id = $request->get('collana');
         $albo->editore_id = $request->get('editore');
         

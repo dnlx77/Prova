@@ -2,7 +2,7 @@
 @section('content')
 <br><br><a href="{{ route('ruolo.create') }}">Definisci un nuovo ruolo</a><br><br>
 
-<table>
+<table class="table table-hover table-bordered">
     <thead>
         <tr>
             <th>Ruolo</th>

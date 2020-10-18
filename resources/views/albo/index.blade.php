@@ -11,6 +11,7 @@
             <th>Codice a barre</th>
             <th>Numero albo</th>
             <th>Titolo</th>
+            <th>Data di pubblicazione</th>
             <th>Modifica</th>
             <th>Elimina</th>
         </tr>
@@ -31,6 +32,7 @@
                 <td>{{ $albi->barcode }}</td>
                 <td>{{ $albi->numero }}</td>
                 <td>{{ $albi->titolo }}</td>
+                <td>{{ $albi->data_pubblicazione }}</td>
                 <td><a href="{{ route('albo.edit', $albi->id) }}">modifica</a></td>
                 <td><a href="{{ route('albo.elimina_form', $albi->id) }}">elimina</a></td>
             </tr>
