@@ -10,12 +10,12 @@ class Albo extends Model
     protected $table = 'albo';
 
     public function collana() {
-        return $this->hasOne(Collana::class, 'collana_id');
+        return $this->belongsTo(Collana::class, 'collana_id');
 
     }
 
     public function editore() {
-        return $this->hasOne(Editore::class, 'editore_id');
+        return $this->belongsTo(Editore::class, 'editore_id');
 
     }
 }
