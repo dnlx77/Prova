@@ -19,26 +19,26 @@
         </tr>
     </thead>
     <tbody>
-        @foreach ($albi AS $albi)
+        @foreach ($albi AS $albo)
             <tr>
                 <td>
                     <div class="card" style="width: 18rem;">
-                    <img src="{{ url('storage/'.$albi->filename) }}" class="card-img-top" alt="{{ $albi->filename }}">
+                    <img src="{{ url('storage/'.$albo->filename) }}" class="card-img-top" alt="{{ $albo->filename }}">
                         <div class="card-body">
-                          <p class="card-text">{{ $albi->original_filename }}</p>
+                          <p class="card-text">{{ $albo->original_filename }}</p>
                         </div>
                       </div>
                 </td>
-                <td>{{ $albi->num_pagine }}</td>
-                <td>{{ $albi->prezzo }}</td>
-                <td>{{ $albi->barcode }}</td>
-                <td>{{ $albi->numero }}</td>
-                <td>{{ $albi->titolo }}</td>
-                <td>{{ $albi->editore->nome }} </td>
-                <td>{{ $albi->data_pubblicazione }}</td>
-                <td>{{ $albi->collana['nome'] }}</td>
-                <td><a href="{{ route('albo.edit', $albi->id) }}">modifica</a></td>
-                <td><a href="{{ route('albo.elimina_form', $albi->id) }}">elimina</a></td>
+                <td>{{ $albo->num_pagine }}</td>
+                <td>{{ $albo->prezzo }}</td>
+                <td>{{ $albo->barcode }}</td>
+                <td>{{ $albo->numero }}</td>
+                <td>{{ $albo->titolo }}</td>
+                <td>{{ $albo->editore->nome }} </td>
+                <td>{{ $albo->data_pubblicazione }}</td>
+                <td>{{ $albo->collana['nome'] }}</td>
+                <td><a href="{{ route('albo.edit', $albo->id) }}">modifica</a></td>
+                <td><a href="{{ route('albo.elimina_form', $albo->id) }}">elimina</a></td>
             </tr>
         @endforeach
     </tbody>
