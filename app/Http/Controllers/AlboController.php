@@ -49,16 +49,18 @@ class AlboController extends Controller
         $albo->editore_id = $request->get('editore');
 
         $albo->save();
-        return redirect(route('albo.index'))->with('success', 'L\'albo è stata salvato.');
+        return redirect(route('albo.index', 'all'))->with('success', 'L\'albo è stata salvato.');
     }
 
     public function index ($id)
     {
-        if ($id)
-            $albi = Albo::find([$id]);
-        else
+        if ($id == 'all')
             $albi = Albo::all();
-
+        else
+            //$albi = Albo::find([$id]);
+            //$albi = Albo::where('id', $id)->get();
+            $albi = Albo::whereId($id)->get();
+           
         return view('albo.index', 
             [ 'albi' => $albi ]
             );
@@ -107,7 +109,7 @@ class AlboController extends Controller
         }
         
         $albo->save ();
-        return redirect(route('albo.index'))->with('success', 'L\'albo è stato aggiornato.');
+        return redirect(route('albo.index', $id))->with('success', 'L\'albo è stato aggiornato.');
     }
 
     public function alboEliminaForm($id_albo) {
@@ -125,11 +127,11 @@ class AlboController extends Controller
             Albo::where('id', '=', $id_albo)->delete();
             DB::commit();
             Storage::disk('public')->delete($copertina);
-            return redirect(route('albo.index'))->with('success', 'Albo eliminato');
+            return redirect(route('albo.index', 'all'))->with('success', 'Albo eliminato');
         }
         catch(Exception $e){
             DB::rollBack();
-            return redirect(route('albo.index'))->with('success', 'Si è verificato un problema. L\'operazione non è stata eseguita.');
+            return redirect(route('albo.index', 'all'))->with('success', 'Si è verificato un problema. L\'operazione non è stata eseguita.');
         }
     }
 }
