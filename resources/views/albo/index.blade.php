@@ -22,6 +22,7 @@
         @foreach ($albi AS $albo)
             <tr>
                 <td>
+                   
                     <div class="card" style="width: 18rem;">
                     <img src="{{ url('storage/'.$albo->filename) }}" class="card-img-top" alt="{{ $albo->filename }}">
                         <div class="card-body">

@@ -55,7 +55,7 @@ class AlboController extends Controller
     public function index ($id)
     {
         if ($id)
-            $albi = Albo::find($id);
+            $albi = Albo::find([$id]);
         else
             $albi = Albo::all();
 
