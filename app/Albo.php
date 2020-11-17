@@ -18,4 +18,8 @@ class Albo extends Model
         return $this->belongsTo(Editore::class, 'editore_id');
 
     }
+
+    public function scopeGetAlbo ($query, $albo_id) {
+        return $query->where('id',$albo_id);
+    }
 }
