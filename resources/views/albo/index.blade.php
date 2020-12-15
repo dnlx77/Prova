@@ -14,6 +14,7 @@
             <th>Editore</th>
             <th>Data di pubblicazione</th>
             <th>Collana</th>
+            <th>Titoli</th>
             <th>Modifica</th>
             <th>Elimina</th>
         </tr>
@@ -38,6 +39,7 @@
                 <td>{{ $albo->editore->nome }} </td>
                 <td>{{ $albo->data_pubblicazione }}</td>
                 <td>{{ $albo->collana['nome'] }}</td>
+                <td><a href="{{ route('albo.storia', $albo->id) }}">storie</a></td>
                 <td><a href="{{ route('albo.edit', $albo->id) }}">modifica</a></td>
                 <td><a href="{{ route('albo.elimina_form', $albo->id) }}">elimina</a></td>
             </tr>
