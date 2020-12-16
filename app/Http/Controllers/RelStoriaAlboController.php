@@ -21,6 +21,20 @@ class RelStoriaAlboController extends Controller
             ]);
     } 
 
+    public function update($id_albo, Request $request) {
+        DB::beginTransaction();
+        try {
+            RelStoriaAlbo::where('storia_id', '=', $request->get('storia_id'))->where('albo_id', '=', $id_albo)->delete();
+            DB::commit();
+        }
+        catch(Exception $e){
+            DB::rollBack();
+            return redirect(route('albo.index', $id_albo))->with('success', 'Si è verificato un problema. L\'operazione non è stata eseguita.');
+        }
+
+        return redirect(route('albo.aggiungi_storia', $id_albo));
+    }
+
     public function storeStoria (Request $request, $id_albo) {
         /*$request->validate([
             'autore' => 'required | max:511',
@@ -29,7 +43,7 @@ class RelStoriaAlboController extends Controller
         //SALVARE UNA RIGA PER OGNI RUOLO
         DB::beginTransaction();
         try {
-            RelStoriaAlbo::where('storia_id', '=', $request->get('storia'))->where('albo_id', '=', $id_albo)->delete();
+            //RelStoriaAlbo::where('storia_id', '=', $request->get('storia'))->where('albo_id', '=', $id_albo)->delete();
             
             $storia = $request->get('storia');
             $storia_albo = new RelStoriaAlbo();
