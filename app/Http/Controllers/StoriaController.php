@@ -23,7 +23,6 @@ class StoriaController extends Controller
     public function store(Request $request) {
         $request->validate([
             'nome' => 'required | string | max:511',
-            'trama' => 'required | string | max:511',
         ]);
 
         $storia = new Storia();
@@ -67,7 +66,7 @@ class StoriaController extends Controller
         $scope_search = $request->has('scope_search') ? $request->get('scope_search') : ''; 
         $sort_by = 'nome';
         $order_by = 'asc';
-        $per_page = 3;
+        $per_page = 100;
         $storia = Storia::search($scope_search)->orderBy($sort_by, $order_by)->paginate($per_page);
         
         $tipo_storia_list = TipoStoriaEnum::toSelectArray();
@@ -95,7 +94,6 @@ class StoriaController extends Controller
     public function update (Request $request, $id) {
         $request->validate([
             'nome' => 'required | string | max:511',
-            'trama' => 'required | string | max:511',
         ]);
 
         $storia = Storia::find($id);

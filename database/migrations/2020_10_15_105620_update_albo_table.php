@@ -15,7 +15,7 @@ class UpdateAlboTable extends Migration
     {
         Schema::table('albo', function (Blueprint $table) {
             $table->integer('numero');
-            $table->string('titolo', 511);
+            $table->string('titolo', 511)->nullable();
             $table->date('data_pubblicazione')->nullable();
             $table->bigInteger('collana_id')->unsigned()->nullable();
             $table->bigInteger('editore_id')->unsigned();
