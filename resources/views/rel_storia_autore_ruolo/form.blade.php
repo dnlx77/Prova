@@ -9,7 +9,7 @@
 </div>
 <div class="form-group">
     <label for="ruolo">Ruolo:</label>
-    <select id="ruolo_select" name="ruolo[]" multiple="multiple">
+    <select id="ruolo-select" name="ruolo[]" multiple="multiple">
         @foreach ($lista_ruoli as $current_ruolo)
             <option value="{{ $current_ruolo->id }}">{{ $current_ruolo->descrizione }}</option>
         @endforeach
@@ -17,7 +17,7 @@
 </div>
 <script>
     $(document).ready(function(){
-        $('#autore_select').select2();
-        $('#ruolo_select').select2();
+        $('#autore-select').select2();
+        $('#ruolo-select').select2();
     });
 </script>
