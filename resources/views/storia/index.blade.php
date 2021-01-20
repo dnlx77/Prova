@@ -33,5 +33,5 @@
             @endforeach
         </tbody>
     </table>
-</div>n
+</div>
 @endsection
