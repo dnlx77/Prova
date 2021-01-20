@@ -28,18 +28,18 @@
 </div>
 <div class="form-group">
     <label for="collana">Collana albo:</label>
-    <select name="collana">
+    <select id="collana-select" name="collana">
         <option value=""></option>
         @foreach ($lista_collane as $current_collana)
-            <option value="{{ $current_collana->id }}" {{ !empty($albo->collana_id) && $albo->collana_id == $current_collana->id ? 'selected' : '' }}>{{ $current_collana->nome }}</option>
+            <option value="{{ $current_collana->id }}">{{ $current_collana->nome }}</option>
         @endforeach
     </select>
     <div class="form-group">
-        <label for="collana">Editore albo:</label>
-        <select name="editore">
+        <label for="editore">Editore albo:</label>
+        <select id="editore-select" name="editore">
             <option value=""></option>
             @foreach ($lista_editori as $current_editore)
-                <option value="{{ $current_editore->id }}" {{ !empty($albo->editore_id) && $albo->editore_id == $current_editore->id ? 'selected' : '' }}>{{ $current_editore->nome }}</option>
+                <option value="{{ $current_editore->id }}">{{ $current_editore->nome }}</option>
             @endforeach
         </select>
 </div>
@@ -49,5 +49,12 @@
             format: 'dd-mm-yyyy',
             todayHighlight: true
         });
+        $('#collana-select').select2();
+            var collana_select_default = "{{ !empty(old('collana')) ? old('collana') : (!empty($albo->collana_id) ? $albo->collana_id : '') }}";
+            $('#collana-select').val(collana_select_default).trigger('change');
+
+            $('#editore-select').select2();
+            var editore_select_default = "{{ !empty(old('editore')) ? old('editore') : (!empty($albo->editore_id) ? $albo->editore_id : '') }}";
+            $('#editore-select').val(editore_select_default).trigger('change');
     });
 </script>

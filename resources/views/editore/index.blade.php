@@ -17,7 +17,7 @@
                     <td>{{ $editore->nome }}</td>
                     <td>
                     @foreach ($editore->albi AS $albo)
-                        <a href="{{ route('albo.index', $albo->id) }}">{{ $albo->titolo }}</a> <br>
+                        <a href="{{ route('albo.show', $albo->id) }}">{{ $albo->titolo }}</a> <br>
                     @endforeach
                     </td>
                     <td><a href="{{ route('editore.edit', $editore->id) }}">modifica</a></td>

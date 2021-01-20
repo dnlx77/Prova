@@ -25,7 +25,7 @@
                 <li><a href="{{ route('storia.index') }}" >Storia</a></li>
                 <li><a href="{{ route('editore.index') }}" >Editore</a></li>
                 <li><a href="{{ route('collana.index') }}" >Collana</a></li>
-                <li><a href="{{ route('albo.index', 'all') }}" >Albo</a></li>
+                <li><a href="{{ route('albo.index') }}" >Albo</a></li>
             </ul>
         </div>
     </div>

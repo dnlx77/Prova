@@ -4,7 +4,7 @@
 	</div>
 	<div class="form-group">
         <label for="trama">Trama:</label>
-		<textarea type="text" class="form-control" name="trama">{{ !empty(old('nome')) ? old('nome') : (!empty($storia->trama) ? $storia->trama : '') }}</textarea>
+		<textarea type="text" class="form-control" name="trama">{{ !empty(old('trama')) ? old('trama') : (!empty($storia->trama) ? $storia->trama : '') }}</textarea>
     </div>
     <div class="form-group">
         <label for="stato">Stato:</label>

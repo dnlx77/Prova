@@ -52,15 +52,22 @@ class AlboController extends Controller
         return redirect(route('albo.index', 'all'))->with('success', 'L\'albo è stata salvato.');
     }
 
-    public function index ($id)
+    public function index ()
     {
-        if ($id == 'all')
             $albi = Albo::all();
-        else
-            //$albi = Albo::find([$id]);
-            //$albi = Albo::where('id', $id)->get();
-            //$albi = Albo::whereId($id)->get();
-            $albi = Albo::GetAlbo($id)->get();
+            
+        return view('albo.index', 
+            [ 'albi' => $albi ]
+            );
+    }
+
+    public function showAlbo ($id)
+    {
+
+        //$albi = Albo::find([$id]);
+        //$albi = Albo::where('id', $id)->get();
+        //$albi = Albo::whereId($id)->get();
+        $albi = Albo::GetAlbo($id)->get();
            
         return view('albo.index', 
             [ 'albi' => $albi ]
