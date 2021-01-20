@@ -24,12 +24,9 @@
             <tr>
                 <td>
                    
-                    <div class="card" style="width: 18rem;">
-                    <img src="{{ url('storage/'.$albo->filename) }}" class="card-img-top" alt="{{ $albo->filename }}">
-                        <div class="card-body">
-                          <p class="card-text">{{ $albo->original_filename }}</p>
-                        </div>
-                      </div>
+                    <div class="immagine-tabella-wrapper">
+                        <img src="{{ url('storage/'.$albo->filename) }}" class="card-img-top" alt="{{ $albo->filename }}">
+                    </div>
                 </td>
                 <td>{{ $albo->num_pagine }}</td>
                 <td>{{ $albo->prezzo }}</td>

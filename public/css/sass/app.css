@@ -10962,3 +10962,8 @@ a:hover {
   margin: 0 20px;
 }
 
+.table-container {
+  max-width: 100%;
+  overflow-x: scroll;
+}
+
