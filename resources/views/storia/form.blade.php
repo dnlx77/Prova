@@ -10,7 +10,7 @@
         <label for="stato">Stato:</label>
         <select id="stato_select" name="stato">
             @foreach($tipo_storia_list AS $option_value => $option_description)
-                <option value="{{ $option_value }}" {{ !empty(old('option_value')) && old('option_value') == $option_value ? 'selected' : (!empty($storie->stato) && $storie->stato == $option_value ? 'selected' : '') }}>{{ $option_description }}</option> 
+                <option value="{{ $option_value }}">{{ $option_description }}</option>
             @endforeach
         </select>
     </div>
@@ -24,5 +24,8 @@
                 format: 'dd-mm-yyyy',
                 todayHighlight: true
             });
+            $('#stato_select').select2();
+            var stato_select_default = "{{ !empty(old('stato')) ? old('stato') : (!empty($storia->stato) ? $storia->stato : '') }}";
+            $('#stato_select').val(stato_select_default).trigger('change');
         });
     </script>
