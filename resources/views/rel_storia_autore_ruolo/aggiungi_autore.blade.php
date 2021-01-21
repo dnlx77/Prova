@@ -16,9 +16,10 @@
             success:function(result)
             {
                 console.log(result);
-                var $el =$("#ruolo_select");
-                
-                $el.val(result);
+                //var $el =$("#ruolo_select");
+                var result_value = result;
+                $("#ruolo-select").val(result_value).trigger('change');
+                //$el.val(result);
             },
             error:function()
             {
