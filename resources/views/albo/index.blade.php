@@ -1,9 +1,9 @@
 @extends('layouts.main')
 @section('content')
-<br><br><a href="{{ route('albo.create') }}">Inserisci un nuovo albo</a><br><br>
-<div class="table-container">
-    <table class="table table-hover table-bordered">
-        <thead>
+    <br><br><a href="{{ route('albo.create') }}">Inserisci un nuovo albo</a><br><br>
+    <div class="table-container">
+        <table class="table table-hover table-bordered">
+            <thead>
             <tr>
                 <th>Copertina</th>
                 <th>Numero di pagine</th>
@@ -19,12 +19,12 @@
                 <th>Modifica</th>
                 <th>Elimina</th>
             </tr>
-        </thead>
-        <tbody>
+            </thead>
+            <tbody>
             @foreach ($albi AS $albo)
                 <tr>
                     <td>
-                    
+
                         <div class="immagine-tabella-wrapper">
                             <img src="{{ url('storage/'.$albo->filename) }}" class="card-img-top" alt="{{ $albo->filename }}">
                         </div>
@@ -39,32 +39,37 @@
                     <td>{{ $albo->collana['nome'] }}</td>
                     <td><a href="{{ route('albo.storia', $albo->id) }}">storie</a></td>
                     <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#storiaModal">
-                        Storie
+                            Storie
                         </button></td>
                     <td><a href="{{ route('albo.edit', $albo->id) }}">modifica</a></td>
                     <td><a href="{{ route('albo.elimina_form', $albo->id) }}">elimina</a></td>
                 </tr>
             @endforeach
-        </tbody>
-    </table>
-</div>
-<div class="modal" id="storiaModal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Modal title</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <p>Modal body text goes here.</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary">Save changes</button>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        </div>
-      </div>
+            </tbody>
+        </table>
     </div>
-  </div>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+        Launch demo modal
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
