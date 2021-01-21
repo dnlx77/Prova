@@ -14,10 +14,12 @@ class RelStoriaAlboController extends Controller
     //
     public function aggiungiStoria ($id_albo, Request $request) {
         $lista_storie = Storia::all();
+        $id_storia_default = (!empty($request->get('storia_id')))?$request->get('storia_id'):"";
        
         return view('rel_storia_albo.aggiungi_storia',
             [ 'lista_storie' => $lista_storie,
-              'id_albo' => $id_albo  
+              'id_albo' => $id_albo,
+              'id_storia_default' => $id_storia_default  
             ]);
     } 
 
@@ -43,8 +45,10 @@ class RelStoriaAlboController extends Controller
         //SALVARE UNA RIGA PER OGNI RUOLO
         DB::beginTransaction();
         try {
-            //RelStoriaAlbo::where('storia_id', '=', $request->get('storia'))->where('albo_id', '=', $id_albo)->delete();
-            
+            if(!empty($request->get('storia'))) {
+                RelStoriaAlbo::where('storia_id', '=', $request->get('storia'))->where('albo_id', '=', $id_albo)->delete();
+            }
+
             $storia = $request->get('storia');
             $storia_albo = new RelStoriaAlbo();
             $storia_albo->albo_id = $id_albo;

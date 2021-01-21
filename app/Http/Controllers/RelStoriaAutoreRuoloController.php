@@ -16,7 +16,7 @@ class RelStoriaAutoreRuoloController extends Controller
     public function aggiungiAutore ($id_storia, Request $request) {
         $lista_autori = Autore::all();
         $lista_ruoli = Ruolo::all();
-        $storia = Storia::find($id_storia);
+        //$storia = Storia::find($id_storia);
         $id_autore_default = (!empty($request->get('autore_id')))?$request->get('autore_id'):"";
 
         return view('rel_storia_autore_ruolo.aggiungi_autore',
