@@ -18,6 +18,8 @@
 <script>
     $(document).ready(function(){
         $('#autore-select').select2();
+        var autore_select_value = "{{ !empty(old('autore')) ? old('autore') : (!empty($current_autore->id) ? $current_autore->id : '') }}";
+        $('#autore-select').val(autore_select_value).trigger('change');
         $('#ruolo-select').select2();
     });
 </script>
