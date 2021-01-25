@@ -76,4 +76,29 @@ class RelStoriaAlboController extends Controller
             'storie' => $storie
             ]);
     }
+
+    public function eliminaStoriaForm(Request $request, $id_albo, $id_storia)
+    {
+        return view('rel_storia_albo.elimina_storia_form', [
+            'id_albo' => $id_albo,
+            'id_storia' => $id_storia
+        ]);
+    }
+
+    public function eliminaStoriaExecute(Request $request, $id_albo, $id_storia)
+    {
+        try {
+            DB::beginTransaction();
+
+            //GESTIRE LE RELAZIONI COINVOLTE
+            
+            RelStoriaAlbo::where('albo_id', '=', $id_albo)->where('storia_id', '=', $id_storia)->delete();
+            DB::commit();
+            return redirect(route('albo.storia'))->with('success', 'Storia eliminata');
+        }
+        catch(Exception $e){
+            DB::rollBack();
+            return redirect(route('albo.storia'))->with('success', 'Si è verificato un problema. L\'operazione non è stata eseguita.');
+        }
+    }
 }
