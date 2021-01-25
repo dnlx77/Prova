@@ -94,11 +94,11 @@ class RelStoriaAlboController extends Controller
             
             RelStoriaAlbo::where('albo_id', '=', $id_albo)->where('storia_id', '=', $id_storia)->delete();
             DB::commit();
-            return redirect(route('albo.storia'))->with('success', 'Storia eliminata');
+            return redirect(route('albo.storia', $id_albo))->with('success', 'Storia eliminata');
         }
         catch(Exception $e){
             DB::rollBack();
-            return redirect(route('albo.storia'))->with('success', 'Si è verificato un problema. L\'operazione non è stata eseguita.');
+            return redirect(route('albo.storia', $id_albo))->with('success', 'Si è verificato un problema. L\'operazione non è stata eseguita.');
         }
     }
 }
