@@ -5,7 +5,6 @@
     <thead>
         <tr>
             <th>Titoli</th>
-            <th>Modifica</th>
             <th>Elimina</th>
         </tr>
     </thead>
@@ -13,9 +12,8 @@
     <tbody>
         @foreach ($storie AS $storia)
         <tr>
-            <td>{{ $storia->nome }}</td>
-            <td><a href="{{ route('albo.storia_update', [$albo->id, 'storia_id' => $storia->storia_id]) }}">Modifica</a></td>
-            <td><a href="{{ route('albo.elimina_storia_form', $storia->storia_id) }}">Elimina</a></td>
+            <td><a href="{{ route('storia.autore', $storia->storia_id)}}">{{ $storia->nome }}</a></td>
+            <td><a href="{{ route('albo.elimina_storia_form', [$albo->id, $storia->storia_id]) }}">Elimina</a></td>
         </tr>
         @endforeach
     </tbody>
