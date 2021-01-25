@@ -24,9 +24,8 @@
             @foreach ($albi AS $albo)
                 <tr>
                     <td>
-
                         <div class="immagine-tabella-wrapper">
-                            <img src="{{ url('storage/'.$albo->filename) }}" class="card-img-top" alt="{{ $albo->filename }}">
+                          <img src="{{ url('storage/'.$albo->filename) }}" class="card-img-top" alt="{{ $albo->filename }}">
                         </div>
                     </td>
                     <td>{{ $albo->num_pagine }}</td>
@@ -38,9 +37,9 @@
                     <td>{{ $albo->data_pubblicazione }}</td>
                     <td>{{ $albo->collana['nome'] }}</td>
                     <td><a href="{{ route('albo.storia', $albo->id) }}">storie</a></td>
-                    <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#storiaModal">
-                            Storie
-                        </button></td>
+                    <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#storieModal">
+                          Storie
+                        </button>
                     <td><a href="{{ route('albo.edit', $albo->id) }}">modifica</a></td>
                     <td><a href="{{ route('albo.elimina_form', $albo->id) }}">elimina</a></td>
                 </tr>
@@ -48,12 +47,8 @@
             </tbody>
         </table>
     </div>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-        Launch demo modal
-    </button>
-
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="storieModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">

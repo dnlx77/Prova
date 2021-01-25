@@ -48093,9 +48093,9 @@ try {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\wamp64\www\Fumetti\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! C:\wamp64\www\Fumetti\resources\less\app.less */"./resources/less/app.less");
-module.exports = __webpack_require__(/*! C:\wamp64\www\Fumetti\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\wamp64\www\fumetti\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! C:\wamp64\www\fumetti\resources\less\app.less */"./resources/less/app.less");
+module.exports = __webpack_require__(/*! C:\wamp64\www\fumetti\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
