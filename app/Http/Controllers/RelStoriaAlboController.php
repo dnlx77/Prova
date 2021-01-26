@@ -43,7 +43,7 @@ class RelStoriaAlboController extends Controller
         }
     } 
 
-    public function index(Request $request, $id_albo)
+    public function index($id_albo)
     {
         $storie = DB::table('rel_storia_albo')->where('albo_id', '=', $id_albo)
         ->join('storia', 'storia.id', '=', 'rel_storia_albo.storia_id')
@@ -57,7 +57,7 @@ class RelStoriaAlboController extends Controller
             ]);
     }
 
-    public function eliminaStoriaForm(Request $request, $id_albo, $id_storia)
+    public function eliminaStoriaForm($id_albo, $id_storia)
     {
         return view('rel_storia_albo.elimina_storia_form', [
             'id_albo' => $id_albo,
@@ -65,7 +65,7 @@ class RelStoriaAlboController extends Controller
         ]);
     }
 
-    public function eliminaStoriaExecute(Request $request, $id_albo, $id_storia)
+    public function eliminaStoriaExecute($id_albo, $id_storia)
     {
         try {
             DB::beginTransaction();
@@ -80,5 +80,29 @@ class RelStoriaAlboController extends Controller
             DB::rollBack();
             return redirect(route('albo.storia', $id_albo))->with('success', 'Si è verificato un problema. L\'operazione non è stata eseguita.');
         }
+    }
+
+    public function getStorie($id_albo) {
+
+        $storie = DB::table('rel_storia_albo')->where('albo_id', '=', $id_albo)
+        ->join('storia', 'storia.id', '=', 'rel_storia_albo.storia_id')
+        ->get(['storia.id AS storia_id', 'storia.nome']);
+
+        $albo = Albo::find($id_albo);
+        $table_storie ="Storie dell'albo: ".$albo->titolo."<br>";
+        $table_storie .= "<table class=\"table table-hover table-bordered\">
+        <thead>
+            <tr>
+                <th>Titoli</th>
+            </tr>
+        </thead>
+        
+        <tbody>";
+        foreach ($storie as $storia) {
+            $table_storie .= "<tr>
+            <td>".$storia->nome."</td>
+            </tr>";
+        }
+        return $table_storie;
     }
 }

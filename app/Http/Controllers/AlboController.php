@@ -143,8 +143,4 @@ class AlboController extends Controller
         }
     }
 
-    public function getStorie() {
-        $prova = ['1','2'];
-        return json_encode ($prova);
-    }
 }

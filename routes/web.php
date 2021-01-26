@@ -73,10 +73,10 @@ Route::get('albo/{id_albo}/edit', 'AlboController@edit')->name('albo.edit');
 Route::post('albo/{id_albo}/update', 'AlboController@update')->name('albo.update');
 Route::get('albo/{id_albo}/elimina-form', 'AlboController@alboEliminaForm')->name('albo.elimina_form');
 Route::post('albo/{id_albo}/elimina-execute', 'AlboController@alboEliminaExecute')->name('albo.elimina_execute');
-Route::get('albo/services/get-storie', 'AlboController@getStorie')->name('albo.get_storie_json');
 
 Route::get('albo/{id_albo}/aggiungi-storia', 'RelStoriaAlboController@aggiungiStoria')->name('albo.aggiungi_storia');
 Route::post('albo/{id_albo}/store-storia', 'RelStoriaAlboController@storeStoria')->name('albo.store_storia');
 Route::get('albo/{id_albo}/storia', 'RelStoriaAlboController@index')->name('albo.storia');
 Route::get('albo/{id_albo}/elimina-storia-form/{id_storia}', 'RelStoriaAlboController@eliminaStoriaForm')->name('albo.elimina_storia_form');
 Route::post('albo/{id_albo}/elimina-autore-execute/{id_storia}', 'RelStoriaAlboController@eliminaStoriaExecute')->name('albo.elimina_storia_execute');
+Route::get('albo/{id_albo}/services/get-storie', 'RelStoriaAlboController@getStorie')->name('albo.get_storie_json');
