@@ -89,8 +89,8 @@ class RelStoriaAlboController extends Controller
         ->get(['storia.id AS storia_id', 'storia.nome']);
 
         $albo = Albo::find($id_albo);
-        $table_storie ="Storie dell'albo: ".$albo->titolo."<br>";
-        $table_storie .= "<table class=\"table table-hover table-bordered\">
+        $table_titolo ="Storie dell'albo: ".$albo->titolo."<br>";
+        $table_storie = "<table class=\"table table-hover table-bordered\">
         <thead>
             <tr>
                 <th>Titoli</th>
@@ -103,6 +103,8 @@ class RelStoriaAlboController extends Controller
             <td>".$storia->nome."</td>
             </tr>";
         }
-        return $table_storie;
+
+        $arr = array($table_titolo, $table_storie);
+        return json_encode($arr);
     }
 }

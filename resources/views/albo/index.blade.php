@@ -53,7 +53,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <h5 class="modal-title" id="exampleModalLabel"></h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -76,10 +76,11 @@
                     url:"/albo/" + $(this).attr('data-id-albo') + "/services/get-storie",
                     method:"GET",
                     data:{},
-                    dataType: 'html',
+                    dataType: 'json',
                     success:function(result){
-                        $('.modal-body').html(result);
-                        console.log(result);
+                        $('.modal-title').html(result[0]);
+                        $('.modal-body').html(result[1]);
+                        console.log(result[0]);
                     },
                     error:function() {
                         console.log();
