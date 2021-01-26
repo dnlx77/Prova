@@ -47,6 +47,7 @@
             </tbody>
         </table>
     </div>
+
     <!-- Modal -->
     <div class="modal fade" id="storieModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -67,21 +68,23 @@
             </div>
         </div>
     </div>
-<script>
-    $(document).ready(function(){
-        $("#modal-button").click(function(){
-            $.ajax({
-                url:"/albo/services/get-storie",
-                method:"GET",
-                data:{},
-                dataType: 'json',
-                success:function(result){
-                    console.log(result);
-                errror:function()
-                    console.log(error);
-                }
-            });
+
+    <script>
+        $(document).ready(function(){
+            $("#modal-button").on('click', (function(){
+                $.ajax({
+                    url:"/albo/services/get-storie",
+                    method:"GET",
+                    data:{},
+                    dataType: 'json',
+                    success:function(result){
+                        console.log(result);
+                    },
+                    error:function() {
+                        console.log();
+                    }
+                });
+            }));
         });
-    });
-</script>
+    </script>
 @endsection
