@@ -37,7 +37,7 @@
                     <td>{{ $albo->data_pubblicazione }}</td>
                     <td>{{ $albo->collana['nome'] }}</td>
                     <td><a href="{{ route('albo.storia', $albo->id) }}">storie</a></td>
-                    <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#storieModal">
+                    <td><button id="modal-button" type="button" class="btn btn-primary" data-toggle="modal" data-target="#storieModal">
                           Storie
                         </button>
                     <td><a href="{{ route('albo.edit', $albo->id) }}">modifica</a></td>
@@ -67,4 +67,21 @@
             </div>
         </div>
     </div>
+<script>
+    $(document).ready(function(){
+        $("#modal-button").click(function(){
+            $.ajax({
+                url:"/albo/services/get-storie",
+                method:"GET",
+                data:{},
+                dataType: 'json',
+                success:function(result){
+                    console.log(result);
+                errror:function()
+                    console.log(error);
+                }
+            });
+        });
+    });
+</script>
 @endsection

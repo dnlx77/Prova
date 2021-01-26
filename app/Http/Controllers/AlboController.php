@@ -142,4 +142,9 @@ class AlboController extends Controller
             return redirect(route('albo.index', 'all'))->with('success', 'Si è verificato un problema. L\'operazione non è stata eseguita.');
         }
     }
+
+    public function getStorie() {
+        $prova = ['1','2'];
+        return json_encode ($prova);
+    }
 }
