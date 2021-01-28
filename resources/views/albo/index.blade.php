@@ -61,10 +61,6 @@
                 <div class="modal-body">
                     ...
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
             </div>
         </div>
     </div>
@@ -78,8 +74,8 @@
                     data:{},
                     dataType: 'json',
                     success:function(result){
-                        $('.modal-title').html(result[0]);
-                        $('.modal-body').html(result[1]);
+                        $('.modal-title').html(result.titolo);
+                        $('.modal-body').html(result.storie);
                         console.log(result[0]);
                     },
                     error:function() {

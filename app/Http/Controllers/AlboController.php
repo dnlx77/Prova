@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Albo;
 use App\Collana;
 use App\Editore;
+use App\Storia;
+use APP\RelStoriaAlbo;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use Exception;
@@ -17,9 +19,11 @@ class AlboController extends Controller
     public function create(){
         $lista_collane = Collana::all();
         $lista_editori = Editore::all();
+        $lista_storie = Storia::all();
         return view('albo.create',
             ['lista_collane' => $lista_collane,
-             'lista_editori' => $lista_editori
+             'lista_editori' => $lista_editori,
+             'lista_storie' => $lista_storie
             ]);
     } 
 
@@ -78,10 +82,18 @@ class AlboController extends Controller
         $albo = Albo::find($id);
         $lista_collane = Collana::all();
         $lista_editori = Editore::all();
+        $lista_storie = Storia::all();
+
+        $lista_storie_albo = DB::table('rel_storia_albo')->where('albo_id', '=', $id)
+        ->join('storia', 'storia.id', '=', 'rel_storia_albo.storia_id')
+        ->get(['storia.id AS storia_id', 'storia.nome']); 
+        
         return view('albo.edit',
             [ 'albo' => $albo,
               'lista_collane' => $lista_collane,
-              'lista_editori' => $lista_editori
+              'lista_editori' => $lista_editori,
+              'lista_storie' => $lista_storie,
+              'lista_storie_albo' => $lista_storie_albo
             ]);
     } 
 

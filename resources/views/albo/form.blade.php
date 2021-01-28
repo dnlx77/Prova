@@ -34,14 +34,24 @@
             <option value="{{ $current_collana->id }}">{{ $current_collana->nome }}</option>
         @endforeach
     </select>
-    <div class="form-group">
-        <label for="editore">Editore albo:</label>
-        <select id="editore-select" name="editore">
-            <option value=""></option>
-            @foreach ($lista_editori as $current_editore)
-                <option value="{{ $current_editore->id }}">{{ $current_editore->nome }}</option>
-            @endforeach
-        </select>
+</div>
+<div class="form-group">
+    <label for="editore">Editore albo:</label>
+    <select id="editore-select" name="editore">
+        <option value=""></option>
+        @foreach ($lista_editori as $current_editore)
+            <option value="{{ $current_editore->id }}">{{ $current_editore->nome }}</option>
+        @endforeach
+    </select>
+</div>
+<div class="form-group">
+    <label for="storie">Storie albo:</label>
+    <select id="storie-select" name="storie[]" multiple="multiple">
+        <option value=""></option>
+        @foreach ($lista_storie as $current_storia)
+            <option value="{{ $current_storia->id }}">{{ $current_storia->nome }}</option>
+        @endforeach
+    </select>
 </div>
 <script>
     $(document).ready(function(){
@@ -53,8 +63,11 @@
             var collana_select_default = "{{ !empty(old('collana')) ? old('collana') : (!empty($albo->collana_id) ? $albo->collana_id : '') }}";
             $('#collana-select').val(collana_select_default).trigger('change');
 
-            $('#editore-select').select2();
+        $('#editore-select').select2();
             var editore_select_default = "{{ !empty(old('editore')) ? old('editore') : (!empty($albo->editore_id) ? $albo->editore_id : '') }}";
             $('#editore-select').val(editore_select_default).trigger('change');
+
+        var storie_select_default ="{{ !empty(old('storie')) ? old('storie') : (!empty($lista_storie_albo->storia_id) ? $lista_storie_albo->storia_id : '') }}";
+        $('#storie-select').val(storie_select_default).trigger('change');
     });
 </script>
