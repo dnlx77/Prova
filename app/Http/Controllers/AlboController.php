@@ -7,7 +7,7 @@ use App\Albo;
 use App\Collana;
 use App\Editore;
 use App\Storia;
-use APP\RelStoriaAlbo;
+use App\RelStoriaAlbo;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use Exception;
@@ -51,9 +51,16 @@ class AlboController extends Controller
         $albo->data_pubblicazione = \DateTime::createFromFormat('d-m-Y', $request->get('data_pubblicazione'));
         $albo->collana_id = $request->get('collana');
         $albo->editore_id = $request->get('editore');
-
         $albo->save();
-        return redirect(route('albo.index', 'all'))->with('success', 'L\'albo è stata salvato.');
+
+        foreach ($request->get('storie') as $storie) {
+            $storiaAlbo = new RelStoriaAlbo();
+            $storiaAlbo->albo_id = $albo->id;
+            $storiaAlbo->storia_id = $storie;
+            $storiaAlbo->save();
+        }
+
+        return redirect(route('albo.index'))->with('success', 'L\'albo è stata salvato.');
     }
 
     public function index ()
