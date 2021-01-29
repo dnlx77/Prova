@@ -67,7 +67,7 @@
             var editore_select_default = "{{ !empty(old('editore')) ? old('editore') : (!empty($albo->editore_id) ? $albo->editore_id : '') }}";
             $('#editore-select').val(editore_select_default).trigger('change');
 
-        var storie_select_default =[{{ !empty(old('storie')) ? implode(',', old('storie')) : (!empty($lista_storie_albo->storia_id) ? implode(',', $lista_storie_albo->storia_id) : '') }}];
+        var storie_select_default = [{{ !empty(old('storie')) ? implode(',', old('storie')) : (!empty($storie_array) ? implode(',', $storie_array) : '') }}];
         $('#storie-select').val(storie_select_default).trigger('change');
     });
 </script>

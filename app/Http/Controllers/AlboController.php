@@ -87,13 +87,17 @@ class AlboController extends Controller
         $lista_storie_albo = DB::table('rel_storia_albo')->where('albo_id', '=', $id)
         ->join('storia', 'storia.id', '=', 'rel_storia_albo.storia_id')
         ->get(['storia.id AS storia_id', 'storia.nome']); 
+
+        $storie_array = [];
+        foreach($lista_storie_albo as $storia)
+            $storie_array[] = $storia->storia_id;
         
         return view('albo.edit',
             [ 'albo' => $albo,
               'lista_collane' => $lista_collane,
               'lista_editori' => $lista_editori,
               'lista_storie' => $lista_storie,
-              'lista_storie_albo' => $lista_storie_albo
+              'storie_array' => $storie_array
             ]);
     } 
 
