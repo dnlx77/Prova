@@ -19,6 +19,10 @@ class Albo extends Model
 
     }
 
+    public function storie() {
+        return $this->belongsToMany(Storia::class, 'rel_storia_albo');
+    }
+
     public function scopeGetAlbo ($query, $albo_id) {
         return $query->where('id',$albo_id);
     }

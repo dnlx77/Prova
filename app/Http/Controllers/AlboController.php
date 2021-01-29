@@ -132,6 +132,7 @@ class AlboController extends Controller
             $albo->filename = $copertina->getFilename().'.'.$estensione;
         }
         
+        $albo->storie()->sync($request->get('storie'));
         $albo->save ();
         return redirect(route('albo.index', $id))->with('success', 'L\'albo è stato aggiornato.');
     }

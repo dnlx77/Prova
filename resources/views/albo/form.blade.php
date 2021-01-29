@@ -67,6 +67,7 @@
             var editore_select_default = "{{ !empty(old('editore')) ? old('editore') : (!empty($albo->editore_id) ? $albo->editore_id : '') }}";
             $('#editore-select').val(editore_select_default).trigger('change');
 
+        $('#storie-select').select2();
         var storie_select_default = [{{ !empty(old('storie')) ? implode(',', old('storie')) : (!empty($storie_array) ? implode(',', $storie_array) : '') }}];
         $('#storie-select').val(storie_select_default).trigger('change');
     });
