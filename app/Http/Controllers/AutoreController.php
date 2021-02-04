@@ -48,7 +48,7 @@ class AutoreController extends Controller
         return redirect(route('autore.index'))->with('success', 'L\'autore è stato salvato.');
     }
 
-    public function index(Request $request)
+    public function index()
     {
                
         $autore = Autore::all();
@@ -58,19 +58,19 @@ class AutoreController extends Controller
             );
     }
 
-    public function edit ($id) {
-        $autore = Autore::find($id);
+    public function edit ($id_autore) {
+        $autore = Autore::find($id_autore);
         return view('autore.edit',
             [ 'autore' => $autore ]);
     } 
 
-    public function update (Request $request, $id) {
+    public function update (Request $request, $id_autore) {
         $request->validate([
             'cognome' => 'required | string | max:511',
             'nome' => 'required | string | max:511',
         ]);
 
-        $autore = Autore::find($id);
+        $autore = Autore::find($id_autore);
         $autore->Cognome = $request->get('cognome');
         $autore->Nome = $request->get('nome');
         $autore->save ();

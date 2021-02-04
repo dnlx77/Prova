@@ -46,7 +46,7 @@ class CollanaController extends Controller
         }
     }
 
-    public function index(Request $request) {
+    public function index() {
         $collane = Collana::all();
 
         return view('collana.index', 
@@ -55,8 +55,8 @@ class CollanaController extends Controller
             ]);
     }
 
-    public function edit ($id) {
-        $collane = Collana::find($id);
+    public function edit ($id_collana) {
+        $collane = Collana::find($id_collana);
         return view('collana.edit',
             [ 
                 'collane' => $collane,
@@ -64,13 +64,13 @@ class CollanaController extends Controller
         );
     } 
 
-    public function update (Request $request, $id) {
+    public function update (Request $request, $id_collana) {
         $request->validate([
             'nome' => 'required | string | max:511',
             'num_albi' => 'required | integer',
         ]);
 
-        $collane = Collana::find($id);
+        $collane = Collana::find($id_collana);
         $collane->nome = $request->get('nome');
         $collane->num_albi = $request->get('num_albi');
         $collane->save ();

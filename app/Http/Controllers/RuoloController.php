@@ -46,7 +46,7 @@ class RuoloController extends Controller
         }
     }
 
-    public function index(Request $request)
+    public function index()
     {
                
         $ruoli = Ruolo::all();
@@ -56,18 +56,18 @@ class RuoloController extends Controller
             );
     }
 
-    public function edit ($id) {
-        $ruoli = Ruolo::find($id);
+    public function edit ($id_ruolo) {
+        $ruoli = Ruolo::find($id_ruolo);
         return view('ruolo.edit',
             [ 'ruoli' => $ruoli ]);
     } 
 
-    public function update (Request $request, $id) {
+    public function update (Request $request, $id_ruolo) {
         $request->validate([
             'descrizione' => 'required | string | max:511',
         ]);
 
-        $ruoli = Ruolo::find($id);
+        $ruoli = Ruolo::find($id_ruolo);
         $ruoli->descrizione = $request->get('descrizione');
         $ruoli->save ();
         return redirect(route('ruolo.index'))->with('success', 'Il ruolo è stato aggiornato.');

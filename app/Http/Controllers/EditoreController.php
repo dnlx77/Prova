@@ -47,7 +47,7 @@ class EditoreController extends Controller
         }
     }
 
-    public function index(Request $request)
+    public function index()
     {
                
         $editori = Editore::all();
@@ -57,18 +57,18 @@ class EditoreController extends Controller
             );
     }
 
-    public function edit ($id) {
-        $editori = Editore::find($id);
+    public function edit ($id_editore) {
+        $editori = Editore::find($id_editore);
         return view('editore.edit',
             [ 'editori' => $editori ]);
     } 
 
-    public function update (Request $request, $id) {
+    public function update (Request $request, $id_editore) {
         $request->validate([
             'nome' => 'required | string | max:511',
         ]);
 
-        $editori = Editore::find($id);
+        $editori = Editore::find($id_editore);
         $editori->nome = $request->get('nome');
         $editori->save ();
         return redirect(route('editore.index'))->with('success', 'L\'editore è stato aggiornato.');

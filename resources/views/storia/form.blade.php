@@ -22,7 +22,8 @@
         $(document).ready(function(){
             $('[name=data_lettura]').datepicker({
                 format: 'dd-mm-yyyy',
-                todayHighlight: true
+                todayHighlight: true,
+                defaultDate: null
             });
             $('#stato_select').select2();
             var stato_select_default = "{{ !empty(old('stato')) ? old('stato') : (!empty($storia->stato) ? $storia->stato : '') }}";

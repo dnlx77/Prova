@@ -13,6 +13,7 @@ final class TipoStoriaEnum extends Enum
 {
     const IN_CORSO = 'in_corso';
     const FINITA = 'finita';
+    const AUTO_CONCLUSIVA = 'autoconclusiva';
 
     public static function getDescription($value): string
     {
@@ -22,6 +23,9 @@ final class TipoStoriaEnum extends Enum
                 break;
             case self::FINITA:
                 return 'Finita';
+                break;
+            case self::AUTO_CONCLUSIVA:
+                return 'Auto Conclusiva';
                 break;
             default:
                 return self::getKey($value);

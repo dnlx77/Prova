@@ -80,8 +80,8 @@ class StoriaController extends Controller
 
     }
 
-    public function edit ($id) {
-        $storia = Storia::find($id);
+    public function edit ($id_storia) {
+        $storia = Storia::find($id_storia);
         $tipo_storia_list = TipoStoriaEnum::toSelectArray();
 
         return view('storia.edit',
@@ -91,12 +91,12 @@ class StoriaController extends Controller
             ]);
     } 
 
-    public function update (Request $request, $id) {
+    public function update (Request $request, $id_storia) {
         $request->validate([
             'nome' => 'required | string | max:511',
         ]);
 
-        $storia = Storia::find($id);
+        $storia = Storia::find($id_storia);
         $storia->nome = $request->get('nome');
         $storia->trama = $request->get('trama');
         $storia->stato = $request->get('stato');

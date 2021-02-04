@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\DB;
 class RelStoriaAlboController extends Controller
 {
     //
-    public function aggiungiStoria ($id_albo, Request $request) {
+    public function aggiungiStoria ($id_albo) {
         $lista_storie = Storia::all();
        
         return view('rel_storia_albo.aggiungi_storia',

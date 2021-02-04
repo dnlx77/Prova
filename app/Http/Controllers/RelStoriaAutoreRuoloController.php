@@ -35,7 +35,7 @@ class RelStoriaAutoreRuoloController extends Controller
         //SALVARE UNA RIGA PER OGNI RUOLO
         DB::beginTransaction();
         try {
-            $rimuovi_ruoli = RelStoriaAutoreRuolo::where('storia_id', '=', $id_storia)->where('autore_id', '=', $request->get('autore'))->delete();
+            RelStoriaAutoreRuolo::where('storia_id', '=', $id_storia)->where('autore_id', '=', $request->get('autore'))->delete();
             
             $ruoli = $request->get('ruolo');
             foreach ($ruoli as $ruolo) {
@@ -54,7 +54,7 @@ class RelStoriaAutoreRuoloController extends Controller
         }
     } 
 
-    public function index(Request $request, $id_storia)
+    public function index($id_storia)
     {
         $autori = DB::table('rel_storia_autore_ruolo')->where('storia_id', '=', $id_storia)
         ->join('autore', 'autore.id', '=', 'rel_storia_autore_ruolo.autore_id')
@@ -87,7 +87,7 @@ class RelStoriaAutoreRuoloController extends Controller
         ]);
     }
 
-    public function eliminaAutoreExecute (Request $request, $id_storia, $id_autore)
+    public function eliminaAutoreExecute ($id_storia, $id_autore)
     {
         try {
             DB::beginTransaction();
