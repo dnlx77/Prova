@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Collana;
+use App\Albo;
 use Exception;
 use Illuminate\Support\Facades\DB;
 
@@ -46,10 +47,15 @@ class CollanaController extends Controller
 
     public function index() {
         $collane = Collana::all();
+        $num_albi_in_collana = [];
+
+        foreach ($collane as $collana)
+            $num_albi_in_collana[$collana->id] = Albo::NumAlbiInCollana($collana->id);
 
         return view('collana.index', 
             [ 
                 'collane' => $collane,
+                'num_albi_in_collana' => $num_albi_in_collana
             ]);
     }
 
