@@ -6,7 +6,6 @@
         <thead>
             <tr>
                 <th>Collana</th>
-                <th>Numero di albi</th>
                 <th>Modifica</th>
                 <th>Elimina</th>
                 <th>Data inserimento</th>
@@ -17,7 +16,6 @@
             @foreach ($collane AS $collana)
                 <tr>
                     <td>{{ $collana->nome }}</td>
-                    <td>{{ $collana->num_albi }}</td>
                     <td><a href="{{ route('collana.edit', $collana->id) }}">modifica</a></td>
                     <td><a href="{{ route('collana.elimina_form', $collana->id) }}">elimina</a></td>
                     <td>{{ $collana->created_at }}</td>

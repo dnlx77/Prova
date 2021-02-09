@@ -17,12 +17,10 @@ class CollanaController extends Controller
     public function store(Request $request) {
         $request->validate([
             'nome' => 'required | string | max:511',
-            'num_albi' => 'required | integer',
         ]);
 
         $collana = new Collana();
         $collana->nome = $request->get('nome');
-        $collana->num_albi = $request->get('num_albi');
         $collana->save();
         return redirect(route('collana.index'))->with('success', 'La collana è stata salvata.');
     }
@@ -67,12 +65,10 @@ class CollanaController extends Controller
     public function update (Request $request, $id_collana) {
         $request->validate([
             'nome' => 'required | string | max:511',
-            'num_albi' => 'required | integer',
         ]);
 
         $collane = Collana::find($id_collana);
         $collane->nome = $request->get('nome');
-        $collane->num_albi = $request->get('num_albi');
         $collane->save ();
         return redirect(route('collana.index'))->with('success', 'La collana è stato aggiornata.');
     }
