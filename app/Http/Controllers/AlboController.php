@@ -48,7 +48,14 @@ class AlboController extends Controller
         $albo->filename = $copertina->getFilename().'.'.$estensione;
         $albo->numero = $request->get('numero');
         $albo->titolo = $request->get('titolo');
-        $albo->data_pubblicazione = \DateTime::createFromFormat('d-m-Y', $request->get('data_pubblicazione'));
+        if ($request->get('data_pubblicazione') != 0)
+            $albo->data_pubblicazione = \DateTime::createFromFormat('d-m-Y', $request->get('data_pubblicazione'));
+        else
+            $albo->data_pubblicazione = null;
+        if ($request->get('data_lettura') != 0)
+            $albo->data_lettura = \DateTime::createFromFormat('d-m-Y', $request->get('data_lettura'));
+        else
+            $albo->data_lettura = null;
         $albo->collana_id = $request->get('collana');
         $albo->editore_id = $request->get('editore');
         $albo->save();
@@ -128,7 +135,14 @@ class AlboController extends Controller
         $albo->barcode = $request->get('barcode');
         $albo->numero = $request->get('numero');
         $albo->titolo = $request->get('titolo');
-        $albo->data_pubblicazione = \DateTime::createFromFormat('d-m-Y', $request->get('data_pubblicazione'));
+        if ($request->get('data_pubblicazione') != 0)
+            $albo->data_pubblicazione = \DateTime::createFromFormat('d-m-Y', $request->get('data_pubblicazione'));
+        else
+            $albo->data_pubblicazione = null;
+        if ($request->get('data_lettura') != 0)
+            $albo->data_lettura = \DateTime::createFromFormat('d-m-Y', $request->get('data_lettura'));
+        else
+            $albo->data_lettura = null;
         $albo->collana_id = $request->get('collana');
         $albo->editore_id = $request->get('editore');
         

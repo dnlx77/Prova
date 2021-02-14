@@ -13,6 +13,7 @@
                 <th>Titolo</th>
                 <th>Editore</th>
                 <th>Data di pubblicazione</th>
+                <th>Data di lettura</th>
                 <th>Collana</th>
                 <th>Titoli</th>
                 <th>Modale</th>
@@ -35,6 +36,7 @@
                     <td>{{ $albo->titolo }}</td>
                     <td>{{ $albo->editore->nome }} </td>
                     <td>{{ $albo->data_pubblicazione }}</td>
+                    <td>{{ $albo->data_lettura }}</td>
                     <td>{{ $albo->collana['nome'] }}</td>
                     <td><a href="{{ route('albo.storia', $albo->id) }}">storie</a></td>
                     <td><button id="modal-button" type="button" class="btn btn-primary modale-storie" data-toggle="modal" data-target="#storieModal" data-id-albo="{{ $albo->id }}">

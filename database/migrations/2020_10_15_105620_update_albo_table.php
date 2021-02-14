@@ -17,6 +17,7 @@ class UpdateAlboTable extends Migration
             $table->integer('numero');
             $table->string('titolo', 511)->nullable();
             $table->date('data_pubblicazione')->nullable();
+            $table->date('data_lettura')->nullable();
             $table->bigInteger('collana_id')->unsigned()->nullable();
             $table->bigInteger('editore_id')->unsigned();
         });

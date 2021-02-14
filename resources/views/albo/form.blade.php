@@ -23,6 +23,10 @@
     <input type="text" class="form-control" name="data_pubblicazione" value="{{ !empty(old('data_pubblicazione')) ? old('data_pubblicazione') : (!empty($albo->data_pubblicazione) ? date('d-m-Y', strtotime($albo->data_pubblicazione)) : '') }}"/>
 </div>
 <div class="form-group">
+    <label for="data_lettura">Data lettura:</label>
+    <input type="text" class="form-control" name="data_lettura" value="{{ !empty(old('data_lettura')) ? old('data_lettura') : (!empty($albo->data_lettura) ? date('d-m-Y', strtotime($albo->data_lettura)) : '') }}"/>
+</div>
+<div class="form-group">
     <label for="copertina">Copertina albo:</label>
     <input type="file" class="form-control" name="copertina"/>
 </div>
@@ -56,6 +60,10 @@
 <script>
     $(document).ready(function(){
         $('[name=data_pubblicazione]').datepicker({
+            format: 'dd-mm-yyyy',
+            todayHighlight: true
+        });
+        $('[name=data_lettura]').datepicker({
             format: 'dd-mm-yyyy',
             todayHighlight: true
         });
