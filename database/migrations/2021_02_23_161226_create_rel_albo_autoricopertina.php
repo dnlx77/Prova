@@ -14,7 +14,7 @@ class CreateRelAlboAutoricopertina extends Migration
     public function up()
     {
         Schema::create('rel_albo_autoricopertina', function (Blueprint $table) {
-            $table->BigInteger('albo_id')->unsigned();
+            $table->bigInteger('albo_id')->unsigned();
             $table->bigInteger('autore_id')->unsigned();
             $table->timestamps();
             $table->primary(['albo_id', 'autore_id']);
