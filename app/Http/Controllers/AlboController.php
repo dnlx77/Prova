@@ -7,7 +7,9 @@ use App\Albo;
 use App\Collana;
 use App\Editore;
 use App\Storia;
+use App\Autore;
 use App\RelStoriaAlbo;
+use App\RelAlboAUtoricopertina;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use Exception;
@@ -20,10 +22,13 @@ class AlboController extends Controller
         $lista_collane = Collana::all();
         $lista_editori = Editore::all();
         $lista_storie = Storia::all();
+        $lista_autori = Autore::all();
+
         return view('albo.create',
             ['lista_collane' => $lista_collane,
              'lista_editori' => $lista_editori,
-             'lista_storie' => $lista_storie
+             'lista_storie' => $lista_storie,
+             'lista_autori' => $lista_autori
             ]);
     } 
 
@@ -67,6 +72,13 @@ class AlboController extends Controller
             $storiaAlbo->save();
         }
 
+        foreach ($request->get('autori_copertina') as $autore_copertina) {
+            $autoreCopertinaalbo = new RelAlboAUtoricopertina();
+            $autoreCopertinaalbo->albo_id = $albo->id;
+            $autoreCopertinaalbo->autore_id = $autore_copertina;
+            $autoreCopertinaalbo->save();
+        }
+
         return redirect(route('albo.index'))->with('success', 'L\'albo è stata salvato.');
     }
 
@@ -97,21 +109,32 @@ class AlboController extends Controller
         $lista_collane = Collana::all();
         $lista_editori = Editore::all();
         $lista_storie = Storia::all();
+        $lista_autori = Autore::all();
 
         $lista_storie_albo = DB::table('rel_storia_albo')->where('albo_id', '=', $id_albo)
         ->join('storia', 'storia.id', '=', 'rel_storia_albo.storia_id')
-        ->get(['storia.id AS storia_id', 'storia.nome']); 
+        ->get(['storia.id AS storia_id', 'storia.nome']);
+
+        $lista_autori_coopertinaalbo = DB::table('rel_albo_autoricopertina')->where('albo_id', '=', $id_albo)
+        ->join('autore', 'autore.id', '=', 'rel_albo_autoricopertina.autore_id')
+        ->get(['autore.id AS autore_id', 'autore.cognome', 'autore.nome']);
 
         $storie_array = [];
         foreach($lista_storie_albo as $storia)
             $storie_array[] = $storia->storia_id;
-        
+
+        $autoricopertina_array = [];
+        foreach($lista_autori_coopertinaalbo as $autore)
+            $autoricopertina_array[] = $autore->autore_id;
+
         return view('albo.edit',
             [ 'albo' => $albo,
               'lista_collane' => $lista_collane,
               'lista_editori' => $lista_editori,
               'lista_storie' => $lista_storie,
-              'storie_array' => $storie_array
+              'lista_autori' => $lista_autori,
+              'storie_array' => $storie_array,
+              'autoricopertina_array' => $autoricopertina_array
             ]);
     } 
 
@@ -154,7 +177,9 @@ class AlboController extends Controller
         }
         
         $albo->storie()->sync($request->get('storie'));
+        $albo->autoriCopertina()->sync($request->get('autori_copertina'));
         $albo->save ();
+
         return redirect(route('albo.index', $id_albo))->with('success', 'L\'albo è stato aggiornato.');
     }
 

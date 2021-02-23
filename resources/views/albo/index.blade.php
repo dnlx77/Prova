@@ -6,6 +6,7 @@
             <thead>
             <tr>
                 <th>Copertina</th>
+                <th>Autori copertina</th>
                 <th>Numero di pagine</th>
                 <th>Prezzo</th>
                 <th>Codice a barre</th>
@@ -28,6 +29,11 @@
                         <div class="immagine-tabella-wrapper">
                           <img src="{{ url('storage/'.$albo->filename) }}" class="card-img-top" alt="{{ $albo->filename }}">
                         </div>
+                    </td>
+                    <td>
+                        @foreach ($albo->autoriCopertina AS $autoreCopertina)
+                            {{ $autoreCopertina->nome }} {{$autoreCopertina->cognome }} <br>
+                        @endforeach
                     </td>
                     <td>{{ $albo->num_pagine }}</td>
                     <td>{{ $albo->prezzo }}</td>

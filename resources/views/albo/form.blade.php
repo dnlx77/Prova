@@ -31,6 +31,15 @@
     <input type="file" class="form-control" name="copertina"/>
 </div>
 <div class="form-group">
+    <label for="autori_copertina">Autori copertina:</label>
+    <select id="autori_copertina-select" name="autori_copertina[]" multiple="multiple">
+        <option value=""></option>
+        @foreach ($lista_autori as $current_autore)
+            <option value="{{ $current_autore->id }}">{{ $current_autore->nome }} {{ $current_autore->cognome }}</option>
+        @endforeach
+    </select>
+</div>
+<div class="form-group">
     <label for="collana">Collana albo:</label>
     <select id="collana-select" name="collana">
         <option value=""></option>
@@ -78,5 +87,9 @@
         $('#storie-select').select2();
         var storie_select_default = [{{ !empty(old('storie')) ? implode(',', old('storie')) : (!empty($storie_array) ? implode(',', $storie_array) : '') }}];
         $('#storie-select').val(storie_select_default).trigger('change');
+
+        $('#autori_copertina-select').select2();
+        var autoricopertina_select_default = [{{ !empty(old('autori_copertina')) ? implode(',', old('autori_copertina')) : (!empty($autoricopertina_array) ? implode(',', $autoricopertina_array) : '') }}];
+        $('#autori_copertina-select').val(autoricopertina_select_default).trigger('change');
     });
 </script>
