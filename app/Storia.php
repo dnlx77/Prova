@@ -12,8 +12,8 @@ class Storia extends Model
     /*I local scope ci permettono di definire una serie di vincoli riusabili
     per far ciò si fa precedre la keyword scope al nome della funzione poi la funzione sarà richiamabile soltanto
     con il nome senza scope
-    $query contiene instanze della classe Fumetti il cui titolo contiene la stringa $string
-    Perché usiamo 2 parametri?
+    $query contiene instanze della classe Storia il cui titolo contiene la stringa $string
+    Il secondo parametro e l'argomento che passiamo alla funzione
     */
     public function scopeSearch($query, $string) {
         if(!empty($string)){

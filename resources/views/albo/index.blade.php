@@ -40,7 +40,7 @@
                     <td>{{ $albo->barcode }}</td>
                     <td>{{ $albo->numero }}</td>
                     <td>{{ $albo->titolo }}</td>
-                    <td>{{ $albo->editore->nome }} </td>
+                    <td>{{ $albo->editore['nome'] }} </td>
                     <td>{{ $albo->data_pubblicazione }}</td>
                     <td>{{ $albo->data_lettura }}</td>
                     <td>{{ $albo->collana['nome'] }}</td>
