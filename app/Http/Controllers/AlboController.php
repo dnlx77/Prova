@@ -97,7 +97,7 @@ class AlboController extends Controller
         //$albi = Albo::find([$id]);
         //$albi = Albo::where('id', $id)->get();
         //$albi = Albo::whereId($id)->get();
-        $albi = Albo::GetAlbo($id_albo)->get();
+        $albi = Albo::GetAlbo($id_albo);
            
         return view('albo.index', 
             [ 'albi' => $albi ]

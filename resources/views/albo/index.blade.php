@@ -36,7 +36,7 @@
                         @endforeach
                     </td>
                     <td>{{ $albo->num_pagine }}</td>
-                    <td>{{ $albo->prezzo }}</td>
+                    <td>{{ $albo->prezzo }} &euro;</td>
                     <td>{{ $albo->barcode }}</td>
                     <td>{{ $albo->numero }}</td>
                     <td>{{ $albo->titolo }}</td>

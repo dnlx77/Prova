@@ -28,7 +28,7 @@ class Albo extends Model
     }
 
     public function scopeGetAlbo ($query, $albo_id) {
-        return $query->where('id',$albo_id);
+        return $query->where('id',$albo_id)->get();
     }
 
     public function scopeNumAlbiInCollana ($query, $collana_id) {
