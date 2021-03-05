@@ -11592,10 +11592,9 @@ a:hover {
   margin: 0 20px;
 }
 
-.table-container {
-  max-width: 100%;
-  overflow-x: auto;
-  overflow-y: auto;
+.immagine-tabella-wrapper {
+  max-width: 30px;
+  max-height: 30px;
 }
 
 

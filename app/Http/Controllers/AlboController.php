@@ -104,6 +104,13 @@ class AlboController extends Controller
             );
     }
 
+    public function detailsAlbo ($id_albo) {
+        $albo = Albo::find($id_albo);
+       
+        return view('albo.details',
+            [ 'albo' => $albo ]);
+    }
+
     public function edit ($id_albo) {
         $albo = Albo::find($id_albo);
         $lista_collane = Collana::all();
@@ -115,7 +122,7 @@ class AlboController extends Controller
         ->join('storia', 'storia.id', '=', 'rel_storia_albo.storia_id')
         ->get(['storia.id AS storia_id', 'storia.nome']);
 
-        $lista_autori_coopertinaalbo = DB::table('rel_albo_autoricopertina')->where('albo_id', '=', $id_albo)
+        $lista_autori_copertinaalbo = DB::table('rel_albo_autoricopertina')->where('albo_id', '=', $id_albo)
         ->join('autore', 'autore.id', '=', 'rel_albo_autoricopertina.autore_id')
         ->get(['autore.id AS autore_id', 'autore.cognome', 'autore.nome']);
 
@@ -124,7 +131,7 @@ class AlboController extends Controller
             $storie_array[] = $storia->storia_id;
 
         $autoricopertina_array = [];
-        foreach($lista_autori_coopertinaalbo as $autore)
+        foreach($lista_autori_copertinaalbo as $autore)
             $autoricopertina_array[] = $autore->autore_id;
 
         return view('albo.edit',
