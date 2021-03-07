@@ -20,15 +20,15 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($storia AS $storie)
+            @foreach ($storie AS $storia)
                 <tr>
-                    <td>{{ $storie->nome }}</td>
-                    <td>{{ $storie->trama }}</td>
-                    <td>{{ $storie->data_lettura }}                   
-                    <td>{{ \App\Enums\TipoStoriaEnum::getDescription($storie->stato) }}</td>
-                    <td><a href="{{ route('storia.edit', $storie->id) }}">modifica</a></td>
-                    <td><a href="{{ route('storia.autore', $storie->id) }}">autori</a></td>
-                    <td><a href="{{ route('storia.elimina_form', $storie->id) }}">elimina</a></td>
+                    <td>{{ $storia->nome }}</td>
+                    <td>{{ $storia->trama }}</td>
+                    <td>{{ !empty($storia->data_lettura) ? date('d/m/Y', strtotime($storia->data_lettura)) : 'da leggere' }}                   
+                    <td>{{ \App\Enums\TipoStoriaEnum::getDescription($storia->stato) }}</td>
+                    <td><a href="{{ route('storia.edit', $storia->id) }}">modifica</a></td>
+                    <td><a href="{{ route('storia.autore', $storia->id) }}">autori</a></td>
+                    <td><a href="{{ route('storia.elimina_form', $storia->id) }}">elimina</a></td>
                 </tr>
             @endforeach
         </tbody>

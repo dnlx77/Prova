@@ -70,13 +70,13 @@ class StoriaController extends Controller
         $sort_by = 'nome';
         $order_by = 'asc';
         $per_page = 100;
-        $storia = Storia::search($scope_search)->orderBy($sort_by, $order_by)->paginate($per_page);
+        $storie = Storia::search($scope_search)->orderBy($sort_by, $order_by)->paginate($per_page);
         
         $tipo_storia_list = TipoStoriaEnum::toSelectArray();
         
         return view('storia.index', 
             [ 
-              'storia' => $storia , 
+              'storie' => $storie , 
               'tipo_storia_list' => $tipo_storia_list ,
               'scope_search' => $scope_search 
             ]);
@@ -109,5 +109,13 @@ class StoriaController extends Controller
             $storia->data_lettura = null;
         $storia->save ();
         return redirect(route('storia.index'))->with('success', 'La storia è stata aggiornata.');
+    }
+
+    public function getTrame($id_storia) {
+        $storia = Storia::find($id_storia);
+        
+        $arr = ['titolo' => $storia->nome, 'trama' => $storia->trama];
+
+        return json_encode($arr);
     }
 }
