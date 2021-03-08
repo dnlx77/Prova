@@ -11,12 +11,10 @@ class Albo extends Model
 
     public function collana() {
         return $this->belongsTo(Collana::class, 'collana_id');
-
     }
 
     public function editore() {
         return $this->belongsTo(Editore::class, 'editore_id');
-
     }
 
     public function storie() {
