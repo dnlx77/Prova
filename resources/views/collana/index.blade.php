@@ -9,8 +9,6 @@
                 <th>Numero albi</th>
                 <th>Modifica</th>
                 <th>Elimina</th>
-                <th>Data inserimento</th>
-                <th>Data aggiornamento</th>
             </tr>
         </thead>
         <tbody>
@@ -20,8 +18,6 @@
                     <td>{{ $num_albi_in_collana[$collana->id] }}</td>
                     <td><a href="{{ route('collana.edit', $collana->id) }}">modifica</a></td>
                     <td><a href="{{ route('collana.elimina_form', $collana->id) }}">elimina</a></td>
-                    <td>{{ $collana->created_at }}</td>
-                    <td>{{ $collana->updated_at }}</td>
                 </tr>
             @endforeach
         </tbody>

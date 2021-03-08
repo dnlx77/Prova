@@ -49,22 +49,24 @@
             </div>
         </div>
     </div>
+
     <!-- Modal -->
     <div class="modal" id="tramaModal" tabindex="-1">
         <div class="modal-dialog modal-dialog-scrollable">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">Trama</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Titolo della storia</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">Trama della storia</div>
             </div>
-            <div class="modal-body"></div>
-          </div>
         </div>
-      </div>
-      <!-- Script gestione modal -->
-      <script>
+    </div>
+
+    <!-- Script gestione modal -->
+    <script>
         $(document).ready(function(){
             $('.modale-trama').on('click', (function(){
                 $.ajax({
@@ -75,7 +77,7 @@
                     success:function(result){
                         $('.modal-title').html(result.titolo);
                         $('.modal-body').html(result.trama);
-                        console.log(result[0]);
+                        console.log(result);
                     },
                     error:function() {
                         console.log();

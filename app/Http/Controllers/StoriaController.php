@@ -113,8 +113,13 @@ class StoriaController extends Controller
 
     public function getTrame($id_storia) {
         $storia = Storia::find($id_storia);
+
+        if (!$storia->trama)
+            $trama = "Trama non disponibile";
+        else
+            $trama = $storia->trama;
         
-        $arr = ['titolo' => $storia->nome, 'trama' => $storia->trama];
+        $arr = ['titolo' => $storia->nome, 'trama' => $trama];
 
         return json_encode($arr);
     }
