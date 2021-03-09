@@ -16,9 +16,11 @@
                 <tr>
                     <td>{{ $editore->nome }}</td>
                     <td>
-                    @foreach ($editore->albi AS $albo)
-                        <a href="{{ route('albo.show', $albo->id) }}">{{ $albo->titolo }}</a> <br>
-                    @endforeach
+                        <ul class="multi-row">
+                            @foreach ($editore->albi AS $albo)
+                                <li><a href="{{ route('albo.show', $albo->id) }}">{{ $albo->titolo }}</a></li>
+                            @endforeach
+                        </ul>
                     </td>
                     <td><a href="{{ route('editore.edit', $editore->id) }}">modifica</a></td>
                     <td><a href="{{ route('editore.elimina_form', $editore->id) }}">elimina</a></td>

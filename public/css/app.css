@@ -11597,6 +11597,18 @@ a:hover {
   max-height: 30px;
 }
 
+.table-container .multi-row {
+  list-style: none;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+.albo-details .multi-row {
+  list-style: none;
+  margin-left: 0;
+  padding-left: 0;
+}
+
 
 .datepicker {
   border-radius: 4px;

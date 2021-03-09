@@ -84,7 +84,10 @@ class AlboController extends Controller
 
     public function index ()
     {
-            $albi = Albo::all();
+            $sort_by = 'created_at';
+            $order = 'desc';
+            $per_page = 10;
+            $albi = Albo::orderBy($sort_by, $order)->paginate($per_page);
             
         return view('albo.index', 
             [ 'albi' => $albi ]
@@ -97,7 +100,7 @@ class AlboController extends Controller
         //$albi = Albo::find([$id]);
         //$albi = Albo::where('id', $id)->get();
         //$albi = Albo::whereId($id)->get();
-        $albi = Albo::GetAlbo($id_albo);
+        $albi = Albo::GetAlbo($id_albo)->paginate(1);
            
         return view('albo.index', 
             [ 'albi' => $albi ]

@@ -69,7 +69,7 @@ class StoriaController extends Controller
         $scope_search = $request->has('scope_search') ? $request->get('scope_search') : ''; 
         $sort_by = 'nome';
         $order_by = 'asc';
-        $per_page = 100;
+        $per_page = 10;
         $storie = Storia::search($scope_search)->orderBy($sort_by, $order_by)->paginate($per_page);
         
         $tipo_storia_list = TipoStoriaEnum::toSelectArray();

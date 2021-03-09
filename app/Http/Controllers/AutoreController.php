@@ -50,8 +50,9 @@ class AutoreController extends Controller
 
     public function index()
     {
-               
-        $autore = Autore::all();
+        $order_by = 'cognome';
+        $sorted = 'asc';
+        $autore = Autore::orderBy($order_by, $sorted)->get();
 
         return view('autore.index', 
             [ 'autore' => $autore ] 

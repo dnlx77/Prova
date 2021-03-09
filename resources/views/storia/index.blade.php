@@ -6,6 +6,7 @@
     <input class="form-control" placeholder="cerca" type="search" name="scope_search" value="{{ $scope_search }}">
     <button type="submit" class="btn btn-primary">Cerca</button>
 </form>
+
 <div class="table-container">
     <table class="table table-hover table-bordered">
         <thead>
@@ -33,5 +34,7 @@
             @endforeach
         </tbody>
     </table>
+
+    {{ $storie->links() }}
 </div>
 @endsection

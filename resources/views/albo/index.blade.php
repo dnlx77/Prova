@@ -29,7 +29,7 @@
                     <td>{{ $albo->numero }}</td>
                     <td>{{ $albo->titolo }}</td>
                     <td>{{ $albo->editore->nome }}</td>
-                    <td>{{ !empty($albo->data_lettura) ? date('d/m/Y', strtotime($albo->data_lettura)) : 'da leggere' }}</td>
+                    <td>{{ !empty($albo->data_lettura) ? date('d/m/Y', strtotime($albo->data_lettura)) : 'Da leggere' }}</td>
                     <td>{{ $albo->collana ? $albo->collana->nome : '' }}</td>
                     <td><a href="{{ route('albo.storia', $albo->id) }}">storie</a></td>
                     <td><a data-target="#storieModal" class="modale-storie" data-toggle="modal" data-id-albo="{{ $albo->id }}" href="#storieModal">storie</a></td>
@@ -42,6 +42,9 @@
             @endforeach
             </tbody>
         </table>
+
+        {{ $albi->links() }}
+
     </div>
 
     <!-- Modal -->
