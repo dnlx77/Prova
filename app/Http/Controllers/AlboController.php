@@ -35,7 +35,7 @@ class AlboController extends Controller
     public function store(Request $request){
         $request->validate([
             'num_pagine' => 'required | string | max:511',
-            'barcode' => 'required | integer',
+            'barcode' => 'required | numeric',
             'prezzo' => 'required | min:0 | max:100',
         ]);
         
@@ -188,7 +188,7 @@ class AlboController extends Controller
         
         $albo->storie()->sync($request->get('storie'));
         $albo->autoriCopertina()->sync($request->get('autori_copertina'));
-        $albo->save ();
+        $albo->save();
 
         return redirect(route('albo.index', $id_albo))->with('success', 'L\'albo è stato aggiornato.');
     }

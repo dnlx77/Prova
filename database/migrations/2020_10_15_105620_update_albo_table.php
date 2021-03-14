@@ -14,7 +14,7 @@ class UpdateAlboTable extends Migration
     public function up()
     {
         Schema::table('albo', function (Blueprint $table) {
-            $table->integer('numero');
+            $table->integer('numero')->nullable();
             $table->string('titolo', 511)->nullable();
             $table->date('data_pubblicazione')->nullable();
             $table->date('data_lettura')->nullable();
