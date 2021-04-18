@@ -3,7 +3,7 @@
 <br><br><a href="{{ route('storia.create') }}">Inserisci una nuova storia</a><br><br>
 
 <form action="{{ route('storia.index') }}">
-    <input class="form-control" placeholder="cerca" type="search" name="scope_search" value="{{ $scope_search }}">
+    <input class="form-control" placeholder="cerca" type="search" name="storia_search" value="{{ $storia_search }}">
     <button type="submit" class="btn btn-primary">Cerca</button>
 </form>
 
@@ -11,7 +11,7 @@
     <table class="table table-hover table-bordered">
         <thead>
             <tr>
-                <th>Nome</th>
+                <th>Titolo storia</th>
                 <th>Trama</th>
                 <th>Data lettura</th>
                 <th>Stato storia</th>
@@ -35,6 +35,6 @@
         </tbody>
     </table>
 
-    {{ $storie->links() }}
+    {{ $storie->appends(['storia_search' => $storia_search])->links() }}
 </div>
 @endsection

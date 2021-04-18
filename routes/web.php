@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\RelStoriaAlboController;
+use App\Http\Controllers\StoriaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -52,6 +53,7 @@ Route::post('storia/elimina-autore-execute/{id_storia}/{id_autore}', 'RelStoriaA
 Route::get('storia/create', 'StoriaController@create')->name('storia.create');
 Route::post('storia/store', 'StoriaController@store')->name('storia.store');
 Route::get('storia', 'StoriaController@index')->name('storia.index');
+Route::get('storia/{id_storia}/details', 'StoriaController@detailsStoria')->name('storia.details');
 Route::get('storia/{id_storia}/edit', 'StoriaController@edit')->name('storia.edit');
 Route::post('storia/{id_storia}/update', 'StoriaController@update')->name('storia.update');
 Route::get('storia/{id_storia}/elimina-form', 'StoriaController@storiaEliminaForm')->name('storia.elimina_form');

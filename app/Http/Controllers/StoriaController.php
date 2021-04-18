@@ -66,11 +66,11 @@ class StoriaController extends Controller
         o se l'index non è stato chiamato dal form di ricerca $scope_search contiene la stringa vuota
         Quando chiamiamo il metodo search su fumetti viene richiamato in automatico il metodo scopeSearch definito nel model
         */
-        $scope_search = $request->has('scope_search') ? $request->get('scope_search') : ''; 
+        $storia_search = $request->has('storia_search') ? $request->get('storia_search') : ''; 
         $sort_by = 'nome';
         $order_by = 'asc';
         $per_page = 10;
-        $storie = Storia::search($scope_search)->orderBy($sort_by, $order_by)->paginate($per_page);
+        $storie = Storia::search($storia_search)->orderBy($sort_by, $order_by)->paginate($per_page);
         
         $tipo_storia_list = TipoStoriaEnum::toSelectArray();
         
@@ -78,11 +78,38 @@ class StoriaController extends Controller
             [ 
               'storie' => $storie , 
               'tipo_storia_list' => $tipo_storia_list ,
-              'scope_search' => $scope_search 
+              'storia_search' => $storia_search 
             ]);
 
     }
 
+    public function detailsStoria ($id_storia)
+    {
+        $lista_autori_ruoli = DB::table('rel_storia_autore_ruolo')->where('storia_id', '=', $id_storia)
+        ->join('autore', 'autore.id', '=', 'rel_storia_autore_ruolo.autore_id')
+        ->join('ruolo', 'ruolo.id', '=', 'rel_storia_autore_ruolo.ruolo_id')
+        ->get(['ruolo.id AS ruolo_id', 'ruolo.descrizione', 'autore.id AS autore_id', 'autore.nome', 'autore.cognome'])->sortBy('ruolo_id');
+
+        $lista_ruoli = [];
+        
+        foreach ($lista_autori_ruoli as $current_ruolo) {
+            if (!isset($lista_ruoli[$current_ruolo->ruolo_id])){
+                $lista_ruoli[$current_ruolo->ruolo_id] = [];
+                $lista_ruoli[$current_ruolo->ruolo_id]['ruolo'] = $current_ruolo->descrizione;
+                $lista_ruoli[$current_ruolo->ruolo_id]['nome'] = [];
+            }
+            $lista_ruoli[$current_ruolo->ruolo_id]['nome'][$current_ruolo->autore_id] = $current_ruolo->nome.' '.$current_ruolo->cognome;
+        }
+
+        $storia = Storia::find($id_storia);
+
+        return view('storia.details',
+            [
+                'lista_ruoli' => $lista_ruoli,
+                'storia' => $storia
+            ]);
+    }
+    
     public function edit ($id_storia) {
         $storia = Storia::find($id_storia);
         $tipo_storia_list = TipoStoriaEnum::toSelectArray();
