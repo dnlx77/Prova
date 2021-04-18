@@ -90,19 +90,11 @@ class RelStoriaAlboController extends Controller
 
         $albo = Albo::find($id_albo);
         $table_titolo ="Storie dell'albo: ".$albo->titolo;
-        $table_storie = "<table class=\"table table-hover table-bordered\">
-        <thead>
-            <tr>
-                <th>Titoli</th>
-            </tr>
-        </thead>
-        
-        <tbody>";
+        $table_storie = "<ul>";
         foreach ($storie as $storia) {
-            $table_storie .= "<tr>
-            <td>".$storia->nome."</td>
-            </tr>";
+            $table_storie .= "<li>".$storia->nome."</li>";
         }
+        $table_storie .= "</ul>";
 
         $arr = ['titolo' => $table_titolo, 'storie' => $table_storie];
         return json_encode($arr);
