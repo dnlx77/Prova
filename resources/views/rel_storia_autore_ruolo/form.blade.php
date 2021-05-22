@@ -3,7 +3,7 @@
     <select id="autore-select" name="autore">
         <option value=""></option>
         @foreach ($lista_autori as $current_autore)
-            <option value="{{ $current_autore->id }}">{{ $current_autore->nome . ' ' . $current_autore->cognome }}</option>
+            <option value="{{ $current_autore->id }}">{{ !$current_autore->pseudonimo ? $current_autore->nome.' '.$current_autore->cognome : $current_autore->nome.' \''.$current_autore->pseudonimo.'\' '.$current_autore->cognome }}</option>
         @endforeach
     </select>
 </div>

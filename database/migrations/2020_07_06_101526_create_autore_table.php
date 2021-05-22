@@ -17,6 +17,7 @@ class CreateAutoreTable extends Migration
             $table->id();
             $table->string('cognome', 511);
             $table->string('nome', 511);
+            $table->string('pseudonimo', 511)->nullable();
             $table->timestamps();
         });
     }

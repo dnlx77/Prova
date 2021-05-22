@@ -7,6 +7,7 @@
             <tr>
                 <th>Cognome</th>
                 <th>Nome</th>
+                <th>Pseudonimo</th>
                 <th>Modifica</th>
                 <th>Elimina</th>
             </tr>
@@ -16,6 +17,7 @@
                 <tr>
                     <td>{{ $autori->cognome }}</td>
                     <td>{{ $autori->nome }}</td>
+                    <td>{{ $autori->pseudonimo }}</td>
                     <td><a href="{{ route('autore.edit', $autori->id) }}">modifica</a></td>
                     <td><a href="{{ route('autore.elimina_form', $autori->id) }}">elimina</a></td>
                 </tr>

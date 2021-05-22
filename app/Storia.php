@@ -21,4 +21,8 @@ class Storia extends Model
         }
         return $query;
     }
+
+    public function albi() {
+        return $this->belongsToMany(Albo::class, 'rel_storia_albo');
+    }
 }

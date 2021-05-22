@@ -59,14 +59,18 @@ class RelStoriaAutoreRuoloController extends Controller
         $autori = DB::table('rel_storia_autore_ruolo')->where('storia_id', '=', $id_storia)
         ->join('autore', 'autore.id', '=', 'rel_storia_autore_ruolo.autore_id')
         ->join('ruolo', 'ruolo.id', '=', 'rel_storia_autore_ruolo.ruolo_id')
-        ->get(['autore.id AS autore_id', 'autore.nome', 'autore.cognome', 'ruolo.id AS ruolo_id', 'ruolo.descrizione']);
+        ->get(['autore.id AS autore_id', 'autore.nome', 'autore.cognome', 'autore.pseudonimo', 'ruolo.id AS ruolo_id', 'ruolo.descrizione']);
         
         $info_autori = [];
 
         foreach($autori AS $current_autore){
             if(!isset($info_autori[$current_autore->autore_id])){
                 $info_autori[$current_autore->autore_id] = [];
-                $info_autori[$current_autore->autore_id]['nome'] = $current_autore->nome . ' ' . $current_autore->cognome;
+                if($current_autore->pseudonimo)
+                    $autore = $current_autore->nome.' \''.$current_autore->pseudonimo.'\' '.$current_autore->cognome;
+                else
+                    $autore = $current_autore->nome . ' ' . $current_autore->cognome;
+                $info_autori[$current_autore->autore_id]['nome'] = $autore;
                 $info_autori[$current_autore->autore_id]['ruoli'] = [];
             }
             $info_autori[$current_autore->autore_id]['ruoli'][$current_autore->ruolo_id] = $current_autore->descrizione;

@@ -23,6 +23,7 @@ class StoriaController extends Controller
     public function store(Request $request) {
         $request->validate([
             'nome' => 'required | string | max:511',
+            'stato' => 'required | string | max:511',
         ]);
 
         $storia = new Storia();
@@ -88,7 +89,7 @@ class StoriaController extends Controller
         $lista_autori_ruoli = DB::table('rel_storia_autore_ruolo')->where('storia_id', '=', $id_storia)
         ->join('autore', 'autore.id', '=', 'rel_storia_autore_ruolo.autore_id')
         ->join('ruolo', 'ruolo.id', '=', 'rel_storia_autore_ruolo.ruolo_id')
-        ->get(['ruolo.id AS ruolo_id', 'ruolo.descrizione', 'autore.id AS autore_id', 'autore.nome', 'autore.cognome'])->sortBy('ruolo_id');
+        ->get(['ruolo.id AS ruolo_id', 'ruolo.descrizione', 'autore.id AS autore_id', 'autore.nome', 'autore.cognome', 'autore.pseudonimo'])->sortBy('ruolo_id');
 
         $lista_ruoli = [];
         
@@ -98,7 +99,10 @@ class StoriaController extends Controller
                 $lista_ruoli[$current_ruolo->ruolo_id]['ruolo'] = $current_ruolo->descrizione;
                 $lista_ruoli[$current_ruolo->ruolo_id]['nome'] = [];
             }
-            $lista_ruoli[$current_ruolo->ruolo_id]['nome'][$current_ruolo->autore_id] = $current_ruolo->nome.' '.$current_ruolo->cognome;
+            if ($current_ruolo->pseudonimo)
+                $lista_ruoli[$current_ruolo->ruolo_id]['nome'][$current_ruolo->autore_id] = $current_ruolo->nome.' \''.$current_ruolo->pseudonimo.'\' '.$current_ruolo->cognome;
+            else
+                $lista_ruoli[$current_ruolo->ruolo_id]['nome'][$current_ruolo->autore_id] = $current_ruolo->nome.' '.$current_ruolo->cognome;
         }
 
         $storia = Storia::find($id_storia);
@@ -124,6 +128,7 @@ class StoriaController extends Controller
     public function update (Request $request, $id_storia) {
         $request->validate([
             'nome' => 'required | string | max:511',
+            'stato' => 'required | string | max:511',
         ]);
 
         $storia = Storia::find($id_storia);

@@ -44,6 +44,7 @@ class AutoreController extends Controller
         $autore = new Autore();
         $autore->cognome = $request->get('cognome');
         $autore->nome = $request->get('nome');
+        $autore->pseudonimo = $request->get('pseudonimo');
         $autore->save();
         return redirect(route('autore.index'))->with('success', 'L\'autore è stato salvato.');
     }
@@ -72,8 +73,9 @@ class AutoreController extends Controller
         ]);
 
         $autore = Autore::find($id_autore);
-        $autore->Cognome = $request->get('cognome');
-        $autore->Nome = $request->get('nome');
+        $autore->cognome = $request->get('cognome');
+        $autore->nome = $request->get('nome');
+        $autore->pseudonimo = $request->get('pseudonimo');
         $autore->save ();
         return redirect(route('autore.index'))->with('success', 'L\'autore è stato aggiornato.');
     }
