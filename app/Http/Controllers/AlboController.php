@@ -37,7 +37,7 @@ class AlboController extends Controller
             'num_pagine' => 'required | string | max:511',
             'barcode' => 'required | numeric',
             'prezzo' => 'required | min:0 | max:100',
-            'editore_id' => 'required | numeric',
+            'editore' => 'required | numeric',
         ]);
         
         /* Memorizzazione copertina su disco */
@@ -154,7 +154,7 @@ class AlboController extends Controller
             'num_pagine' => 'required | integer',
             'barcode' => 'required | numeric',
             'prezzo' => 'required | min:0 | max:100',
-            'editore_id' => 'required | numeric',
+            'editore' => 'required | numeric',
         ]);
         
 

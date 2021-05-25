@@ -35,7 +35,11 @@
     <select id="autori_copertina-select" name="autori_copertina[]" multiple="multiple">
         <option value=""></option>
         @foreach ($lista_autori as $current_autore)
-            <option value="{{ $current_autore->id }}">{{ $current_autore->nome }} {{ $current_autore->cognome }}</option>
+            @if ($current_autore->pseudonimo)
+                <option value="{{ $current_autore->id }}">{{ $current_autore->nome }} '{{ $current_autore->pseudonimo }}' {{ $current_autore->cognome }}</option>
+            @else
+                <option value="{{ $current_autore->id }}">{{ $current_autore->nome }} {{ $current_autore->cognome }}</option>
+            @endif
         @endforeach
     </select>
 </div>
