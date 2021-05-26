@@ -113,7 +113,15 @@ class StoriaController extends Controller
                 'storia' => $storia
             ]);
     }
-    
+
+    public function showAlbiFromStoria ($id_storia) {
+
+        $storia = Storia::find ($id_storia);
+        return view('albo.show', 
+            [ 'storia' => $storia ]
+            );
+    }
+
     public function edit ($id_storia) {
         $storia = Storia::find($id_storia);
         $tipo_storia_list = TipoStoriaEnum::toSelectArray();

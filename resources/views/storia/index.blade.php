@@ -23,7 +23,7 @@
         <tbody>
             @foreach ($storie AS $storia)
                 <tr>
-                    <td><a href="{{ route('storia.details', $storia->id) }}">{{ $storia->nome }}</a></td>
+                    <td><a href="{{ route('storia.show_from_storia', $storia->id) }}">{{ $storia->nome }}</a></td>
                     <td>{{ $storia->trama }}</td>
                     <td>{{ !empty($storia->data_lettura) ? date('d/m/Y', strtotime($storia->data_lettura)) : 'da leggere' }}                   
                     <td>{{ \App\Enums\TipoStoriaEnum::getDescription($storia->stato) }}</td>

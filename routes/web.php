@@ -56,6 +56,7 @@ Route::get('storia', 'StoriaController@index')->name('storia.index');
 Route::get('storia/{id_storia}/details', 'StoriaController@detailsStoria')->name('storia.details');
 Route::get('storia/{id_storia}/edit', 'StoriaController@edit')->name('storia.edit');
 Route::post('storia/{id_storia}/update', 'StoriaController@update')->name('storia.update');
+Route::get('storia/{id_storia}/show-albi', 'StoriaController@showAlbiFromStoria')->name('storia.show_from_storia');
 Route::get('storia/{id_storia}/elimina-form', 'StoriaController@storiaEliminaForm')->name('storia.elimina_form');
 Route::post('storia/{id_storia}/elimina-execute', 'StoriaController@storiaEliminaExecute')->name('storia.elimina_execute');
 Route::get('storia/{id_storia}/services/get-trame', 'StoriaController@getTrame')->name('storia.get_trame_json');
