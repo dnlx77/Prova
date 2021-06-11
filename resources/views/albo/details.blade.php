@@ -28,7 +28,11 @@
                         <h5>Autori copertina</h5>
                         <ul class="multi-row">
                             @foreach ($albo->autoriCopertina AS $autoreCopertina)
-                                <li><span>{{ $autoreCopertina->nome }} {{ $autoreCopertina->cognome }}</span></li>
+                                @if ($autoreCopertina->pseudonimo)
+                                    <li><span>{{ $autoreCopertina->nome }} '{{ $autoreCopertina->pseudonimo }}' {{ $autoreCopertina->cognome }}</span></li>
+                                @else
+                                    <li><span>{{ $autoreCopertina->nome }} {{ $autoreCopertina->cognome }}</span></li>
+                                @endif
                             @endforeach
                         </ul>
                     </div>
