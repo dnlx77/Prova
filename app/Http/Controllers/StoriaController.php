@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Storia;
+use App\Albo;
 use App\RelStoriaAutoreRuolo;
 use App\Enums\TipoStoriaEnum;
 use Exception;
@@ -106,10 +107,12 @@ class StoriaController extends Controller
         }
 
         $storia = Storia::find($id_storia);
+        $albi = $storia->albi()->orderBy('numero', 'asc')->paginate(4);
 
         return view('storia.details',
             [
                 'lista_ruoli' => $lista_ruoli,
+                'albi' => $albi,
                 'storia' => $storia
             ]);
     }
@@ -117,8 +120,10 @@ class StoriaController extends Controller
     public function showAlbiFromStoria ($id_storia) {
 
         $storia = Storia::find ($id_storia);
+        $albi = $storia->albi()->paginate(2);
         return view('albo.show', 
-            [ 'storia' => $storia ]
+            [ 'albi' => $albi,
+              'storia' => $storia ]
             );
     }
 

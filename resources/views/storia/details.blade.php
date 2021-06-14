@@ -24,9 +24,11 @@
         </div>    
         <div class="col-4">        
             <h5>Albi</h5>
-            @foreach ($storia->albi AS $albo)            
-                <img src="{{ url('storage/'.$albo->filename) }}" width="150px" alt="{{ $albo->filename }}">
+            @foreach ($albi AS $albo)            
+                <img class="img-thumbnail" src="{{ url('storage/'.$albo->filename) }}" alt="{{ $albo->filename }}">
            @endforeach
+           
+           {{ $albi->links() }}
         </div>
     </div>
 </div>

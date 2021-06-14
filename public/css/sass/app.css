@@ -11609,3 +11609,7 @@ a:hover {
   padding-left: 0;
 }
 
+.img-thumbnail {
+  width: 150px;
+}
+

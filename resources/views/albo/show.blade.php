@@ -14,7 +14,7 @@
             </tr>
             </thead>
             <tbody>
-            @foreach ($storia->albi AS $albo)
+            @foreach ($albi AS $albo)
                 <tr>
                     <td><a href="{{ route('albo.details', $albo->id) }}">
                         <div class="immagine-tabella-wrapper">
@@ -30,6 +30,6 @@
             @endforeach
             </tbody>
         </table>
-
+        {{ $albi->links() }}
     </div>
 @endsection

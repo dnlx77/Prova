@@ -11609,6 +11609,10 @@ a:hover {
   padding-left: 0;
 }
 
+.img-thumbnail {
+  width: 150px;
+}
+
 
 .datepicker {
   border-radius: 4px;
