@@ -13,7 +13,11 @@
             <div class="col-6">
                 <div class="row">
                     <div class="col-6"><h5>Numero albo</h5><span>{{ $albo->numero }}</span></div>
-                    <div class="col-6"><h5>Prezzo</h5><span>{{ $albo->prezzo }} &euro;</span></div>
+                    @if ($albo->prezzo)
+                        <div class="col-6"><h5>Prezzo</h5><span>{{ $albo->prezzo }} &euro;</span></div>
+                    @else
+                        <div class="col-6"><h5>Prezzo</h5><span>{{ $albo->prezzo_lire }} Lire ({{ round(($albo->prezzo_lire / 1936.27), 2) }} &euro;)</span></div>
+                    @endif
                 </div>
                 <div class="row">
                     <div class="col-6"><h5>Data di pubblicazione</h5><span>{{ date('d/m/Y', strtotime($albo->data_pubblicazione)) }}</span></div>

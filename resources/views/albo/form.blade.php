@@ -7,8 +7,12 @@
     <input type="text" class="form-control" name="barcode" value="{{ !empty(old('barcode')) ? old('barcode') : (!empty($albo->barcode) ? $albo->barcode : '') }}"/>
 </div>
 <div class="form-group">
-    <label for="prezzo">Prezzo:</label>
+    <label for="prezzo">Prezzo in euro:</label>
     <input type="number" class="form-control" name="prezzo" step="any" value="{{ !empty(old('prezzo')) ? old('prezzo') : (!empty($albo->prezzo) ? $albo->prezzo : '') }}"/>
+</div>
+<div class="form-group">
+    <label for="prezzo_lire">Prezzo in lire:</label>
+    <input type="number" class="form-control" name="prezzo_lire" step="any" value="{{ !empty(old('prezzo_lire')) ? old('prezzo_lire') : (!empty($albo->prezzo_lire) ? $albo->prezzo_lire : '') }}"/>
 </div>
 <div class="form-group">
     <label for="numero">Numero albo:</label>

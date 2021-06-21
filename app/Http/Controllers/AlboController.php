@@ -35,8 +35,6 @@ class AlboController extends Controller
     public function store(Request $request){
         $request->validate([
             'num_pagine' => 'required | string | max:511',
-            'barcode' => 'required | numeric',
-            'prezzo' => 'required | min:0 | max:100',
             'editore' => 'required | numeric',
         ]);
         
@@ -48,6 +46,7 @@ class AlboController extends Controller
         $albo = new Albo();
         $albo->num_pagine = $request->get('num_pagine');
         $albo->prezzo = $request->get('prezzo');
+        $albo->prezzo_lire = $request->get('prezo_lire');
         $albo->barcode = $request->get('barcode');
         $albo->mime = $copertina->getClientMimeType();
         $albo->original_filename = $copertina->getClientOriginalName();
@@ -152,8 +151,6 @@ class AlboController extends Controller
     public function update (Request $request, $id_albo) {
         $request->validate([
             'num_pagine' => 'required | integer',
-            'barcode' => 'required | numeric',
-            'prezzo' => 'required | min:0 | max:100',
             'editore' => 'required | numeric',
         ]);
         
@@ -167,6 +164,7 @@ class AlboController extends Controller
         $albo = Albo::find($id_albo);
         $albo->num_pagine = $request->get('num_pagine');
         $albo->prezzo = $request->get('prezzo');
+        $albo->prezzo_lire = $request->get('prezzo_lire');
         $albo->barcode = $request->get('barcode');
         $albo->numero = $request->get('numero');
         $albo->titolo = $request->get('titolo');
