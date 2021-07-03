@@ -15,7 +15,7 @@ class CreateAlboTable extends Migration
     {
         Schema::create('albo', function (Blueprint $table) {
             $table->id();
-            $table->integer('num_pagine');
+            $table->integer('num_pagine')->nullable();
             $table->decimal('prezzo', 10, 2)->nullable();
             $table->decimal('prezzo_lire', 10)->nullable();
             $table->string('barcode', 511)->nullable();

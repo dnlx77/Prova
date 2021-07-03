@@ -85,3 +85,5 @@ Route::get('albo/{id_albo}/storia', 'RelStoriaAlboController@index')->name('albo
 Route::get('albo/{id_albo}/elimina-storia-form/{id_storia}', 'RelStoriaAlboController@eliminaStoriaForm')->name('albo.elimina_storia_form');
 Route::post('albo/{id_albo}/elimina-autore-execute/{id_storia}', 'RelStoriaAlboController@eliminaStoriaExecute')->name('albo.elimina_storia_execute');
 Route::get('albo/{id_albo}/services/get-storie', 'RelStoriaAlboController@getStorie')->name('albo.get_storie_json');
+
+Route::get('statistiche', 'StatisticheController@index')->name('statistiche.index');

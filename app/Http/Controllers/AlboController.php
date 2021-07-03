@@ -34,7 +34,6 @@ class AlboController extends Controller
 
     public function store(Request $request){
         $request->validate([
-            'num_pagine' => 'required | string | max:511',
             'editore' => 'required | numeric',
         ]);
         
@@ -150,7 +149,6 @@ class AlboController extends Controller
 
     public function update (Request $request, $id_albo) {
         $request->validate([
-            'num_pagine' => 'required | integer',
             'editore' => 'required | numeric',
         ]);
         
