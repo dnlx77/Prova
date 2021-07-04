@@ -45,7 +45,7 @@ class AlboController extends Controller
         $albo = new Albo();
         $albo->num_pagine = $request->get('num_pagine');
         $albo->prezzo = $request->get('prezzo');
-        $albo->prezzo_lire = $request->get('prezo_lire');
+        $albo->prezzo_lire = $request->get('prezzo_lire');
         $albo->barcode = $request->get('barcode');
         $albo->mime = $copertina->getClientMimeType();
         $albo->original_filename = $copertina->getClientOriginalName();
