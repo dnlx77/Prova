@@ -147,6 +147,19 @@ class AlboController extends Controller
             ]);
     } 
 
+    public function alboSetReadDate (Request $request, $id_albo) {
+        $albo = Albo::find($id_albo);
+
+        if ($request->get('data_lettura') != 0)
+            $albo->data_lettura = \DateTime::createFromFormat('d-m-Y', $request->get('data_lettura'));
+        else
+            $albo->data_lettura = null;
+            
+        $albo->save();
+
+        return redirect(route('albo.details', $id_albo));
+    }
+
     public function update (Request $request, $id_albo) {
         $request->validate([
             'editore' => 'required | numeric',

@@ -21,7 +21,7 @@
                 </div>
                 <div class="row">
                     <div class="col-6"><h5>Data di pubblicazione</h5><span>{{ date('d/m/Y', strtotime($albo->data_pubblicazione)) }}</span></div>
-                    <div class="col-6"><h5>Data di lettura</h5><span>{{ !empty($albo->data_lettura) ? date('d/m/Y', strtotime($albo->data_lettura)) : 'Da leggere' }}</span></div>
+                    <div class="col-6"><h5>Data di lettura</h5><span><a data-target="#dataModal" class="modale-data" data-toggle="modal" href="#storieModal">{{ !empty($albo->data_lettura) ? date('d/m/Y', strtotime($albo->data_lettura)) : 'Da leggere' }}</a></span></div>
                 </div>
                 <div class="row">
                     <div class="col-6"><h5>Editore</h5><span>{{ $albo->editore->nome }}</span></div>
@@ -56,7 +56,13 @@
                         </ul>
                     </div>
                 </div>
-    
+                <div class="row">
+                    <div class="col-6">
+                        <button id="modal-button" type="button" class="btn btn-primary modale-data" data-toggle="modal" data-target="#dataModal">
+                            Data lettura
+                          </button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -72,6 +78,30 @@
                     </button>
                 </div>
                 <div class="modal-body">Trama della storia</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="dataModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Inserisci la data di lettura dell'albo</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form enctype="multipart/form-data" method="post" action="{{ route('albo.set_read_date', $albo->id) }}">
+                    <div class="modal-body">
+                    
+                        @csrf
+                        <label for="data_lettura">Data lettura:</label>
+                        <input type="text" class="form-control" name="data_lettura" value="{{ !empty(old('data_lettura')) ? old('data_lettura') : (!empty($albo->data_lettura) ? date('d-m-Y', strtotime($albo->data_lettura)) : '') }}"/>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>  
+                </form>
             </div>
         </div>
     </div>
@@ -95,6 +125,11 @@
                     }
                 });
             }));
+
+            $('[name=data_lettura]').datepicker({
+            format: 'dd-mm-yyyy',
+            todayHighlight: true
+            });
         });
     </script>
 @endsection

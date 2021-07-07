@@ -10,18 +10,12 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>Numero albi</td>
-                <td> {{ $num_albi }}</td>
-            </tr>
-            <tr>
-                <td>Numero autori</td>
-                <td> {{ $num_autori }}</td>
-            </tr>
-            <tr>
-                <td>Numero storie</td>
-                <td> {{ $num_storie }}</td>
-            </tr>
+            @foreach ($statistiche AS $key => $statistica)
+                <tr>
+                    <td>Numero di {{ $key }}</td>
+                    <td> {{ $statistica }}</td>
+                </tr>
+            @endforeach
         </tbody>
     </table>
 </div>
