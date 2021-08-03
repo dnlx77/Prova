@@ -18,15 +18,18 @@ class RicercaController extends Controller
 
     public function search(Request $request) {
 
-        $search = $request->get('titolo');
+        $cerca_in = $request->has('cerca_in') ? $request->get('cerca_in') : '';
+        $search = $request->has('titolo') ? $request->get('titolo') : ''; 
+        
         $sort_by = 'created_at';
         $order = 'desc';
         $per_page = 10;
         $albi = Albo::search($search)->orderBy($sort_by, $order)->paginate($per_page);
 
-        return view('albo.index', 
+        return view('cerca.ricerca_albi', 
             [ 'albi' => $albi,
-              'search' => $search ]
-            );
+              'cerca_in' => $cerca_in,  
+              'search' => $search
+            ]);
     }
 }

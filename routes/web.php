@@ -90,4 +90,4 @@ Route::get('albo/{id_albo}/services/get-storie', 'RelStoriaAlboController@getSto
 Route::get('statistiche', 'StatisticheController@index')->name('statistiche.index');
 
 Route::get('ricerca', 'RicercaController@index')->name('ricerca.index');
-Route::post('ricerca/search', 'RicercaController@search')->name('cerca.search');
+Route::get('ricerca/search', 'RicercaController@search')->name('cerca.search');
