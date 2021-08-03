@@ -88,3 +88,6 @@ Route::post('albo/{id_albo}/elimina-autore-execute/{id_storia}', 'RelStoriaAlboC
 Route::get('albo/{id_albo}/services/get-storie', 'RelStoriaAlboController@getStorie')->name('albo.get_storie_json');
 
 Route::get('statistiche', 'StatisticheController@index')->name('statistiche.index');
+
+Route::get('ricerca', 'RicercaController@index')->name('ricerca.index');
+Route::post('ricerca/search', 'RicercaController@search')->name('cerca.search');

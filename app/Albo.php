@@ -36,4 +36,11 @@ class Albo extends Model
     public function scopeNumAlbi ($query) {
         return $query->where('id', '=', '*')->count();
     }
+
+    public function scopeSearch($query, $string) {
+        if(!empty($string)){
+			$query->where('titolo', 'LIKE', "%{$string}%");
+        }
+        return $query;
+    }
 }

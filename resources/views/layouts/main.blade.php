@@ -27,6 +27,7 @@
                 <li><a href="{{ route('collana.index') }}" >Collana</a></li>
                 <li><a href="{{ route('albo.index') }}" >Albo</a></li>
                 <li><a href="{{ route('statistiche.index') }}" >Statistiche</a></li>
+                <li><a href="{{ route('ricerca.index') }}" >Cerca</a></li>
             </ul>
         </div>
     </div>
