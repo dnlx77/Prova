@@ -12,10 +12,12 @@
                 <th>Data di lettura</th>
                 <th>Collana</th>
                 <th>Titoli</th>
-                <th>Modale link</th>
-                <th>Modale button</th>
-                <th>Modifica</th>
-                <th>Elimina</th>
+                @if ($debug == 1)
+                    <th>Modale link</th>
+                    <th>Modale button</th>
+                    <th>Modifica</th>
+                    <th>Elimina</th>
+                @endif
             </tr>
             </thead>
             <tbody>
@@ -32,18 +34,25 @@
                     <td>{{ !empty($albo->data_lettura) ? date('d/m/Y', strtotime($albo->data_lettura)) : 'Da leggere' }}</td>
                     <td>{{ $albo->collana ? $albo->collana->nome : '' }}</td>
                     <td><a href="{{ route('albo.storia', $albo->id) }}">storie</a></td>
-                    <td><a data-target="#storieModal" class="modale-storie" data-toggle="modal" data-id-albo="{{ $albo->id }}" href="#storieModal">storie</a></td>
-                    <td><button id="modal-button" type="button" class="btn btn-primary modale-storie" data-toggle="modal" data-target="#storieModal" data-id-albo="{{ $albo->id }}">
-                          Storie
-                        </button>
-                    <td><a href="{{ route('albo.edit', $albo->id) }}">modifica</a></td>
-                    <td><a href="{{ route('albo.elimina_form', $albo->id) }}">elimina</a></td>
+                    @if ($debug == 1)
+                        <td><a data-target="#storieModal" class="modale-storie" data-toggle="modal" data-id-albo="{{ $albo->id }}" href="#storieModal">storie</a></td>
+                        <td><button id="modal-button" type="button" class="btn btn-primary modale-storie" data-toggle="modal" data-target="#storieModal" data-id-albo="{{ $albo->id }}">
+                            Storie
+                            </button>
+                        <td><a href="{{ route('albo.edit', $albo->id) }}">modifica</a></td>
+                        <td><a href="{{ route('albo.elimina_form', $albo->id) }}">elimina</a></td>
+                    @endif
                 </tr>
             @endforeach
             </tbody>
         </table>
+        
+        @if ($debug == 1)
+            {{ $albi->links() }}
+        @else
+            {{ $albi->appends(['cerca_in' => $cerca_in, 'titolo' => $search])->links() }}
+        @endif
 
-        {{ $albi->links() }}
 
     </div>
 

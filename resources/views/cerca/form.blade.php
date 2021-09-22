@@ -6,15 +6,15 @@
         @endforeach
     </select>
 
-    <label id="cerca-label" for="titolo">Titolo albo da cercare:</label>
+    <label id="cerca-label" for="titolo">albo da cercare:</label>
     <input type="search" class="form-control" name="titolo"/>
 </div>
 
 <script>
     $(document).ready(function(){
-        $("#cerca-select").on('change', function(){
+        $('#cerca-select').on('change', function(){
             
-            $("#cerca-label").val('prova');
-            $("#cerca-label").trigger('change');
-    });
+            var valore_select = $('#cerca-select :selected').text();
+            $('#cerca-label').text(valore_select+" da cercare");
+    })});
 </script>
