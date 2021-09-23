@@ -120,10 +120,13 @@ class StoriaController extends Controller
     public function showAlbiFromStoria ($id_storia) {
 
         $storia = Storia::find ($id_storia);
-        $albi = $storia->albi()->paginate(2);
-        return view('albo.show', 
+        $albi = $storia->albi()->paginate(10);
+        $debug = 2;
+
+        return view('albo.index', 
             [ 'albi' => $albi,
-              'storia' => $storia ]
+              'storia' => $storia,
+              'debug' => $debug ]
             );
     }
 

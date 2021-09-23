@@ -1,6 +1,12 @@
 @extends('layouts.main')
 @section('content')
-    <br><br><a href="{{ route('albo.create') }}">Inserisci un nuovo albo</a><br><br>
+
+    @if($debug == 1)
+        <br><br><a href="{{ route('albo.create') }}">Inserisci un nuovo albo</a><br><br>
+    @elseif($debug == 2)
+        <br>La storia "{{ $storia->nome }}" si trova nei seguenti albi:<br><br>
+    @endif
+    
     <div class="table-container">
         <table class="table table-hover table-bordered">
             <thead>
@@ -47,7 +53,7 @@
             </tbody>
         </table>
         
-        @if ($debug == 1)
+        @if ($debug == 1 || $debug == 2)
             {{ $albi->links() }}
         @else
             {{ $albi->appends(['cerca_in' => $cerca_in, 'titolo' => $search])->links() }}
