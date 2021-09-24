@@ -87,11 +87,11 @@ class AlboController extends Controller
             $order = 'desc';
             $per_page = 10;
             $albi = Albo::orderBy($sort_by, $order)->paginate($per_page);
-            $debug = 1;
+            $albi_view = 'crea';
             
         return view('albo.index', 
             [   'albi' => $albi,
-                'debug' => $debug ]
+                'albi_view' => $albi_view ]
             );
     }
 

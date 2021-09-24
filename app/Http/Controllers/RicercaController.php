@@ -25,13 +25,13 @@ class RicercaController extends Controller
         $order = 'asc';
         $per_page = 10;
         $albi = Albo::search($search)->orderBy($sort_by, $order)->paginate($per_page);
-        $debug = 0;
+        $albi_view = 'cerca';
 
         return view('albo.index', 
             [ 'albi' => $albi,
               'cerca_in' => $cerca_in,  
               'search' => $search,
-              'debug' => $debug
+              'albi_view' => $albi_view
             ]);
     }
 }

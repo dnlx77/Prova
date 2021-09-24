@@ -1,9 +1,9 @@
 @extends('layouts.main')
 @section('content')
 
-    @if($debug == 1)
+    @if($albi_view == 'crea')
         <br><br><a href="{{ route('albo.create') }}">Inserisci un nuovo albo</a><br><br>
-    @elseif($debug == 2)
+    @elseif($albi_view == 'storia')
         <br>La storia "{{ $storia->nome }}" si trova nei seguenti albi:<br><br>
     @endif
     
@@ -18,7 +18,7 @@
                 <th>Data di lettura</th>
                 <th>Collana</th>
                 <th>Titoli</th>
-                @if ($debug == 1)
+                @if ($albi_view == 'crea')
                     <th>Modale link</th>
                     <th>Modale button</th>
                     <th>Modifica</th>
@@ -40,7 +40,7 @@
                     <td>{{ !empty($albo->data_lettura) ? date('d/m/Y', strtotime($albo->data_lettura)) : 'Da leggere' }}</td>
                     <td>{{ $albo->collana ? $albo->collana->nome : '' }}</td>
                     <td><a href="{{ route('albo.storia', $albo->id) }}">storie</a></td>
-                    @if ($debug == 1)
+                    @if ($albi_view == 'crea')
                         <td><a data-target="#storieModal" class="modale-storie" data-toggle="modal" data-id-albo="{{ $albo->id }}" href="#storieModal">storie</a></td>
                         <td><button id="modal-button" type="button" class="btn btn-primary modale-storie" data-toggle="modal" data-target="#storieModal" data-id-albo="{{ $albo->id }}">
                             Storie
@@ -53,7 +53,7 @@
             </tbody>
         </table>
         
-        @if ($debug == 1 || $debug == 2)
+        @if ($albi_view == 'crea' || $albi_view == 'storia')
             {{ $albi->links() }}
         @else
             {{ $albi->appends(['cerca_in' => $cerca_in, 'titolo' => $search])->links() }}

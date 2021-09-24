@@ -121,12 +121,12 @@ class StoriaController extends Controller
 
         $storia = Storia::find ($id_storia);
         $albi = $storia->albi()->paginate(10);
-        $debug = 2;
+        $albi_view = 'storia';
 
         return view('albo.index', 
             [ 'albi' => $albi,
               'storia' => $storia,
-              'debug' => $debug ]
+              'albi_view' => $albi_view ]
             );
     }
 
