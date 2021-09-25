@@ -24,8 +24,8 @@ class RicercaController extends Controller
     public function search(Request $request) {
 
         $cerca_in = $request->has('cerca_in') ? $request->get('cerca_in') : '';
-        $search = $request->has('ricerca') ? $request->get('ricerca') : ''; 
         $cerca_per = $request->has('cerca_per') ? $request->get('cerca_per') : '';
+        $search = $request->has('ricerca') ? $request->get('ricerca') : ''; 
         $ricerca_esatta = $request->has('esatta') ? $request->get('esatta') : 'false';
         $cerca_arr = array ($cerca_per, $search, $ricerca_esatta);
 
@@ -44,8 +44,9 @@ class RicercaController extends Controller
                 'cerca_per' => $cerca_per, 
                 'search' => $search,
                 'ricerca_esatta' => $ricerca_esatta,
-                'albi_view' => $albi_view,
+                'albi_view' => $albi_view
                 ]);
+            break;
 
         case "autori":
             $sort_by = 'cognome';
@@ -61,6 +62,7 @@ class RicercaController extends Controller
                 'search' => $search,
                 'autori_view' => $autori_view
                 ]);
+            break;
         }
     }
 }
