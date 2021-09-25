@@ -1,6 +1,10 @@
 @extends('layouts.main')
 @section('content')
-<br><br><a href="{{ route('autore.create') }}">Inserisci un nuovo autore</a><br><br>
+
+@if ($autori_view == 'crea')
+    <br><br><a href="{{ route('autore.create') }}">Inserisci un nuovo autore</a><br><br>
+@endif
+
 <div class="table-container">
     <table class="table table-hover table-bordered">
         <thead>
@@ -8,8 +12,10 @@
                 <th>Cognome</th>
                 <th>Nome</th>
                 <th>Pseudonimo</th>
-                <th>Modifica</th>
-                <th>Elimina</th>
+                @if ($autori_view == 'crea')
+                    <th>Modifica</th>
+                    <th>Elimina</th>
+                @endif
             </tr>
         </thead>
         <tbody>
@@ -18,11 +24,19 @@
                     <td>{{ $autori->cognome }}</td>
                     <td>{{ $autori->nome }}</td>
                     <td>{{ $autori->pseudonimo }}</td>
-                    <td><a href="{{ route('autore.edit', $autori->id) }}">modifica</a></td>
-                    <td><a href="{{ route('autore.elimina_form', $autori->id) }}">elimina</a></td>
+                    @if ($autori_view == 'crea')
+                        <td><a href="{{ route('autore.edit', $autori->id) }}">modifica</a></td>
+                        <td><a href="{{ route('autore.elimina_form', $autori->id) }}">elimina</a></td>
+                    @endif
                 </tr>
             @endforeach
         </tbody>
     </table>
+
+    @if ($autori_view == 'crea')
+        {{ $autore->links() }}
+    @else
+        {{ $autore->appends(['cerca_in' => $cerca_in, 'ricerca' => $search])->links() }}
+    @endif
 </div>
 @endsection

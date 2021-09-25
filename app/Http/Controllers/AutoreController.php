@@ -52,10 +52,13 @@ class AutoreController extends Controller
     {
         $order_by = 'cognome';
         $sorted = 'asc';
-        $autore = Autore::orderBy($order_by, $sorted)->get();
+        $per_page = 10;
+        $autore = Autore::orderBy($order_by, $sorted)->paginate($per_page);
+        $autori_view = 'crea';
 
         return view('autore.index', 
-            [ 'autore' => $autore ] 
+            [ 'autore' => $autore,
+                'autori_view' => $autori_view ] 
             );
     }
 

@@ -56,7 +56,7 @@
         @if ($albi_view == 'crea' || $albi_view == 'storia')
             {{ $albi->links() }}
         @else
-            {{ $albi->appends(['cerca_in' => $cerca_in, 'titolo' => $search])->links() }}
+            {{ $albi->appends(['cerca_in' => $cerca_in, 'cerca_per' => $cerca_per, 'ricerca' => $search, 'esatta' => $ricerca_esatta])->links() }}
         @endif
 
 
