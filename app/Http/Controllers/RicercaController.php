@@ -27,7 +27,6 @@ class RicercaController extends Controller
         $cerca_per = $request->has('cerca_per') ? $request->get('cerca_per') : '';
         $search = $request->has('ricerca') ? $request->get('ricerca') : ''; 
         $ricerca_esatta = $request->has('esatta') ? $request->get('esatta') : 'false';
-        $cerca_arr = array ($cerca_per, $search, $ricerca_esatta);
 
         switch ($cerca_in) {
 
@@ -35,7 +34,7 @@ class RicercaController extends Controller
             $sort_by = 'numero';
             $order = 'asc';
             $per_page = 10;
-            $albi = Albo::search($cerca_arr)->orderBy($sort_by, $order)->paginate($per_page);
+            $albi = Albo::AlboSearch($cerca_per, $search, $ricerca_esatta)->orderBy($sort_by, $order)->paginate($per_page);
             $albi_view = 'cerca';
 
             return view('albo.index', 
@@ -46,13 +45,12 @@ class RicercaController extends Controller
                 'ricerca_esatta' => $ricerca_esatta,
                 'albi_view' => $albi_view
                 ]);
-            break;
 
         case "autori":
             $sort_by = 'cognome';
             $order = 'asc';
             $per_page = 10;
-            $autore = Autore::search($cerca_arr)->orderBy($sort_by, $order)->paginate($per_page);
+            $autore = Autore::AutoreSearch($cerca_per, $search, $ricerca_esatta)->orderBy($sort_by, $order)->paginate($per_page);
             $autori_view = 'cerca';
 
             return view('autore.index', 
@@ -63,7 +61,6 @@ class RicercaController extends Controller
                 'ricerca_esatta' => $ricerca_esatta,
                 'autori_view' => $autori_view
                 ]);
-            break;
         }
     }
 }
