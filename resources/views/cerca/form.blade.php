@@ -5,6 +5,8 @@
             <option value="{{ $current_campo }}">{{ $current_campo }}</option>
         @endforeach
     </select>
+
+    <label for="per">per</label>
     <div id="cerca-per-albo">
         <select id="cerca-select" name="cerca_per">
             @foreach ($lista_campi_per_albo as $current_per_albo)
@@ -33,6 +35,9 @@
 
         $("#cerca-per-albo").show();
         $("#cerca-per-autore").hide();
+        $("#cerca-per-autore").children().prop('disabled',true);
+        $("#cerca-per-albo").children().prop('disabled',false);
+        
         $('#cerca-select').on('change', function(){
             
             var valore_select = $('#cerca-select :selected').text();
@@ -41,11 +46,15 @@
                 case 'autori':
                     $("#cerca-per-albo").hide();
                     $("#cerca-per-autore").show();
+                    $("#cerca-per-albo").children().prop('disabled',true);
+                    $("#cerca-per-autore").children().prop('disabled',false);
                     break;
                 
                 case 'albi':
                     $("#cerca-per-albo").show();
                     $("#cerca-per-autore").hide();
+                    $("#cerca-per-autore").children().prop('disabled',true);
+                     $("#cerca-per-albo").children().prop('disabled',false);
                     break;
             }
 

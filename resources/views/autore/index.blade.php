@@ -36,7 +36,7 @@
     @if ($autori_view == 'crea')
         {{ $autore->links() }}
     @else
-        {{ $autore->appends(['cerca_in' => $cerca_in, 'cerca_per' => $cerca_per, 'ricerca' => $search])->links() }}
+        {{ $autore->appends(['cerca_in' => $cerca_in, 'cerca_per' => $cerca_per, 'ricerca' => $search, 'esatta' => $ricerca_esatta])->links() }}
     @endif
 </div>
 @endsection

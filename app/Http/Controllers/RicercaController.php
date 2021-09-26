@@ -60,6 +60,7 @@ class RicercaController extends Controller
                 'cerca_in' => $cerca_in,
                 'cerca_per' => $cerca_per,
                 'search' => $search,
+                'ricerca_esatta' => $ricerca_esatta,
                 'autori_view' => $autori_view
                 ]);
             break;

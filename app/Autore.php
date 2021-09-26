@@ -11,7 +11,10 @@ class Autore extends Model
 
     public function scopeSearch($query, $string) {
         if(!empty($string)){
-			$query->where($string[0], 'LIKE', "%{$string[1]}%");
+            if ($string[2] <> 'true')
+			    $query->where($string[0], 'LIKE', "%{$string[1]}%");
+            else
+                $query->where($string[0], '=', $string[1]);
         }
         return $query;
     }
