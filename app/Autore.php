@@ -9,12 +9,19 @@ class Autore extends Model
     //
     protected $table = 'autore';
 
-    public function scopeAutoreSearch($query, $cerca_per, $cerca, $esatta) {
+    public function scopeAutoreSearch($query, $cerca_per, $cerca, $tipo_ricerca) {
         if(!empty($cerca_per)) {
-            if ($esatta <> 'true')
-			    $query->where($cerca_per, 'LIKE', "%{$cerca}%");
-            else
-                $query->where($cerca_per, '=', $cerca);
+            switch ($tipo_ricerca) {
+                case 'iniziaPer':
+                    $query->where($cerca_per, 'LIKE', "{$cerca}%");
+                    break;
+                case 'contiene':
+                    $query->where($cerca_per, 'LIKE', "%{$cerca}%");
+                    break;
+                case 'esatta':
+                    $query->where($cerca_per, '=', $cerca);
+                    break;
+            }
         }
         return $query;
     }

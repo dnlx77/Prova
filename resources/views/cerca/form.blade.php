@@ -26,18 +26,42 @@
     <label id="cerca-label" for="ricerca">albo da cercare:</label>
     <input type="search" class="form-control" name="ricerca"/>
 
-    <input type="checkbox" id="cerca-checkbox" name="esatta" value="true">
-    <label for="cerca-checkbox">Ricerca esatta</label>
+    <label for="tipo-ricerca-select">Tipo di ricerca</label>
+    <select id="tipo-ricerca-select" name="tipo_ricerca">
+        <option value="iniziaPer">Inizia per</option>
+        <option value="contiene">Contiene</option>
+        <option value="esatta">Esatta</option>
+    </select>
+
+    <div id="data-pubblicazione">
+        <label for="data pubblicazione">Data iniziale di pubblicazione:</label>
+        <input id="data-pub-iniz" type="text" class="form-control" name="data_pub_iniziale"/>
+        <label for="data pubblicazione">Data finale di pubblicazione:</label>
+        <input id="data-pub-fin" type="text" class="form-control" name="data_pub_finale"/>
+    </div>
+    
 </div>
 
 <script>
     $(document).ready(function(){
 
+        $("#data-pub-iniz").datepicker({
+            format: 'yyyy-mm-dd',
+            todayHighlight: true
+        })
+
+        $("#data-pub-fin").datepicker({
+            format: 'yyyy-mm-dd',
+            todayHighlight: true
+        })
+
         $("#cerca-per-albo").show();
         $("#cerca-per-autore").hide();
+        $("#data-pubblicazione").show();
         $("#cerca-per-autore").children().prop('disabled',true);
         $("#cerca-per-albo").children().prop('disabled',false);
-        
+        $("#data-pubblicazione").children().prop('disabled',false);
+
         $('#cerca-select').on('change', function(){
             
             var valore_select = $('#cerca-select :selected').text();
@@ -46,18 +70,26 @@
                 case 'autori':
                     $("#cerca-per-albo").hide();
                     $("#cerca-per-autore").show();
+                    $("#data-pubblicazione").hide();
                     $("#cerca-per-albo").children().prop('disabled',true);
                     $("#cerca-per-autore").children().prop('disabled',false);
+                    $("#data-pubblicazione").children().prop('disabled',true);
                     break;
                 
                 case 'albi':
                     $("#cerca-per-albo").show();
                     $("#cerca-per-autore").hide();
+                    $("#data-pubblicazione").show();
                     $("#cerca-per-autore").children().prop('disabled',true);
-                     $("#cerca-per-albo").children().prop('disabled',false);
+                    $("#cerca-per-albo").children().prop('disabled',false);
+                    $("#data-pubblicazione").children().prop('disabled',false);
                     break;
             }
 
         $('#cerca-label').text(valore_select+" da cercare");
-    })});
+
+       
+        });
+
+        });
 </script>

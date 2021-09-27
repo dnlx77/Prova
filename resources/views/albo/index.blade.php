@@ -15,6 +15,7 @@
                 <th>Numero albo</th>
                 <th>Titolo</th>
                 <th>Editore</th>
+                <th>Data di pubblicazione</th>
                 <th>Data di lettura</th>
                 <th>Collana</th>
                 <th>Titoli</th>
@@ -37,6 +38,7 @@
                     <td>{{ $albo->numero }}</td>
                     <td>{{ $albo->titolo }}</td>
                     <td>{{ $albo->editore->nome }}</td>
+                    <td>{{ date('d/m/Y', strtotime($albo->data_pubblicazione)) }}</td>
                     <td>{{ !empty($albo->data_lettura) ? date('d/m/Y', strtotime($albo->data_lettura)) : 'Da leggere' }}</td>
                     <td>{{ $albo->collana ? $albo->collana->nome : '' }}</td>
                     <td><a href="{{ route('albo.storia', $albo->id) }}">storie</a></td>
@@ -52,11 +54,11 @@
             @endforeach
             </tbody>
         </table>
-        
+
         @if ($albi_view == 'crea' || $albi_view == 'storia')
             {{ $albi->links() }}
         @else
-            {{ $albi->appends(['cerca_in' => $cerca_in, 'cerca_per' => $cerca_per, 'ricerca' => $search, 'esatta' => $ricerca_esatta])->links() }}
+            {{ $albi->appends(['cerca_in' => $cerca_in, 'cerca_per' => $cerca_per, 'ricerca' => $search, 'tipo_ricerca' => $ricerca_esatta, 'data_pub_iniziale' => $data_pub_iniziale, 'data_pub_finale' => $data_pub_finale])->links() }}
         @endif
 
 
