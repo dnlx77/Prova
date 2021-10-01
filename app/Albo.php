@@ -39,56 +39,24 @@ class Albo extends Model
 
     public function scopeAlboSearch($query, $cerca_per, $cerca, $tipo_ricerca, $data_pub_iniziale, $data_pub_finale) {
         if(!empty($cerca_per)) {
-            if ($data_pub_iniziale <> '' && $data_pub_finale <> '') {
-                switch ($tipo_ricerca) {
-                    case 'iniziaPer':
-                        $query->where($cerca_per, 'LIKE', "{$cerca}%")->whereDate('data_pubblicazione', '>', $data_pub_iniziale)->whereDate('data_pubblicazione', '<', $data_pub_finale);
-                        break;
-                    case 'contiene':
-                        $query->where($cerca_per, 'LIKE', "%{$cerca}%")->whereDate('data_pubblicazione', '>', $data_pub_iniziale)->whereDate('data_pubblicazione', '<', $data_pub_finale);
-                        break;
-                    case 'esatta':
-                        $query->where($cerca_per, '=', $cerca)->whereDate('data_pubblicazione', '>', $data_pub_iniziale)->whereDate('data_pubblicazione', '<', $data_pub_finale);
-                        break;
-                }
-            } elseif ($data_pub_iniziale == '' && $data_pub_finale <> '') {
-                switch ($tipo_ricerca) {
-                    case 'iniziaPer':
-                        $query->where($cerca_per, 'LIKE', "{$cerca}%")->whereDate('data_pubblicazione', '<', $data_pub_finale);
-                        break;
-                    case 'contiene':
-                        $query->where($cerca_per, 'LIKE', "%{$cerca}%")->whereDate('data_pubblicazione', '<', $data_pub_finale);
-                        break;
-                    case 'esatta':
-                        $query->where($cerca_per, '=', $cerca)->whereDate('data_pubblicazione', '<', $data_pub_finale);
-                        break;
-                }
-            } elseif ($data_pub_iniziale <> '' && $data_pub_finale == '') {
-                switch ($tipo_ricerca) {
-                    case 'iniziaPer':
-                        $query->where($cerca_per, 'LIKE', "{$cerca}%")->whereDate('data_pubblicazione', '>', $data_pub_iniziale);
-                        break;
-                    case 'contiene':
-                        $query->where($cerca_per, 'LIKE', "%{$cerca}%")->whereDate('data_pubblicazione', '>', $data_pub_iniziale);
-                        break;
-                    case 'esatta':
-                        $query->where($cerca_per, '=', $cerca)->whereDate('data_pubblicazione', '>', $data_pub_iniziale);
-                        break;
-                }
-            } else {
-                switch ($tipo_ricerca) {
-                    case 'iniziaPer':
-                        $query->where($cerca_per, 'LIKE', "{$cerca}%");
-                        break;
-                    case 'contiene':
-                        $query->where($cerca_per, 'LIKE', "%{$cerca}%");
-                        break;
-                    case 'esatta':
-                        $query->where($cerca_per, '=', $cerca);
-                        break;
-                }
+            switch ($tipo_ricerca) {
+                case 'iniziaPer':
+                    $query->where($cerca_per, 'LIKE', "{$cerca}%");
+                    break;
+                case 'contiene':
+                    $query->where($cerca_per, 'LIKE', "%{$cerca}%");
+                    break;
+                case 'esatta':
+                    $query->where($cerca_per, '=', $cerca);
+                    break;
             }
+            if (!empty($data_pub_iniziale))
+                $query->whereDate('data_pubblicazione', '>=', $data_pub_iniziale);
+
+            if(!empty($data_pub_finale)) 
+                $query->whereDate('data_pubblicazione', '<=', $data_pub_finale);
         }
+
         return $query;
     }
 }

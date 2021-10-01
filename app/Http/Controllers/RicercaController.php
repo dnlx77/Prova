@@ -5,19 +5,22 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Albo;
 use App\Autore;
+use App\Collana;
 
 class RicercaController extends Controller
 {
     public function index() {
 
         $lista_campi_ricerca = ['albi','autori'];
-        $lista_campi_per_albo = ['numero','titolo'];
+        $lista_campi_per_albo = ['numero','titolo', 'collana'];
         $lista_campi_per_autore = ['nome', 'cognome', 'pseudonimo'];
+        $lista_collane = Collana::all();
 
         return view('cerca.index', [
             'lista_campi_ricerca' => $lista_campi_ricerca,
             'lista_campi_per_albo' => $lista_campi_per_albo,
-            'lista_campi_per_autore' => $lista_campi_per_autore
+            'lista_campi_per_autore' => $lista_campi_per_autore,
+            'lista_collane' => $lista_collane
         ]);
     }
 
@@ -36,7 +39,13 @@ class RicercaController extends Controller
             $sort_by = 'numero';
             $order = 'asc';
             $per_page = 10;
-            $albi = Albo::AlboSearch($cerca_per, $search, $tipo_ricerca, $data_pub_iniziale, $data_pub_finale)->orderBy($sort_by, $order)->paginate($per_page);
+            if ($cerca_per != "collana")
+                $albi = Albo::AlboSearch($cerca_per, $search, $tipo_ricerca, $data_pub_iniziale, $data_pub_finale)->orderBy($sort_by, $order)->paginate($per_page);
+            else {
+                $collana = Collana::find($search);
+                $albi = $collana->albi($data_pub_iniziale, $data_pub_finale)->orderBy('numero', 'asc')->paginate($per_page);
+            }
+            
             $albi_view = 'cerca';
 
             return view('albo.index', 
