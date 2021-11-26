@@ -10,7 +10,7 @@ class Autore extends Model
     protected $table = 'autore';
 
     public function scopeAutoreSearch($query, $cerca_per, $cerca, $tipo_ricerca) {
-        if(!empty($cerca_per)) {
+        if(!empty($cerca_per) && $cerca_per != 'tutto') {
             switch ($tipo_ricerca) {
                 case 'iniziaPer':
                     $query->where($cerca_per, 'LIKE', "{$cerca}%");

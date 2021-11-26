@@ -12,8 +12,8 @@ class RicercaController extends Controller
     public function index() {
 
         $lista_campi_ricerca = ['albi','autori'];
-        $lista_campi_per_albo = ['numero','titolo', 'collana'];
-        $lista_campi_per_autore = ['nome', 'cognome', 'pseudonimo'];
+        $lista_campi_per_albo = ['numero', 'titolo', 'collana', 'tutto'];
+        $lista_campi_per_autore = ['nome', 'cognome', 'pseudonimo', 'tutto'];
         $lista_collane = Collana::all();
 
         return view('cerca.index', [
@@ -39,15 +39,18 @@ class RicercaController extends Controller
             $sort_by = 'numero';
             $order = 'asc';
             $per_page = 10;
-            if ($cerca_per != "collana")
-                $albi = Albo::AlboSearch($cerca_per, $search, $tipo_ricerca, $data_pub_iniziale, $data_pub_finale)->orderBy($sort_by, $order)->paginate($per_page);
-            else {
-                $collana = Collana::find($search);
-                $albi = $collana->albi($data_pub_iniziale, $data_pub_finale)->orderBy('numero', 'asc')->paginate($per_page);
-            }
+            switch ($cerca_per) {
             
-            $albi_view = 'cerca';
+            case "collana":
+                $collana = Collana::find($search);
+                $albi = $collana->albi($data_pub_iniziale, $data_pub_finale)->orderBy($sort_by, $order)->paginate($per_page);
+                break;
 
+            default:
+                $albi = Albo::AlboSearch($cerca_per, $search, $tipo_ricerca, $data_pub_iniziale, $data_pub_finale)->orderBy($sort_by, $order)->paginate($per_page);
+                break;
+            }   
+            
             return view('albo.index', 
                 [ 'albi' => $albi,
                 'cerca_in' => $cerca_in,
@@ -55,8 +58,7 @@ class RicercaController extends Controller
                 'search' => $search,
                 'ricerca_esatta' => $tipo_ricerca,
                 'data_pub_iniziale' => $data_pub_iniziale,
-                'data_pub_finale' => $data_pub_finale,
-                'albi_view' => $albi_view
+                'data_pub_finale' => $data_pub_finale
                 ]);
 
         case "autori":
@@ -64,15 +66,13 @@ class RicercaController extends Controller
             $order = 'asc';
             $per_page = 10;
             $autore = Autore::AutoreSearch($cerca_per, $search, $tipo_ricerca)->orderBy($sort_by, $order)->paginate($per_page);
-            $autori_view = 'cerca';
 
             return view('autore.index', 
                 [ 'autore' => $autore,
                 'cerca_in' => $cerca_in,
                 'cerca_per' => $cerca_per,
                 'search' => $search,
-                'ricerca_esatta' => $tipo_ricerca,
-                'autori_view' => $autori_view
+                'tipo_ricerca' => $tipo_ricerca
                 ]);
         }
     }

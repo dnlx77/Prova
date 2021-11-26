@@ -20,6 +20,7 @@
     <div class="menu-container-wrapper">
         <div class="container">
             <ul class="main-menu">
+                <li><a href="{{ route('inserisci.index') }}" >Inserisci</a></li>
                 <li><a href="{{ route('ruolo.index') }}" >Ruolo</a></li>
                 <li><a href="{{ route('autore.index') }}" >Autore</a></li>
                 <li><a href="{{ route('storia.index') }}" >Storia</a></li>

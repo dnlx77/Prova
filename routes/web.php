@@ -91,3 +91,5 @@ Route::get('statistiche', 'StatisticheController@index')->name('statistiche.inde
 
 Route::get('ricerca', 'RicercaController@index')->name('ricerca.index');
 Route::get('ricerca/search', 'RicercaController@search')->name('cerca.search');
+
+Route::get('inserisci', 'InserisciController@index')->name('inserisci.index');

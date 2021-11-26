@@ -34,12 +34,11 @@
             <input type="search" class="form-control" name="ricerca"/>
         </div>
 
-        <div id="tipo-ricerca">
+        <div id="albo-tipo-ricerca">
             <label for="tipo-ricerca-select">Tipo di ricerca</label>
             @yield('option_tipo_ricerca')
         </div>
        
-
         <div id="data-pubblicazione">
             <label for="data pubblicazione">Data iniziale di pubblicazione:</label>
             <input class="data-pub" type="text" class="form-control" name="data_pub_iniziale"/>
@@ -55,11 +54,15 @@
         @endforeach
         </select>
 
-        <label class="cerca-label" for="ricerca">autore da cercare:</label>
-        <input type="search" class="form-control" name="ricerca"/>
+        <div id="label-cerca-autori">
+            <label class="cerca-label" for="ricerca">autore da cercare:</label>
+            <input type="search" class="form-control" name="ricerca"/>
+        </div>
 
-        <label for="tipo-ricerca-select">Tipo di ricerca</label>
-        @yield('option_tipo_ricerca')
+        <div id="autore-tipo-ricerca">
+            <label for="tipo-ricerca-select">Tipo di ricerca</label>
+            @yield('option_tipo_ricerca')
+        </div>
     </div>
     
 </div>
@@ -72,12 +75,16 @@
             todayHighlight: true
         })
 
-        $('#cerca-per-albo').show();
+        /* Per default visualizziamo la ricerca per albo */
+
         $('#cerca-per-autore').hide();
+        $('#cerca-per-autore *').contents().prop('disabled',true);
         $('#cerca-collane').hide();
-        $('#cerca-per-autore').children().prop('disabled',true);
-        $('#cerca-per-albo').children().prop('disabled',false);
         $('#cerca-collane').prop('disabled',true);
+        $('#cerca-per-albo').show();
+        $('#cerca-per-albo *').contents().prop('disabled',false);
+
+        /* Modifichiamo il form a seconda di cosa cerchiamo (es. albi, autori, ...) */
 
         $('#cerca-select').on('change', function(){
             
@@ -88,16 +95,16 @@
             switch(valore_select){
                 case 'autori':
                     $('#cerca-per-albo').hide();
+                    $('#cerca-per-albo *').contents().prop('disabled',true);
                     $('#cerca-per-autore').show();
-                    $('#cerca-per-albo').children().prop('disabled',true);
-                    $('#cerca-per-autore').children().prop('disabled',false);
+                    $('#cerca-per-autore *').contents().prop('disabled',false);
                     break;
                 
                 case 'albi':
-                    $('#cerca-per-albo').show();
                     $('#cerca-per-autore').hide();
-                    $('#cerca-per-autore').children().prop('disabled',true);
-                    $('#cerca-per-albo').children().prop('disabled',false);
+                    $('#cerca-per-autore *').contents().prop('disabled',true);
+                    $('#cerca-per-albo').show();
+                    $('#cerca-per-albo *').contents().prop('disabled',false);
                     break;
             }
 
@@ -105,31 +112,63 @@
 
         });
 
+        /* Mostriamo o nascondiamo i campi nelle varie possibili ricerche per albi */
+
         $('#albo-cerca-per-select').on('change', function(){
 
             var cerca_per_select = $('#albo-cerca-per-select :selected').text();
             console.log(cerca_per_select);
             switch (cerca_per_select) {
                 case 'collana':
+                    $('#albo-tipo-ricerca').hide();
+                    $('#albo-tipo-ricerca *').contents().prop('disabled',true);
+                    $('#label-cerca-albi').hide();
+                    $('#label-cerca-albi').contents().prop('disabled',true);
                     $('#cerca-collane').show();
                     $('#cerca-collane').prop('disabled',false);
-                    $('#tipo-ricerca').hide();
-                    $('#tipo-ricerca').children().prop('disabled',true);
+                    break;
+                
+                case 'tutto':
+                    $('#cerca-collane').hide();
+                    $('#cerca-collane').prop('disabled',true);
+                    $('#albo-tipo-ricerca').hide();
+                    $('#albo-tipo-ricerca *').contents().prop('disabled',true);
                     $('#label-cerca-albi').hide();
-                    $('#label-cerca-albi').children().prop('disabled',true);
+                    $('#label-cerca-albi *').contents().prop('disabled',true);
                     break;
 
                 default:
                     $('#cerca-collane').hide();
                     $('#cerca-collane').prop('disabled',true);
-                    $('#tipo-ricerca').show();
-                    $('#tipo-ricerca').children().prop('disabled',false);
+                    $('#albo-tipo-ricerca').show();
+                    $('#albo-tipo-ricerca *').contents().prop('disabled',false);
                     $('#label-cerca-albi').show();
-                    $('#label-cerca-albi').children().prop('disabled',false);
+                    $('#label-cerca-albi *').contents().prop('disabled',false);
                     break;
             }
+        });
 
+        /* Mostriamo o nascondiamo i campi nelle varie possibili ricerche per autori */
 
+        $('#autore-cerca-per-select').on('change', function(){
+
+            var cerca_per_select = $('#autore-cerca-per-select :selected').text();
+            console.log(cerca_per_select);
+            switch (cerca_per_select) {
+                case 'tutto':
+                    $('#autore-tipo-ricerca').hide();
+                    $('#autore-tipo-ricerca *').contents().prop('disabled',true);
+                    $('#label-cerca-autori').hide();
+                    $('#label-cerca-autori *').contents().prop('disabled',true);
+                    break;
+
+                default:
+                    $('#autore-tipo-ricerca').show();
+                    $('#autore-tipo-ricerca *').contents().prop('disabled',false);
+                    $('#label-cerca-autori').show();
+                    $('#label-cerca-autori *').contents().prop('disabled',false);
+                    break;
+            }
         });
 
     });

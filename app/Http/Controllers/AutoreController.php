@@ -45,21 +45,25 @@ class AutoreController extends Controller
         $autore->nome = $request->get('nome');
         $autore->pseudonimo = $request->get('pseudonimo');
         $autore->save();
+        
         return redirect(route('autore.index'))->with('success', 'L\'autore è stato salvato.');
     }
 
     public function index()
     {
-        $order_by = 'cognome';
-        $sorted = 'asc';
+        $order_by = 'created_at';
+        $sorted = 'desc';
         $per_page = 10;
         $autore = Autore::orderBy($order_by, $sorted)->paginate($per_page);
-        $autori_view = 'crea';
+        
 
         return view('autore.index', 
-            [ 'autore' => $autore,
-                'autori_view' => $autori_view ] 
-            );
+        [ 'autore' => $autore,
+        'cerca_in' => '',
+        'cerca_per' => '',
+        'search' => '',
+        'tipo_ricerca' => ''
+        ]);
     }
 
     public function edit ($id_autore) {

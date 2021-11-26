@@ -77,7 +77,7 @@ class AlboController extends Controller
             $autoreCopertinaalbo->autore_id = $autore_copertina;
             $autoreCopertinaalbo->save();
         }
-
+        
         return redirect(route('albo.index'))->with('success', 'L\'albo è stata salvato.');
     }
 
@@ -87,12 +87,16 @@ class AlboController extends Controller
             $order = 'desc';
             $per_page = 10;
             $albi = Albo::orderBy($sort_by, $order)->paginate($per_page);
-            $albi_view = 'crea';
             
         return view('albo.index', 
-            [   'albi' => $albi,
-                'albi_view' => $albi_view ]
-            );
+        [ 'albi' => $albi,
+        'cerca_in' => '',
+        'cerca_per' => '', 
+        'search' => '',
+        'ricerca_esatta' => '',
+        'data_pub_iniziale' => '',
+        'data_pub_finale' => ''
+        ]);
     }
 
     public function showAlbo ($id_albo)

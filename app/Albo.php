@@ -39,17 +39,21 @@ class Albo extends Model
 
     public function scopeAlboSearch($query, $cerca_per, $cerca, $tipo_ricerca, $data_pub_iniziale, $data_pub_finale) {
         if(!empty($cerca_per)) {
-            switch ($tipo_ricerca) {
-                case 'iniziaPer':
-                    $query->where($cerca_per, 'LIKE', "{$cerca}%");
-                    break;
-                case 'contiene':
-                    $query->where($cerca_per, 'LIKE', "%{$cerca}%");
-                    break;
-                case 'esatta':
-                    $query->where($cerca_per, '=', $cerca);
-                    break;
+            
+            if ($cerca_per != 'tutto') {
+                switch ($tipo_ricerca) {
+                    case 'iniziaPer':
+                        $query->where($cerca_per, 'LIKE', "{$cerca}%");
+                        break;
+                    case 'contiene':
+                        $query->where($cerca_per, 'LIKE', "%{$cerca}%");
+                        break;
+                    case 'esatta':
+                        $query->where($cerca_per, '=', $cerca);
+                        break;
+                }
             }
+
             if (!empty($data_pub_iniziale))
                 $query->whereDate('data_pubblicazione', '>=', $data_pub_iniziale);
 

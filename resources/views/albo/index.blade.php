@@ -1,11 +1,5 @@
 @extends('layouts.main')
 @section('content')
-
-    @if($albi_view == 'crea')
-        <br><br><a href="{{ route('albo.create') }}">Inserisci un nuovo albo</a><br><br>
-    @elseif($albi_view == 'storia')
-        <br>La storia "{{ $storia->nome }}" si trova nei seguenti albi:<br><br>
-    @endif
     
     <div class="table-container">
         <table class="table table-hover table-bordered">
@@ -19,12 +13,10 @@
                 <th>Data di lettura</th>
                 <th>Collana</th>
                 <th>Titoli</th>
-                @if ($albi_view == 'crea')
-                    <th>Modale link</th>
-                    <th>Modale button</th>
-                    <th>Modifica</th>
-                    <th>Elimina</th>
-                @endif
+                <th>Modale link</th>
+                <th>Modale button</th>
+                <th>Modifica</th>
+                <th>Elimina</th>
             </tr>
             </thead>
             <tbody>
@@ -42,25 +34,18 @@
                     <td>{{ !empty($albo->data_lettura) ? date('d/m/Y', strtotime($albo->data_lettura)) : 'Da leggere' }}</td>
                     <td>{{ $albo->collana ? $albo->collana->nome : '' }}</td>
                     <td><a href="{{ route('albo.storia', $albo->id) }}">storie</a></td>
-                    @if ($albi_view == 'crea')
-                        <td><a data-target="#storieModal" class="modale-storie" data-toggle="modal" data-id-albo="{{ $albo->id }}" href="#storieModal">storie</a></td>
-                        <td><button id="modal-button" type="button" class="btn btn-primary modale-storie" data-toggle="modal" data-target="#storieModal" data-id-albo="{{ $albo->id }}">
-                            Storie
-                            </button>
-                        <td><a href="{{ route('albo.edit', $albo->id) }}">modifica</a></td>
-                        <td><a href="{{ route('albo.elimina_form', $albo->id) }}">elimina</a></td>
-                    @endif
+                    <td><a data-target="#storieModal" class="modale-storie" data-toggle="modal" data-id-albo="{{ $albo->id }}" href="#storieModal">storie</a></td>
+                    <td><button id="modal-button" type="button" class="btn btn-primary modale-storie" data-toggle="modal" data-target="#storieModal" data-id-albo="{{ $albo->id }}">
+                        Storie
+                        </button>
+                    <td><a href="{{ route('albo.edit', $albo->id) }}">modifica</a></td>
+                    <td><a href="{{ route('albo.elimina_form', $albo->id) }}">elimina</a></td>
                 </tr>
             @endforeach
             </tbody>
         </table>
 
-        @if ($albi_view == 'crea' || $albi_view == 'storia')
-            {{ $albi->links() }}
-        @else
             {{ $albi->appends(['cerca_in' => $cerca_in, 'cerca_per' => $cerca_per, 'ricerca' => $search, 'tipo_ricerca' => $ricerca_esatta, 'data_pub_iniziale' => $data_pub_iniziale, 'data_pub_finale' => $data_pub_finale])->links() }}
-        @endif
-
 
     </div>
 
