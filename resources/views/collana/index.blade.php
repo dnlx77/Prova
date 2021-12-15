@@ -1,6 +1,5 @@
 @extends('layouts.main')
 @section('content')
-<br><br><a href="{{ route('collana.create') }}">Definisci una nuova collana</a><br><br>
 <div class="table-container">
     <table class="table table-hover table-bordered">
         <thead>

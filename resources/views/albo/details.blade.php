@@ -15,8 +15,10 @@
                     <div class="col-6"><h5>Numero albo</h5><span>{{ $albo->numero }}</span></div>
                     @if ($albo->prezzo)
                         <div class="col-6"><h5>Prezzo</h5><span>{{ $albo->prezzo }} &euro;</span></div>
-                    @else
+                    @elseif ($albo->prezzo_lire)
                         <div class="col-6"><h5>Prezzo</h5><span>{{ $albo->prezzo_lire }} Lire ({{ round(($albo->prezzo_lire / 1936.27), 2) }} &euro;)</span></div>
+                    @else
+                        <div class="col-6"><h5>Prezzo</h5></div>
                     @endif
                 </div>
                 <div class="row">

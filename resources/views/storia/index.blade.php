@@ -1,11 +1,5 @@
 @extends('layouts.main')
 @section('content')
-<br><br><a href="{{ route('storia.create') }}">Inserisci una nuova storia</a><br><br>
-
-<form action="{{ route('storia.index') }}">
-    <input class="form-control" placeholder="cerca" type="search" name="storia_search" value="{{ $storia_search }}">
-    <button type="submit" class="btn btn-primary">Cerca</button>
-</form>
 
 <div class="table-container">
     <table class="table table-hover table-bordered">
@@ -35,6 +29,6 @@
         </tbody>
     </table>
 
-    {{ $storie->appends(['storia_search' => $storia_search])->links() }}
+    {{ $storie->appends(['cerca_in' => $cerca_in, 'cerca_per' => $cerca_per, 'ricerca' => $search, 'tipo_ricerca' => $ricerca_esatta, 'data_pub_iniziale' => $data_pub_iniziale, 'data_pub_finale' => $data_pub_finale])->links() }}
 </div>
 @endsection

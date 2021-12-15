@@ -1,6 +1,5 @@
 @extends('layouts.main')
 @section('content')
-<br><br><a href="{{ route('editore.create') }}">Definisci un nuovo editore</a><br><br>
 <div class="table-container">
     <table class="table table-hover table-bordered">
         <thead>

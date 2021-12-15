@@ -62,25 +62,20 @@ class StoriaController extends Controller
     public function index(Request $request)
     {
                
-        /* 
-        se l'index è stato chiamato dal form di ricerca ed è stata inserita una stringa nel form 
-        la recuperiamo dalla request e la inseriamo nella variabile $scope_search, altrimenti se la form è vuota
-        o se l'index non è stato chiamato dal form di ricerca $scope_search contiene la stringa vuota
-        Quando chiamiamo il metodo search su fumetti viene richiamato in automatico il metodo scopeSearch definito nel model
-        */
-        $storia_search = $request->has('storia_search') ? $request->get('storia_search') : ''; 
-        $sort_by = 'nome';
-        $order_by = 'asc';
+        $order_by = 'created_at';
+        $sorted = 'desc';
         $per_page = 10;
-        $storie = Storia::search($storia_search)->orderBy($sort_by, $order_by)->paginate($per_page);
+        $storie = Storia::orderBy($order_by, $sorted)->paginate($per_page);
         
         $tipo_storia_list = TipoStoriaEnum::toSelectArray();
         
         return view('storia.index', 
-            [ 
-              'storie' => $storie , 
+            [ 'storie' => $storie,
               'tipo_storia_list' => $tipo_storia_list ,
-              'storia_search' => $storia_search 
+              'cerca_in' => '',
+              'cerca_per' => '',
+              'search' => '',
+              'tipo_ricerca' => ''
             ]);
 
     }
@@ -121,13 +116,17 @@ class StoriaController extends Controller
 
         $storia = Storia::find ($id_storia);
         $albi = $storia->albi()->paginate(10);
-        $albi_view = 'storia';
 
         return view('albo.index', 
             [ 'albi' => $albi,
               'storia' => $storia,
-              'albi_view' => $albi_view ]
-            );
+              'cerca_in' => '',
+              'cerca_per' => '', 
+              'search' => '',
+              'ricerca_esatta' => '',
+              'data_pub_iniziale' => '',
+              'data_pub_finale' => '' 
+            ]);
     }
 
     public function edit ($id_storia) {
