@@ -70,7 +70,18 @@ class RicercaController extends Controller
             $sort_by = 'nome';
             $order = 'asc';
             $per_page =10;
-            $storie = Storia::StoriaSearch($cerca_per, $search, $tipo_ricerca, $data_pub_iniziale, $data_pub_finale)->orderBy($sort_by, $order)->paginate($per_page);
+
+            switch ($cerca_per) {
+
+            case "autore":
+                $autore = Autore::find($search);
+                $storie = $autore->storie($data_pub_iniziale, $data_pub_finale)->orderBy($sort_by, $order)->paginate($per_page);
+                break;
+
+            default:
+                $storie = Storia::StoriaSearch($cerca_per, $search, $tipo_ricerca, $data_pub_iniziale, $data_pub_finale)->orderBy($sort_by, $order)->paginate($per_page);
+                break;
+            }
 
             return view('storia.index', 
                 [ 'storie' => $storie,

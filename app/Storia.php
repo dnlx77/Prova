@@ -52,4 +52,8 @@ class Storia extends Model
     public function albi() {
         return $this->belongsToMany(Albo::class, 'rel_storia_albo');
     }
+
+    public function autori() {
+        return $this->belongsToMany(Autore::class, 'rel_storia_autore_ruolo');
+    }
 }

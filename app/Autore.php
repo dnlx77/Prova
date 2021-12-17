@@ -25,4 +25,8 @@ class Autore extends Model
         }
         return $query;
     }
+
+    public function storie() {
+        return $this->belongsToMany(Storia::class, 'rel_storia_autore_ruolo');
+    }
 }

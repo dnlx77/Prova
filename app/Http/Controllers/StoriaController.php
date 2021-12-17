@@ -75,7 +75,9 @@ class StoriaController extends Controller
               'cerca_in' => '',
               'cerca_per' => '',
               'search' => '',
-              'tipo_ricerca' => ''
+              'ricerca_esatta' => '',
+              'data_pub_iniziale' => '',
+              'data_pub_finale' => ''
             ]);
 
     }
