@@ -37,7 +37,7 @@ class Albo extends Model
         return $query->where('id', '=', '*')->count();
     }
 
-    public function scopeAlboSearch($query, $cerca_per, $cerca, $tipo_ricerca, $data_pub_iniziale, $data_pub_finale) {
+    public function scopeAlboSearch($query, $cerca_per, $cerca, $tipo_ricerca, $data_pub_iniziale, $data_pub_finale, $stato_lettura) {
         if(!empty($cerca_per)) {
             
             if ($cerca_per != 'tutto') {
@@ -59,6 +59,17 @@ class Albo extends Model
 
             if(!empty($data_pub_finale)) 
                 $query->whereDate('data_pubblicazione', '<=', $data_pub_finale);
+        }
+
+        switch ($stato_lettura) {
+            case 'leggere':
+                $query->where('data_lettura', '=', null);
+                break;
+            case 'letti':
+                $query->where('data_lettura', '<>', null);
+                break;
+            default:
+                break;
         }
 
         return $query;

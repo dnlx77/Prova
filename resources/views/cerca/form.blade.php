@@ -1,9 +1,18 @@
-@section ('option_tipo_ricerca')
+@section ('select_tipo_ricerca')
     <select class="tipo-ricerca-select" name="tipo_ricerca">
         <option value="iniziaPer">Inizia per</option>
         <option value="contiene">Contiene</option>
         <option value="esatta">Esatta</option>
     </select>
+@endsection
+
+@section ('radio-stato-lettura')
+    <input type="radio" class="radio-lettura" id="da-leggere" name="stato_lettura" value="leggere">
+    <label for="da leggere">Da leggere</label>
+    <input type="radio" class="radio-lettura" id="letti" name="stato_lettura" value="letti">
+    <label for="letti">Letti</label>
+    <input type="radio" class="radio-lettura" id="tutto" name="stato_lettura" value="tutto">
+    <label for="tutto">Tutto</label>
 @endsection
 
 <div class="form-group">
@@ -46,6 +55,13 @@
                 <option value="{{ $autori->id }}">{{ $autori->cognome}} {{ $autori->nome}}</option>
             @endforeach
         </select>
+
+        <select class="select-class" id="cerca-storie-ruoli" name="ruoli">
+            <option value=""></option>
+            @foreach ($lista_ruoli as $ruoli)
+                <option value="{{ $ruoli->id }}">{{ $ruoli->descrizione}}</option>
+            @endforeach
+        </select>
     </div>
 
     <div id="label-cerca">
@@ -55,13 +71,18 @@
 
     <div id="tipo-ricerca">
         <label for="tipo-ricerca-select">Tipo di ricerca</label>
-        @yield('option_tipo_ricerca')
+        @yield('select_tipo_ricerca')
+    </div>
+
+    <div id="stato-lettura">
+        <label for="radio-stato-lettura">Cerca:</label>
+        @yield('radio-stato-lettura')
     </div>
    
     <div id="data-pubblicazione">
-        <label for="data pubblicazione">Data iniziale di pubblicazione:</label>
+        <label id="label-data-iniziale" for="data pubblicazione">Data iniziale di pubblicazione:</label>
         <input class="data-pub" type="text" class="form-control" name="data_pub_iniziale"/>
-        <label for="data pubblicazione">Data finale di pubblicazione:</label>
+        <label id="label-data-finale" for="data pubblicazione">Data finale di pubblicazione:</label>
         <input class="data-pub" type="text" class="form-control" name="data_pub_finale"/>
     </div>
 </div>
@@ -75,11 +96,13 @@
         })
 
         $('#cerca-storie-autori').select2();
+        $('#cerca-storie-ruoli').select2();
 
         /* Per default visualizziamo la ricerca per albo */
 
         $('.select-class').hide();
         $('#div-select-cerca-storie-autori').hide();
+        $('#da-leggere').prop('checked', true);
         $('.select-class').prop('disabled' ,true);
         $('#albo-cerca-per-select').show();
         $('#albo-cerca-per-select').prop('disabled', false);
@@ -97,12 +120,15 @@
                     $('.select-class').hide();
                     $('#div-select-cerca-storie-autori').hide();
                     $('.select-class').prop('disabled', true);
+                    $('#stato-lettura').hide();
+                    $('.radio-lettura').prop('disabled', true);
                     $('#data-pubblicazione').hide();
                     $('.data-pub').prop('disabled', true);
                     $('#label-cerca').show();
                     $('#label-cerca :input').prop('disabled', false);
                     $('#autore-cerca-per-select').show();
                     $('#autore-cerca-per-select').prop('disabled', false);
+                    $('#autore-cerca-per-select').val("nome").change();
                     $('#tipo-ricerca').show();
                     $('#tipo-ricerca *').contents().prop('disabled', false);
                     break;
@@ -113,10 +139,16 @@
                     $('.select-class').prop('disabled', true);
                     $('#label-cerca').show();
                     $('#label-cerca :input').prop('disabled', false);
+                    $('#label-data-iniziale').text("Data iniziale di lettura:");
+                    $('#label-data-finale').text("Data finale di lettura:");
+                    $('#stato-lettura').show();
+                    $('.radio-lettura').prop('disabled', false);
+                    $('#da-leggere').prop('checked', true);
                     $('#data-pubblicazione').show();
                     $('.data-pub').prop('disabled', false);
                     $('#storia-cerca-per-select').show();
                     $('#storia-cerca-per-select').prop('disabled', false);
+                    $('#storia-cerca-per-select').val("nome").change();
                     $('#tipo-ricerca').show();
                     $('#tipo-ricerca *').contents().prop('disabled', false);
                     break;
@@ -127,10 +159,16 @@
                     $('.select-class').prop('disabled', true);
                     $('#label-cerca').show();
                     $('#label-cerca :input').prop('disabled', false);
+                    $('#stato-lettura').show();
+                    $('.radio-lettura').prop('disabled', false);
+                    $('#da-leggere').prop('checked', true);
+                    $('#label-data-iniziale').text("Data iniziale di pubblicazione:");
+                    $('#label-data-finale').text("Data finale di pubblicazione:");
                     $('#data-pubblicazione').show();
                     $('.data-pub').prop('disabled', false);
                     $('#albo-cerca-per-select').show();
                     $('#albo-cerca-per-select').prop('disabled', false);
+                    $('#albo-cerca-per-select').val("numero").change();
                     $('#tipo-ricerca').show();
                     $('#tipo-ricerca *').contents().prop('disabled', false);
                     break;
@@ -190,6 +228,7 @@
                     $('#label-cerca :input').prop('disabled', true);
                     $('#div-select-cerca-storie-autori').show();
                     $('#cerca-storie-autori').prop('disabled', false);
+                    $('#cerca-storie-ruoli').prop('disabled', false);
                     break;
 
                 case 'tutto':
@@ -199,11 +238,13 @@
                     $('#label-cerca :input').prop('disabled', true);
                     $('#div-select-cerca-storie-autori').hide();
                     $('#cerca-storie-autori').prop('disabled', true);
+                    $('cerca-storie-ruoli').prop('diasbled', true);
                     break;
 
                 default:
                     $('#div-select-cerca-storie-autori').hide();
                     $('#cerca-storie-autori').prop('disabled', true);
+                    $('cerca-storie-ruoli').prop('diasbled', true);
                     $('#tipo-ricerca').show();
                     $('#tipo-ricerca *').contents().prop('disabled', false);
                     $('#label-cerca').show();

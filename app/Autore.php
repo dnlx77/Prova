@@ -26,7 +26,26 @@ class Autore extends Model
         return $query;
     }
 
-    public function storie() {
-        return $this->belongsToMany(Storia::class, 'rel_storia_autore_ruolo');
+    public function storie($data_let_iniziale, $data_let_finale, $stato_lettura) {
+        $query = $this->belongsToMany(Storia::class, 'rel_storia_autore_ruolo');
+
+        if (!empty($data_let_iniziale))
+                $query->whereDate('data_lettura', '>=', $data_let_iniziale);
+
+        if(!empty($data_let_finale)) 
+                $query->whereDate('data_lettura', '<=', $data_let_finale);
+
+        switch ($stato_lettura) {
+            case 'leggere':
+                $query->where('data_lettura', '=', null);
+                break;
+            case 'letti':
+                $query->where('data_lettura', '<>', null);
+                break;
+            default:
+                break;
+        }
+
+        return $query;
     }
 }

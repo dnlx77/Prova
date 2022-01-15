@@ -18,8 +18,9 @@ class StatisticheController extends Controller
         $num_storie = Storia::all()->count();
         $num_editori = Editore::all()->count();
         $num_collane = Collana::all()->count();
+        $num_storie_lette = Storia::StorieLette()->count();
 
-        $statistiche = ['albi' => $num_albi, 'autori' => $num_autori, 'storie' => $num_storie, 'editori' => $num_editori, 'collane' => $num_collane];
+        $statistiche = ['albi' => $num_albi, 'autori' => $num_autori, 'storie' => $num_storie, 'editori' => $num_editori, 'collane' => $num_collane, 'storie lette' => $num_storie_lette];
         
         return view('statistiche.index', [
             'statistiche' => $statistiche,

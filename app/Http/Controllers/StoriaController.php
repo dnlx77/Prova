@@ -74,8 +74,10 @@ class StoriaController extends Controller
               'tipo_storia_list' => $tipo_storia_list ,
               'cerca_in' => '',
               'cerca_per' => '',
+              'ruoli' => '',
               'search' => '',
               'ricerca_esatta' => '',
+              'stato_lettura' => '',
               'data_pub_iniziale' => '',
               'data_pub_finale' => ''
             ]);
@@ -126,6 +128,7 @@ class StoriaController extends Controller
               'cerca_per' => '', 
               'search' => '',
               'ricerca_esatta' => '',
+              'stato_lettura' => '',
               'data_pub_iniziale' => '',
               'data_pub_finale' => '' 
             ]);

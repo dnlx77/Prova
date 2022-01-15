@@ -89,14 +89,15 @@ class AlboController extends Controller
             $albi = Albo::orderBy($sort_by, $order)->paginate($per_page);
             
         return view('albo.index', 
-        [ 'albi' => $albi,
-        'cerca_in' => '',
-        'cerca_per' => '', 
-        'search' => '',
-        'ricerca_esatta' => '',
-        'data_pub_iniziale' => '',
-        'data_pub_finale' => ''
-        ]);
+            [ 'albi' => $albi,
+            'cerca_in' => '',
+            'cerca_per' => '', 
+            'search' => '',
+            'ricerca_esatta' => '',
+            'stato_lettura' => '',
+            'data_pub_iniziale' => '',
+            'data_pub_finale' => ''
+            ]);
     }
 
     public function showAlbo ($id_albo)
@@ -108,8 +109,15 @@ class AlboController extends Controller
         $albi = Albo::GetAlbo($id_albo)->paginate(1);
            
         return view('albo.index', 
-            [ 'albi' => $albi ]
-            );
+            [ 'albi' => $albi,
+            'cerca_in' => '',
+            'cerca_per' => '', 
+            'search' => '',
+            'ricerca_esatta' => '',
+            'stato_lettura' => '',
+            'data_pub_iniziale' => '',
+            'data_pub_finale' => ''
+            ]);
     }
 
     public function detailsAlbo ($id_albo) {

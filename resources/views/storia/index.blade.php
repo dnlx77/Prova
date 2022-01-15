@@ -29,6 +29,6 @@
         </tbody>
     </table>
 
-    {{ $storie->appends(['cerca_in' => $cerca_in, 'cerca_per' => $cerca_per, 'ricerca' => $search, 'tipo_ricerca' => $ricerca_esatta, 'data_pub_iniziale' => $data_pub_iniziale, 'data_pub_finale' => $data_pub_finale])->links() }}
+    {{ $storie->appends(['cerca_in' => $cerca_in, 'cerca_per' => $cerca_per, 'ruoli' => $ruoli, 'ricerca' => $search, 'tipo_ricerca' => $ricerca_esatta, 'data_pub_iniziale' => $data_pub_iniziale, 'data_pub_finale' => $data_pub_finale, 'stato_lettura' => $stato_lettura])->links() }}
 </div>
 @endsection
