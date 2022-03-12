@@ -37,6 +37,10 @@ class Albo extends Model
         return $query->where('id', '=', '*')->count();
     }
 
+    public function scopeAlbiLetti ($query) {
+        return $query->where('data_lettura', '<>', null);
+    }
+
     public function scopeAlboSearch($query, $cerca_per, $cerca, $tipo_ricerca, $data_pub_iniziale, $data_pub_finale, $stato_lettura) {
         if(!empty($cerca_per)) {
             
