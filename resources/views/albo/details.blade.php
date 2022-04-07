@@ -8,7 +8,7 @@
         <!-- Seconda riga divisa in 2 colonne -->
         <div class="row">
             <!-- Colonna di sinistra contiene l'imamgine della copertina -->
-            <div class="col-6"><img src="{{ url('storage/'.$albo->filename) }}" class="card-img-top" alt="{{ $albo->filename }}"></div>
+            <div class="col-6"><img src="{{ url('storage/'.$albo->filename) }}" class="card-img-top img-albo-details" alt="{{ $albo->filename }}"></div>
             <!-- Colonna di destra tutti i dati dell'albo -->
             <div class="col-6">
                 <div class="row">

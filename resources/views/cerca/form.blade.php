@@ -52,7 +52,7 @@
     <div id="div-select-cerca-storie-autori">
         <select class="select-class" id="cerca-storie-autori" name="ricerca">
             @foreach ($lista_autori as $autori)
-                <option value="{{ $autori->id }}">{{ $autori->cognome}} {{ $autori->nome}}</option>
+                <option value="{{ $autori->id }}">{{ $autori->cognome}} @if ($autori->pseudonimo)'{{$autori->pseudonimo}}' @endif {{ $autori->nome}}</option>
             @endforeach
         </select>
 
