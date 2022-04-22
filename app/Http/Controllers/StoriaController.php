@@ -84,6 +84,16 @@ class StoriaController extends Controller
 
     }
 
+    public function index_list()
+    {
+        $sorted = 'asc';
+        $order_by ='nome';
+        $storie = Storia::orderBy($order_by, $sorted)->get();
+
+        return view('storia.storia_list',
+            [ 'storie' => $storie]);
+    }
+
     public function detailsStoria ($id_storia)
     {
         $lista_autori_ruoli = DB::table('rel_storia_autore_ruolo')->where('storia_id', '=', $id_storia)

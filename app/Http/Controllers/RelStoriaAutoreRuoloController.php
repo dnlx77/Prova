@@ -84,6 +84,19 @@ class RelStoriaAutoreRuoloController extends Controller
             ]);
     }
 
+    public function storie_list($id_autore)
+    {
+        $sorted = 'asc';
+        $order_by ='nome';
+        $storie = Storia::orderBy($order_by, $sorted)->get();
+        $autore = Autore::find($id_autore);
+        $storie = $autore->storie('','','')->orderBy($order_by, $sorted)->distinct()->get();
+
+        return view('autore.lista_storie', [ 
+            'storie' => $storie,
+            'autore' => $autore]);
+    }
+
     public function eliminaAutoreForm ($id_storia, $id_autore) {
         return view('rel_storia_autore_ruolo.elimina_autore_form', [
             'id_storia' => $id_storia,

@@ -46,6 +46,7 @@ Route::post('autore/{id_autore}/elimina-execute', 'AutoreController@autoreElimin
 Route::get('storia/{id_storia}/aggiungi-autore', 'RelStoriaAutoreRuoloController@aggiungiAutore')->name('storia.aggiungi_autore');
 Route::post('storia/{id_storia}/store-autore', 'RelStoriaAutoreRuoloController@storeAutore')->name('storia.store_autore');
 Route::get('storia/{id_storia}/autori', 'RelStoriaAutoreRuoloController@index')->name('storia.autore');
+Route::get('autore/{id_autore}/storie', 'RelStoriaAutoreRuoloController@storie_list')->name('autore.storia');
 Route::get('storia/{id_storia}/{id_autore}/services/get-ruoli-json', 'RelStoriaAutoreRuoloController@getRuoliJson')->name('storia.get_ruoli_json');
 Route::get('storia/elimina-autore-form/{id_storia}/{id_autore}', 'RelStoriaAutoreRuoloController@eliminaAutoreForm')->name('storia.elimina_autore_form');
 Route::post('storia/elimina-autore-execute/{id_storia}/{id_autore}', 'RelStoriaAutoreRuoloController@eliminaAutoreExecute')->name('storia.elimina_autore_execute');
@@ -53,6 +54,7 @@ Route::post('storia/elimina-autore-execute/{id_storia}/{id_autore}', 'RelStoriaA
 Route::get('storia/create', 'StoriaController@create')->name('storia.create');
 Route::post('storia/store', 'StoriaController@store')->name('storia.store');
 Route::get('storia', 'StoriaController@index')->name('storia.index');
+Route::get('storia/list', 'StoriaController@index_list')->name('storia.list');
 Route::get('storia/{id_storia}/details', 'StoriaController@detailsStoria')->name('storia.details');
 Route::get('storia/{id_storia}/edit', 'StoriaController@edit')->name('storia.edit');
 Route::post('storia/{id_storia}/update', 'StoriaController@update')->name('storia.update');

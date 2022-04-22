@@ -5,6 +5,7 @@
     <!-- Riga del titolo -->
     <div class="row justify-content-center">
         <h1> {{ $storia->nome }} </h1>
+
     </div>
     <div class="row">
         <div class="col-4">
@@ -12,8 +13,8 @@
             @foreach ($lista_ruoli AS $id_ruolo => $lista_autore)
                 <span>{{ $lista_autore['ruolo'] }}</span>
                 <ul>
-                    @foreach ($lista_autore['nome'] as $autore)
-                        <li><span>{{ $autore }}</span></li>
+                    @foreach ($lista_autore['nome'] AS $id_autore => $autore)
+                        <li><a href="{{ route('autore.storia', $id_autore) }}"><span>{{ $autore }}</span></a></li>
                     @endforeach
                 </ul>
             @endforeach
@@ -24,9 +25,9 @@
         </div>    
         <div class="col-4">        
             <h5>Albi</h5>
-            @foreach ($albi AS $albo)            
-                <img class="img-thumbnail" src="{{ url('storage/'.$albo->filename) }}" alt="{{ $albo->filename }}">
-           @endforeach
+            @foreach ($albi AS $albo)   
+                <a href="{{ route('albo.details', $albo->id) }}"><img class="img-thumbnail" src="{{ url('storage/'.$albo->filename) }}" alt="{{ $albo->filename }}"></a>
+            @endforeach
            
            {{ $albi->links() }}
         </div>
