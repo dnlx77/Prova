@@ -86,15 +86,34 @@ class RelStoriaAutoreRuoloController extends Controller
 
     public function storie_list($id_autore)
     {
-        $sorted = 'asc';
-        $order_by ='nome';
-        $storie = Storia::orderBy($order_by, $sorted)->get();
+        
+        $ruoli = DB::table('rel_storia_autore_ruolo')->where('autore_id', '=', $id_autore)
+        ->join('storia', 'storia.id', '=', 'rel_storia_autore_ruolo.storia_id')
+        ->join('ruolo', 'ruolo.id', '=', 'rel_storia_autore_ruolo.ruolo_id')
+        ->get(['ruolo.id AS ruolo_id', 'ruolo.descrizione', 'storia.id AS storia_id', 'storia.nome']);
+
+        $info_ruoli = [];
+
+        foreach($ruoli AS $current_ruolo) {
+            if(!isset($info_ruoli[$current_ruolo->ruolo_id])){
+                $info_ruoli[$current_ruolo->ruolo_id] = [];
+                $info_ruoli[$current_ruolo->ruolo_id]['ruolo'] = $current_ruolo->descrizione;
+                $info_ruoli[$current_ruolo->ruolo_id]['titoli'] = [];
+            }
+            $info_ruoli[$current_ruolo->ruolo_id]['titoli'][$current_ruolo->storia_id] = $current_ruolo->nome;
+        }
+
         $autore = Autore::find($id_autore);
-        $storie = $autore->storie('','','')->orderBy($order_by, $sorted)->distinct()->get();
+        
+        /*$sorted = 'asc';
+        $order_by ='nome';
+        $autore = Autore::find($id_autore);
+        $storie = $autore->storie(null,null,null)->orderBy($order_by, $sorted)->distinct()->get();*/
 
         return view('autore.lista_storie', [ 
-            'storie' => $storie,
-            'autore' => $autore]);
+            'info_ruoli' => $info_ruoli,
+            'autore' => $autore,
+            'ruoli' => $ruoli]);
     }
 
     public function eliminaAutoreForm ($id_storia, $id_autore) {
