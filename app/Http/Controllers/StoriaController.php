@@ -94,6 +94,19 @@ class StoriaController extends Controller
             [ 'storie' => $storie]);
     }
 
+    public function storiaSetReadDate (Request $request, $id_storia) {
+        $storia = Storia::find($id_storia);
+
+        if ($request->get('data_lettura') != 0)
+            $storia->data_lettura = \DateTime::createFromFormat('d-m-Y', $request->get('data_lettura'));
+        else
+            $storia->data_lettura = null;
+            
+        $storia->save();
+
+        return redirect(route('storia.details', $id_storia));
+    }
+
     public function detailsStoria ($id_storia)
     {
         $lista_autori_ruoli = DB::table('rel_storia_autore_ruolo')->where('storia_id', '=', $id_storia)

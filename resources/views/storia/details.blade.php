@@ -18,6 +18,8 @@
                     @endforeach
                 </ul>
             @endforeach
+            <h5>Data Lettura</h5>
+            <span><a data-target="#dataModal" class="modale-data" data-toggle="modal" href="#storieModal">{{ !empty($storia->data_lettura) ? date('d/m/Y', strtotime($storia->data_lettura)) : 'Da leggere' }}</a></span>
         </div>
         <div class="col-4">
             <h5>Trama</h5>
@@ -33,4 +35,39 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="dataModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Inserisci la data di lettura della storia</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form enctype="multipart/form-data" method="post" action="{{ route('storia.set_read_date', $storia->id) }}">
+                <div class="modal-body">
+                
+                    @csrf
+                    <label for="data_lettura">Data lettura:</label>
+                    <input type="text" class="form-control" name="data_lettura" value="{{ !empty(old('data_lettura')) ? old('data_lettura') : (!empty($storia->data_lettura) ? date('d-m-Y', strtotime($storia->data_lettura)) : '') }}"/>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>  
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Script gestione modal -->
+<script>
+    $(document).ready(function(){
+        $('[name=data_lettura]').datepicker({
+        format: 'dd-mm-yyyy',
+        todayHighlight: true
+        });
+    });
+</script>
+
 @endsection
