@@ -48,6 +48,7 @@ Route::post('storia/{id_storia}/store-autore', 'RelStoriaAutoreRuoloController@s
 Route::get('storia/{id_storia}/autori', 'RelStoriaAutoreRuoloController@index')->name('storia.autore');
 Route::get('autore/{id_autore}/storie', 'RelStoriaAutoreRuoloController@storie_list')->name('autore.storia');
 Route::get('storia/{id_storia}/{id_autore}/services/get-ruoli-json', 'RelStoriaAutoreRuoloController@getRuoliJson')->name('storia.get_ruoli_json');
+Route::get('storia/{id_autore}/services/get-only-ruoli-json', 'RelStoriaAutoreRuoloController@getOnlyRuoliJson')->name('storia.get_only_ruoli_json');
 Route::get('storia/elimina-autore-form/{id_storia}/{id_autore}', 'RelStoriaAutoreRuoloController@eliminaAutoreForm')->name('storia.elimina_autore_form');
 Route::post('storia/elimina-autore-execute/{id_storia}/{id_autore}', 'RelStoriaAutoreRuoloController@eliminaAutoreExecute')->name('storia.elimina_autore_execute');
 

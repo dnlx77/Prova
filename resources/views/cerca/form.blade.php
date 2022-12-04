@@ -276,5 +276,34 @@
             }
         });
 
+        /* Se effettuiamo una ricerca di storie per autore, visualizziamo solo i ruoli ricoperti dall'autore */
+
+        $('#cerca-storie-autori').on('change', function(){
+            $.ajax({
+            url:"/storia/" + $(this).val() + "/services/get-only-ruoli-json",
+            method:"GET",
+            data:{},
+            dataType: 'json',
+            success:function(result)
+            {
+                console.log(result);
+                
+                var result_value = result;
+                var option = '';
+                                
+                $('#cerca-storie-ruoli').empty();
+                for (i in result) {
+                    option += '<option value="' + i + '">' + result[i] + '</option>';
+                }
+                console.log(option);
+                $('#cerca-storie-ruoli').append(option).change();
+            },
+            error:function()
+            {
+                console.log(error);
+            }
+            });
+        });
+
     });
 </script>

@@ -158,4 +158,18 @@ class RelStoriaAutoreRuoloController extends Controller
         return json_encode($ruoli_array);
     }
 
+    public function getOnlyRuoliJson($id_autore) {
+    
+        $ruoli = DB::table('rel_storia_autore_ruolo')->where('autore_id', '=', $id_autore)
+        ->join('ruolo', 'ruolo.id', '=', 'rel_storia_autore_ruolo.ruolo_id')
+        ->distinct()
+        ->get(['ruolo.descrizione', 'ruolo.id AS ruolo_id']);
+
+        $ruoli_array = [];
+        foreach ($ruoli as $ruolo)
+            $ruoli_array[$ruolo->ruolo_id] = $ruolo->descrizione;
+
+        return json_encode($ruoli_array);
+    }
+
 }
