@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Editore;
+use App\Albo;
 use Exception;
 use Illuminate\Support\Facades\DB;
 
@@ -51,10 +52,15 @@ class EditoreController extends Controller
     {
                
         $editori = Editore::all();
+        $num_albi_per_editore = [];
+
+        foreach ($editori as $editore)
+            $num_albi_per_editore[$editore->id] = Albo::NumAlbiPerEditore ($editore->id);
 
         return view('editore.index', 
-            [ 'editori' => $editori ] 
-            );
+            [ 'editori' => $editori,
+              'num_albi_per_editore' => $num_albi_per_editore
+            ]);
     }
 
     public function edit ($id_editore) {

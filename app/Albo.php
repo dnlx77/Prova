@@ -33,6 +33,10 @@ class Albo extends Model
         return $query->where('collana_id', '=', $collana_id)->count();
     }
 
+    public function scopeNumAlbiPerEditore ($query, $editore_id) {
+        return $query->where('editore_id', '=', $editore_id)->count();
+    }
+
     public function scopeNumAlbi ($query) {
         return $query->where('id', '=', '*')->count();
     }

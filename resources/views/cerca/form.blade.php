@@ -296,7 +296,7 @@
                     option += '<option value="' + i + '">' + result[i] + '</option>';
                 }
                 console.log(option);
-                $('#cerca-storie-ruoli').append(option).change();
+                $('#cerca-storie-ruoli').append(option);
             },
             error:function()
             {
