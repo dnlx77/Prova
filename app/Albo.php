@@ -82,4 +82,13 @@ class Albo extends Model
 
         return $query;
     }
+
+    public function scopeNumAlbiPubblicatiAnno($query, $anno_pub) {
+        return $query->whereYear('data_pubblicazione',$anno_pub)->count();
+    }
+
+    public function scopeNumAlbiPubblicatiMeseAnno($query, $mese_pub, $anno_pub) {
+        $query->whereYear('data_pubblicazione', $anno_pub);
+        return $query->whereMonth('data_pubblicazione', $mese_pub)->count();
+    }
 }

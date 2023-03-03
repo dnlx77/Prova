@@ -20,6 +20,8 @@ class StatisticheController extends Controller
         $num_collane = Collana::all()->count();
         $num_storie_lette = Storia::StorieLette()->count();
         $num_albi_letti = Albo::AlbiLetti()->count();
+        //$num_albi_pubblicati_anno = Albo::NumAlbiPubblicatiAnno('2020');
+        //$num_albi_pubblicati_anno_mese = Albo::NumAlbiPubblicatiMeseAnno('03','2020');
 
         $statistiche = ['albi' => $num_albi,
         'albi letti' => $num_albi_letti, 
@@ -27,11 +29,30 @@ class StatisticheController extends Controller
         'storie lette' => $num_storie_lette,
         'autori' => $num_autori,
         'editori' => $num_editori, 
-        'collane' => $num_collane 
+        'collane' => $num_collane,
+        //'albi anno' => $num_albi_pubblicati_anno,
+        //'albi mese e anno' => $num_albi_pubblicati_anno_mese
         ];
         
         return view('statistiche.index', [
             'statistiche' => $statistiche,
+        ]);
+    }
+
+    /* Dato l'anno ricevuto per parametro calcola il numero di albi pubblicati in ogni mese dell'anno */
+
+    public function albiPerMese($anno) {
+        $primo_anno = date("Y", strtotime(Albo::min('data_pubblicazione')));
+        $ultimo_anno = date("Y", strtotime(Albo::max('data_pubblicazione')));
+
+        $num_albi_per_mese = [];
+        for ($i=1; $i<13; $i++) 
+            $num_albi_per_mese[date('F', mktime(0, 0, 0, $i, 1))] = Albo::NumAlbiPubblicatiMeseAnno($i,$anno);
+            
+        return view('statistiche.albi_per_mese', [
+            'num_albi_per_mese' => $num_albi_per_mese,
+            'primo_anno' => $primo_anno,
+            'ultimo_anno' => $ultimo_anno
         ]);
     }
 }

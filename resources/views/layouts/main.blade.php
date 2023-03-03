@@ -29,6 +29,7 @@
                 <li><a href="{{ route('albo.index') }}" >Albo</a></li>
                 <li><a href="{{ route('statistiche.index') }}" >Statistiche</a></li>
                 <li><a href="{{ route('ricerca.index') }}" >Cerca</a></li>
+                <li><a href="{{ route('statistiche.albi_mese', '2000')}}" >Albi per anno</a></li>
             </ul>
         </div>
     </div>
