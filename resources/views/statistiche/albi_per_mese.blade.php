@@ -14,38 +14,32 @@
     <table class="table table-hover table-bordered">
         <thead>
             <tr>
-                <th>Mese</th>
-                <th>Numero Albi</th>
+                @foreach ($num_albi_per_mese AS $mese => $numero_albi)
+                    <th>{{ $mese }}</th>
+                @endforeach
             </tr>
         </thead>
         <tbody>
-            @foreach ($num_albi_per_mese AS $mese => $numero_albi)
-                <tr>
-                    <td>{{ $mese }}</td>
+            <tr>
+                @foreach ($num_albi_per_mese AS $mese => $numero_albi)
                     <td> {{ $numero_albi }}</td>
-                </tr>
-            @endforeach
+                @endforeach
+            </tr>
         </tbody>
     </table>
 </div>
 
 <script>
-    $(document).ready(function(){
-        /*var mySelectBoxVal = localstorage.getItem("mySelectBoxVal");
-        if (mySelectBoxVal !== '') {
-            $('#anno-select').val(mySelectBoxVal);
-        }*/
-
-        $('#anno-select').on('change', function(){
-            /*selectBoxVal = $('#anno-select').val();
-            if (typeof(Storage) !== "undefined") {
-                localStorage.setItem("mySelectBoxVal", selectBoxVal);
-            } else {
-                alert('Sorry! No Web Storage support..');
-            }*/
-           //window.location.href="statistiche/albi-pubblicati-anno/" + $(this).val();
-           window.location.href=this.value;
-           //window.location.reload();
+    $(document).ready(function() {
+        
+        var selItem = sessionStorage.getItem("selItem");
+        $('#anno-select').val(selItem);
+        
+        $('#anno-select').on('change', function() {
+            console.log('sono in change');
+           var selVal=$(this).val();
+           sessionStorage.setItem("selItem", selVal);
+           window.location.href=selVal;
         });
     });
 </script>
