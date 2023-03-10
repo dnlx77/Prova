@@ -93,6 +93,7 @@ Route::get('albo/{id_albo}/services/get-storie', 'RelStoriaAlboController@getSto
 
 Route::get('statistiche', 'StatisticheController@index')->name('statistiche.index');
 Route::get('statistiche/albi-pubblicati-anno/{anno}', 'StatisticheController@albiPerMese')->name('statistiche.albi_mese');
+Route::Get('statistiche/albi-pubblicati', 'StatisticheController@albiPerAnno')->name('statistiche.albi_anno');
 
 Route::get('ricerca', 'RicercaController@index')->name('ricerca.index');
 Route::get('ricerca/search', 'RicercaController@search')->name('cerca.search');

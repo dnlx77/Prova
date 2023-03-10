@@ -57,4 +57,19 @@ class StatisticheController extends Controller
             'num_albi_anno' => $num_albi_anno
         ]);
     }
+
+    public function albiPerAnno() {
+        $primo_anno = date("Y", strtotime(Albo::min('data_pubblicazione')));
+        $ultimo_anno = date("Y", strtotime(Albo::max('data_pubblicazione')));
+
+        $num_albi_per_anno = [];
+        for($i=$primo_anno; $i<=$ultimo_anno; $i++)
+            $num_albi_per_anno[$i] = Albo::AlbiPubblicatiAnno($i)->count();
+
+            return view('statistiche.albi_per_anno', [
+                'primo_anno' => $primo_anno,
+                'ultimo_anno' => $ultimo_anno,
+                'num_albi_per_anno' => $num_albi_per_anno
+            ]);
+    }
 }

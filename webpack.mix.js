@@ -15,3 +15,4 @@ mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css/sass')
     .less('resources/less/app.less', 'public/css/less')
     .combine(['public/css/sass/app.css', 'public/css/less/app.css'],'public/css/app.css');
+mix.copy('node_modules/chart.js/dist/chart.js', 'public/chart.js/chart.js');
