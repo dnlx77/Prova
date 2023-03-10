@@ -29,17 +29,24 @@
     </table>
 </div>
 
+<div>
+    <span>Albi totali pubblicati nell'anno: {{ $num_albi_anno }} </span>
+</div>
+
 <script>
     $(document).ready(function() {
         
-        var selItem = sessionStorage.getItem("selItem");
-        $('#anno-select').val(selItem);
+        var pathname = window.location.pathname;
+        var anno = pathname.substr(pathname.length-4,4);
+       
+        $('#anno-select').val(anno);
         
         $('#anno-select').on('change', function() {
-            console.log('sono in change');
-           var selVal=$(this).val();
-           sessionStorage.setItem("selItem", selVal);
-           window.location.href=selVal;
+            var selVal=$(this).val();
+            window.location.href = "{{ route('statistiche.albi_mese', '') }}" + "/" + selVal;
+            
+            /* La riga sotto è equivalente a quella sopra ma quella soptra è più legibile */
+            //window.location.href=selVal;
         });
     });
 </script>

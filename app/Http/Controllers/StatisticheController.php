@@ -44,15 +44,17 @@ class StatisticheController extends Controller
     public function albiPerMese($anno) {
         $primo_anno = date("Y", strtotime(Albo::min('data_pubblicazione')));
         $ultimo_anno = date("Y", strtotime(Albo::max('data_pubblicazione')));
+        $num_albi_anno = Albo::AlbiPubblicatiAnno($anno)->count();
 
         $num_albi_per_mese = [];
         for ($i=1; $i<13; $i++) 
-            $num_albi_per_mese[date('F', mktime(0, 0, 0, $i, 1))] = Albo::NumAlbiPubblicatiMeseAnno($i,$anno);
+            $num_albi_per_mese[date('F', mktime(0, 0, 0, $i, 1))] = Albo::AlbiPubblicatiMeseAnno($i,$anno)->count();
             
         return view('statistiche.albi_per_mese', [
             'num_albi_per_mese' => $num_albi_per_mese,
             'primo_anno' => $primo_anno,
-            'ultimo_anno' => $ultimo_anno
+            'ultimo_anno' => $ultimo_anno,
+            'num_albi_anno' => $num_albi_anno
         ]);
     }
 }
