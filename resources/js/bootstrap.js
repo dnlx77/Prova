@@ -17,6 +17,7 @@ try {
     require('bootstrap-datepicker');
 } catch (e) {}
 
+
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting
@@ -33,3 +34,6 @@ try {
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
+
+//import Chart from 'chart.js';
+//window.Chart = Chart;

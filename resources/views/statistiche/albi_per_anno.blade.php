@@ -20,4 +20,49 @@
     </table>
 </div>
 
+<div>
+    <canvas id="myChart"></canvas>
+  </div>
+  
+  <script>
+    $(document).ready(function() {
+        
+
+        $.ajax({
+            url:"/statistiche/services/get-anni",
+            method:"GET",
+            data:{},
+            dataType: 'json',
+            success:function(result)
+            {
+                console.log(Object.keys(result));
+                console.log(Object.values(result));
+                const ctx = document.getElementById('myChart');
+                new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: Object.keys(result),
+                    datasets: [{
+                    label: '# albi per anno',
+                    data: Object.values(result),
+                    border199Width: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                    }
+                }
+                });
+            },
+            error:function()
+            {
+                console.log(error);
+            }
+            }); 
+    });
+  </script>
+  
 @endsection
