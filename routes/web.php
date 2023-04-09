@@ -92,6 +92,7 @@ Route::post('albo/{id_albo}/elimina-autore-execute/{id_storia}', 'RelStoriaAlboC
 Route::get('albo/{id_albo}/services/get-storie', 'RelStoriaAlboController@getStorie')->name('albo.get_storie_json');
 
 Route::get('statistiche', 'StatisticheController@index')->name('statistiche.index');
+Route::get('statistiche/generali', 'StatisticheController@generali')->name('statistiche.generali');
 Route::get('statistiche/albi-pubblicati-anno/{anno}', 'StatisticheController@albiPerMese')->name('statistiche.albi_mese');
 Route::Get('statistiche/albi-pubblicati', 'StatisticheController@albiPerAnno')->name('statistiche.albi_anno');
 Route::Get('statistiche/services/get-anni', 'StatisticheController@getAnni')->name('statistiche.get_anni_json');

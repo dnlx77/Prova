@@ -8,6 +8,7 @@
         <tr>
             <th>Ruoli</th>
             <th>Storie</th>
+            <th>Numero storie</th>
         </tr>
     </thead>
     
@@ -22,6 +23,7 @@
                         @endforeach
                     </ul>
                 </td>
+                <td>{{ count($info_ruoli['titoli']) }} </td>
             </tr>
         @endforeach
         

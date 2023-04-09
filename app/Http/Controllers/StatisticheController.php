@@ -11,7 +11,12 @@ use App\Collana;
 
 class StatisticheController extends Controller
 {
+
     public function index() {
+        return view('statistiche.index');
+    }
+
+    public function generali() {
 
         $num_albi = Albo::all()->count();
         $num_autori = Autore::all()->count();
@@ -20,8 +25,6 @@ class StatisticheController extends Controller
         $num_collane = Collana::all()->count();
         $num_storie_lette = Storia::StorieLette()->count();
         $num_albi_letti = Albo::AlbiLetti()->count();
-        //$num_albi_pubblicati_anno = Albo::NumAlbiPubblicatiAnno('2020');
-        //$num_albi_pubblicati_anno_mese = Albo::NumAlbiPubblicatiMeseAnno('03','2020');
 
         $statistiche = ['albi' => $num_albi,
         'albi letti' => $num_albi_letti, 
@@ -30,11 +33,9 @@ class StatisticheController extends Controller
         'autori' => $num_autori,
         'editori' => $num_editori, 
         'collane' => $num_collane,
-        //'albi anno' => $num_albi_pubblicati_anno,
-        //'albi mese e anno' => $num_albi_pubblicati_anno_mese
         ];
         
-        return view('statistiche.index', [
+        return view('statistiche.generali', [
             'statistiche' => $statistiche,
         ]);
     }
