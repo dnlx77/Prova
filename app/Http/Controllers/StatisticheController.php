@@ -8,6 +8,7 @@ use App\Autore;
 use App\Storia;
 use App\Editore;
 use App\Collana;
+use Illuminate\Support\Facades\DB;
 
 class StatisticheController extends Controller
 {
@@ -24,7 +25,7 @@ class StatisticheController extends Controller
         $num_editori = Editore::all()->count();
         $num_collane = Collana::all()->count();
         $num_storie_lette = Storia::StorieLette()->count();
-        $num_albi_letti = Albo::AlbiLetti()->count();
+        $num_albi_letti = DB::table('albo_letture')->select('albo_id')->distinct()->count();
 
         $statistiche = ['albi' => $num_albi,
         'albi letti' => $num_albi_letti, 

@@ -25,6 +25,10 @@ class Albo extends Model
         return $this->belongsToMany(Autore::class, 'rel_albo_autoricopertina');
     }
 
+    public function dateLettura() {
+        return $this->hasMany(AlboLetture::class);
+    }
+
     public function scopeGetAlbo ($query, $albo_id) {
         return $query->where('id',$albo_id);
     }
@@ -71,10 +75,10 @@ class Albo extends Model
 
         switch ($stato_lettura) {
             case 'leggere':
-                $query->where('data_lettura', '=', null);
+                $query->doesntHave('dateLettura');
                 break;
             case 'letti':
-                $query->where('data_lettura', '<>', null);
+                $query->has('dateLettura');
                 break;
             default:
                 break;

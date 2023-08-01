@@ -10,6 +10,7 @@ use App\Storia;
 use App\Autore;
 use App\RelStoriaAlbo;
 use App\RelAlboAUtoricopertina;
+use App\AlboLetture;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use Exception;
@@ -56,10 +57,10 @@ class AlboController extends Controller
             $albo->data_pubblicazione = \DateTime::createFromFormat('d-m-Y', $request->get('data_pubblicazione'));
         else
             $albo->data_pubblicazione = null;
-        if ($request->get('data_lettura') != 0)
+        /*if ($request->get('data_lettura') != 0)
             $albo->data_lettura = \DateTime::createFromFormat('d-m-Y', $request->get('data_lettura'));
         else
-            $albo->data_lettura = null;
+            $albo->data_lettura = null;*/
         $albo->collana_id = $request->get('collana');
         $albo->editore_id = $request->get('editore');
         $albo->save();
@@ -161,7 +162,7 @@ class AlboController extends Controller
             ]);
     } 
 
-    public function alboSetReadDate (Request $request, $id_albo) {
+    /*public function alboSetReadDate (Request $request, $id_albo) {
         $albo = Albo::find($id_albo);
 
         if ($request->get('data_lettura') != 0)
@@ -172,7 +173,7 @@ class AlboController extends Controller
         $albo->save();
 
         return redirect(route('albo.details', $id_albo));
-    }
+    }*/
 
     public function update (Request $request, $id_albo) {
         $request->validate([
@@ -197,10 +198,10 @@ class AlboController extends Controller
             $albo->data_pubblicazione = \DateTime::createFromFormat('d-m-Y', $request->get('data_pubblicazione'));
         else
             $albo->data_pubblicazione = null;
-        if ($request->get('data_lettura') != 0)
+        /*if ($request->get('data_lettura') != 0)
             $albo->data_lettura = \DateTime::createFromFormat('d-m-Y', $request->get('data_lettura'));
         else
-            $albo->data_lettura = null;
+            $albo->data_lettura = null;*/
         $albo->collana_id = $request->get('collana');
         $albo->editore_id = $request->get('editore');
         

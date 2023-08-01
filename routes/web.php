@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AlboController;
 use App\Http\Controllers\RelStoriaAlboController;
 use App\Http\Controllers\StoriaController;
 use Illuminate\Support\Facades\Route;
@@ -82,7 +83,9 @@ Route::get('albo/{id_albo}/edit', 'AlboController@edit')->name('albo.edit');
 Route::post('albo/{id_albo}/update', 'AlboController@update')->name('albo.update');
 Route::get('albo/{id_albo}/elimina-form', 'AlboController@alboEliminaForm')->name('albo.elimina_form');
 Route::post('albo/{id_albo}/elimina-execute', 'AlboController@alboEliminaExecute')->name('albo.elimina_execute');
-Route::post('albo/{id_albo}/set-read-date', 'AlboController@alboSetReadDate')->name('albo.set_read_date');
+
+Route::post('albo/{id_albo}/set-read-date', 'AlboLettureController@AggiungiLettura')->name('albo.set_read_date');
+Route::get('albo/{id_albo}/{data}/remove-read-date', 'AlboLettureController@RimuoviLettura')->name('albo.remove_read_date');
 
 Route::get('albo/{id_albo}/aggiungi-storia', 'RelStoriaAlboController@aggiungiStoria')->name('albo.aggiungi_storia');
 Route::post('albo/{id_albo}/store-storia', 'RelStoriaAlboController@storeStoria')->name('albo.store_storia');

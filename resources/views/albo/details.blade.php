@@ -1,5 +1,6 @@
 @extends('layouts.main')
 @section('content')
+
     <div class="container albo-details">
         <!-- Riga del titolo -->
         <div class="row justify-content-center">
@@ -21,9 +22,23 @@
                         <div class="col-6"><h5>Prezzo</h5></div>
                     @endif
                 </div>
+
                 <div class="row">
                     <div class="col-6"><h5>Data di pubblicazione</h5><span>{{ date('d/m/Y', strtotime($albo->data_pubblicazione)) }}</span></div>
-                    <div class="col-6"><h5>Data di lettura</h5><span><a data-target="#dataModal" class="modale-data" data-toggle="modal" href="#storieModal">{{ !empty($albo->data_lettura) ? date('d/m/Y', strtotime($albo->data_lettura)) : 'Da leggere' }}</a></span></div>
+                    <div class="col-6"><h5>Data di lettura</h5>
+                        <span>
+                            <ul class="multi-row">
+                                @if ($albo->dateLettura->isEmpty())
+                                    {{ 'Da leggere '}}
+                                @else
+                                    @foreach ($albo->dateLettura AS $data)
+                                    <li> {{ date('d/m/Y', strtotime($data->data_lettura)) }}<a href="{{ route('albo.remove_read_date', array($albo, $data->data_lettura))}}"><i class="bi bi-eraser-fill"></i></a></li>
+                                    
+                                    @endforeach
+                                @endif
+                            </ul>
+                        </span>
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col-6"><h5>Editore</h5><span>{{ $albo->editore->nome }}</span></div>

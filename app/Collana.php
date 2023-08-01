@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Albo;
 
 class Collana extends Model
 {
@@ -20,10 +21,10 @@ class Collana extends Model
 
         switch ($stato_lettura) {
             case 'leggere':
-                $query->where('data_lettura', '=', null);
+                $query->doesntHave('dateLettura');
                 break;
             case 'letti':
-                $query->where('data_lettura', '<>', null);
+                $query->has('dateLettura');
                 break;
             default:
                 break;
