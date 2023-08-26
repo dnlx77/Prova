@@ -27,30 +27,6 @@ class Storia extends Model
         return $this->hasMany(StoriaLetture::class);
     }
 
-    public function scopeAutoriRuoliSearch ($query, $ruoli, $cerca, $data_let_iniziale, $data_let_finale, $stato_lettura) {
-        $query = DB::table('rel_storia_autore_ruolo')->where('autore_id', '=', $cerca)->where('ruolo_id', '=', $ruoli)
-                    ->join('storia', 'storia.id', '=', 'rel_storia_autore_ruolo.storia_id');
-
-        if (!empty($data_let_iniziale))
-            $query->whereDate('data_lettura', '>=', $data_let_iniziale);
-    
-        if(!empty($data_let_finale)) 
-           $query->whereDate('data_lettura', '<=', $data_let_finale);
-    
-        switch ($stato_lettura) {
-            case 'leggere':
-                $query->where('data_lettura', '=', null);
-                break;
-            case 'letti':
-                $query->where('data_lettura', '<>', null);
-                break;
-            default:
-                break;
-        }
-
-        return $query;
-    }
-
     public function scopeStoriaSearch($query, $cerca_per, $cerca, $tipo_ricerca, $data_let_iniziale, $data_let_finale, $stato_lettura) {
         if(!empty($cerca_per)) {
             

@@ -84,7 +84,7 @@ class RicercaController extends Controller
                 if ($ruoli == '')
                     $storie = $autore->storie($data_pub_iniziale, $data_pub_finale, $stato_lettura)->distinct()->orderBy($sort_by, $order)->paginate($per_page);
                 else
-                    $storie = Storia::AutoriRuoliSearch($ruoli, $search, $data_pub_iniziale, $data_pub_finale, $stato_lettura)->orderBy($sort_by, $order)->paginate($per_page);
+                    $storie = $autore->storie_autori_ruoli($ruoli, $search, $data_pub_iniziale, $data_pub_finale, $stato_lettura)->orderBy($sort_by, $order)->paginate($per_page);
                 break;
 
             default:

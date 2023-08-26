@@ -24,9 +24,9 @@ class StatisticheController extends Controller
         $num_storie = Storia::all()->count();
         $num_editori = Editore::all()->count();
         $num_collane = Collana::all()->count();
-        $num_storie_lette = Storia::StorieLette()->count();
+        $num_storie_lette = DB::table('storia_letture')->select('storia_id')->distinct()->count();
         $num_albi_letti = DB::table('albo_letture')->select('albo_id')->distinct()->count();
-
+        
         $statistiche = ['albi' => $num_albi,
         'albi letti' => $num_albi_letti, 
         'storie' => $num_storie,

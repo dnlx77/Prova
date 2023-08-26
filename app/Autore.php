@@ -37,10 +37,33 @@ class Autore extends Model
 
         switch ($stato_lettura) {
             case 'leggere':
-                $query->where('data_lettura', '=', null);
+                $query->doesntHave('dateLettura');
                 break;
             case 'letti':
-                $query->where('data_lettura', '<>', null);
+                $query->has('dateLettura');
+                break;
+            default:
+                break;
+        }
+
+        return $query;
+    }
+
+    public function storie_autori_ruoli($ruoli, $search, $data_pub_iniziale, $data_pub_finale, $stato_lettura) {
+        $query = $this->belongsToMany(Storia::class, 'rel_storia_autore_ruolo')->where('autore_id', '=', $search)->where('ruolo_id', '=', $ruoli);
+
+        if (!empty($data_let_iniziale))
+                $query->whereDate('data_lettura', '>=', $data_let_iniziale);
+
+        if(!empty($data_let_finale)) 
+                $query->whereDate('data_lettura', '<=', $data_let_finale);
+
+        switch ($stato_lettura) {
+            case 'leggere':
+                $query->doesntHave('dateLettura');
+                break;
+            case 'letti':
+                $query->has('dateLettura');
                 break;
             default:
                 break;
