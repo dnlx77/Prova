@@ -23,8 +23,8 @@ class Storia extends Model
         return $query;
     }
 
-    public function scopeStorieLette ($query) {
-        return $query->where('data_lettura', '<>', null);
+    public function dateLettura() {
+        return $this->hasMany(StoriaLetture::class);
     }
 
     public function scopeAutoriRuoliSearch ($query, $ruoli, $cerca, $data_let_iniziale, $data_let_finale, $stato_lettura) {
@@ -76,10 +76,10 @@ class Storia extends Model
 
             switch ($stato_lettura) {
                 case 'leggere':
-                    $query->where('data_lettura', '=', null);
+                    $query->doesntHave('dateLettura');
                     break;
                 case 'letti':
-                    $query->where('data_lettura', '<>', null);
+                    $query->has('dateLettura');
                     break;
                 default:
                     break;

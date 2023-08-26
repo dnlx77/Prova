@@ -19,7 +19,15 @@
                 <tr>
                     <td><a href="{{ route('storia.details', $storia->id) }}">{{ $storia->nome }}</a></td>
                     <td>{{ $storia->trama }}</td>
-                    <td>{{ !empty($storia->data_lettura) ? date('d/m/Y', strtotime($storia->data_lettura)) : 'da leggere' }}                   
+                    <td><ul class="multi-row">
+                        @if ($storia->dateLettura->isEmpty())
+                            {{ 'Da leggere '}}
+                        @else
+                            @foreach ($storia->dateLettura AS $data)
+                                <li> {{ date('d/m/Y', strtotime($data->data_lettura)) }}</li>
+                            @endforeach
+                        @endif
+                    </ul></td>                   
                     <td>{{ \App\Enums\TipoStoriaEnum::getDescription($storia->stato) }}</td>
                     <td><a href="{{ route('storia.edit', $storia->id) }}">modifica</a></td>
                     <td><a href="{{ route('storia.autore', $storia->id) }}">autori</a></td>

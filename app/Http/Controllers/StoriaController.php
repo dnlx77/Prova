@@ -31,10 +31,10 @@ class StoriaController extends Controller
         $storia->nome = $request->get('nome');
         $storia->trama = $request->get('trama');
         $storia->stato = $request->get('stato');
-        if ($request->get('data_lettura') != 0)
+        /*if ($request->get('data_lettura') != 0)
             $storia->data_lettura = \DateTime::createFromFormat('d-m-Y', $request->get('data_lettura'));
         else
-            $storia->data_lettura = null;
+            $storia->data_lettura = null;*/
         $storia->save();
         return redirect(route('storia.index'))->with('success', 'La storia è stata salvata.');
     }
@@ -178,10 +178,10 @@ class StoriaController extends Controller
         $storia->nome = $request->get('nome');
         $storia->trama = $request->get('trama');
         $storia->stato = $request->get('stato');
-        if ($request->get('data_lettura') != 0)
+        /*if ($request->get('data_lettura') != 0)
             $storia->data_lettura = \DateTime::createFromFormat('d-m-Y', $request->get('data_lettura'));
         else
-            $storia->data_lettura = null;
+            $storia->data_lettura = null;*/
         $storia->save ();
         return redirect(route('storia.index'))->with('success', 'La storia è stata aggiornata.');
     }

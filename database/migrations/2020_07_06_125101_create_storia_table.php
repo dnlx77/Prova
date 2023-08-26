@@ -17,7 +17,6 @@ class CreateStoriaTable extends Migration
             $table->id();
             $table->string('nome', 511);
             $table->string('trama', 5000)->nullable();
-            $table->date('data_lettura')->nullable();
             $table->string('stato', 511);
             $table->timestamps();
         });

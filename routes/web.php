@@ -66,6 +66,9 @@ Route::post('storia/{id_storia}/elimina-execute', 'StoriaController@storiaElimin
 Route::get('storia/{id_storia}/services/get-trame', 'StoriaController@getTrame')->name('storia.get_trame_json');
 Route::post('storia/{id_storia}/set-read-date', 'StoriaController@storiaSetReadDate')->name('storia.set_read_date');
 
+Route::post('storia/{id_storia}/set-read-date', 'StoriaLettureController@AggiungiLettura')->name('storia.set_read_date');
+Route::get('storia/{id_storia}/{data}/remove-read-date', 'StoriaLettureController@RimuoviLettura')->name('storia.remove_read_date');
+
 Route::get('collana/create', 'CollanaController@create')->name('collana.create');
 Route::post('collana/store', 'CollanaController@store')->name('collana.store');
 Route::get('collana', 'CollanaController@index')->name('collana.index');

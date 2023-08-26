@@ -75,7 +75,7 @@
                     <div class="col-6">
                         <button id="modal-button" type="button" class="btn btn-primary modale-data" data-toggle="modal" data-target="#dataModal">
                             Data lettura
-                          </button>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -111,7 +111,7 @@
                     
                         @csrf
                         <label for="data_lettura">Data lettura:</label>
-                        <input type="text" class="form-control" name="data_lettura" value="{{ !empty(old('data_lettura')) ? old('data_lettura') : (!empty($albo->data_lettura) ? date('d-m-Y', strtotime($albo->data_lettura)) : '') }}"/>
+                        <input type="text" class="form-control" name="data_lettura" value=""/>
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary">Save changes</button>
