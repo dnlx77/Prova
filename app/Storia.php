@@ -28,6 +28,7 @@ class Storia extends Model
     }
 
     public function scopeStoriaSearch($query, $cerca_per, $cerca, $tipo_ricerca, $data_let_iniziale, $data_let_finale, $stato_lettura) {
+
         if(!empty($cerca_per)) {
             
             if ($cerca_per != 'tutto') {
@@ -44,12 +45,20 @@ class Storia extends Model
                 }
             }
 
-            if (!empty($data_let_iniziale))
+            if (!empty($data_let_iniziale)) {
+                $query->join('storia_letture', 'storia.id', '=', 'storia_letture.storia_id');
                 $query->whereDate('data_lettura', '>=', $data_let_iniziale);
+            }
 
-            if(!empty($data_let_finale)) 
-               $query->whereDate('data_lettura', '<=', $data_let_finale);
-
+            if(!empty($data_let_finale)) {
+                if(empty($data_let_iniziale)) {
+                    $query->join('storia_letture', 'storia.id', '=', 'storia_letture.storia_id');
+                    $query->whereDate('data_lettura', '<=', $data_let_finale);
+                }
+                else 
+                    $query->whereDate('data_lettura', '<=', $data_let_finale);
+            }
+                
             switch ($stato_lettura) {
                 case 'leggere':
                     $query->doesntHave('dateLettura');

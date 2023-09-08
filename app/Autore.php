@@ -29,12 +29,19 @@ class Autore extends Model
     public function storie($data_let_iniziale, $data_let_finale, $stato_lettura) {
         $query = $this->belongsToMany(Storia::class, 'rel_storia_autore_ruolo');
 
-        if (!empty($data_let_iniziale))
-                $query->whereDate('data_lettura', '>=', $data_let_iniziale);
+        if (!empty($data_let_iniziale)) {
+            $query->join('storia_letture', 'storia.id', '=', 'storia_letture.storia_id');
+            $query->whereDate('data_lettura', '>=', $data_let_iniziale);
+        }
 
-        if(!empty($data_let_finale)) 
+        if(!empty($data_let_finale)) {
+            if(empty($data_let_iniziale)) {
+                $query->join('storia_letture', 'storia.id', '=', 'storia_letture.storia_id');
                 $query->whereDate('data_lettura', '<=', $data_let_finale);
-
+            }
+            else 
+                $query->whereDate('data_lettura', '<=', $data_let_finale);
+        }
         switch ($stato_lettura) {
             case 'leggere':
                 $query->doesntHave('dateLettura');
@@ -49,14 +56,22 @@ class Autore extends Model
         return $query;
     }
 
-    public function storie_autori_ruoli($ruoli, $search, $data_pub_iniziale, $data_pub_finale, $stato_lettura) {
+    public function storie_autori_ruoli($ruoli, $search, $data_let_iniziale, $data_let_finale, $stato_lettura) {
         $query = $this->belongsToMany(Storia::class, 'rel_storia_autore_ruolo')->where('autore_id', '=', $search)->where('ruolo_id', '=', $ruoli);
 
-        if (!empty($data_let_iniziale))
-                $query->whereDate('data_lettura', '>=', $data_let_iniziale);
+        if (!empty($data_let_iniziale)) {
+            $query->join('storia_letture', 'storia.id', '=', 'storia_letture.storia_id');
+            $query->whereDate('data_lettura', '>=', $data_let_iniziale);
+        }
 
-        if(!empty($data_let_finale)) 
+        if(!empty($data_let_finale)) {
+            if(empty($data_let_iniziale)) {
+                $query->join('storia_letture', 'storia.id', '=', 'storia_letture.storia_id');
                 $query->whereDate('data_lettura', '<=', $data_let_finale);
+            }
+            else 
+                $query->whereDate('data_lettura', '<=', $data_let_finale);
+        }
 
         switch ($stato_lettura) {
             case 'leggere':

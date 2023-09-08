@@ -8,6 +8,7 @@ use App\Autore;
 use App\Collana;
 use App\Storia;
 use App\Ruolo;
+use App\StoriaLetture;
 
 class RicercaController extends Controller
 {
