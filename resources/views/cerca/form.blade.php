@@ -128,7 +128,7 @@
                     $('#label-cerca :input').prop('disabled', false);
                     $('#autore-cerca-per-select').show();
                     $('#autore-cerca-per-select').prop('disabled', false);
-                    $('#autore-cerca-per-select').val("nome").change();
+                    $('#autore-cerca-per-select').val("cognome").change();
                     $('#tipo-ricerca').show();
                     $('#tipo-ricerca *').contents().prop('disabled', false);
                     break;
@@ -291,6 +291,7 @@
                 var result_value = result;
                 var option = '';
                                 
+                option += '<option value=""></option>';
                 $('#cerca-storie-ruoli').empty();
                 for (i in result) {
                     option += '<option value="' + i + '">' + result[i] + '</option>';

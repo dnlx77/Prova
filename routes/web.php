@@ -102,6 +102,7 @@ Route::get('statistiche/generali', 'StatisticheController@generali')->name('stat
 Route::get('statistiche/albi-pubblicati-anno/{anno}', 'StatisticheController@albiPerMese')->name('statistiche.albi_mese');
 Route::Get('statistiche/albi-pubblicati', 'StatisticheController@albiPerAnno')->name('statistiche.albi_anno');
 Route::Get('statistiche/services/get-anni', 'StatisticheController@getAnni')->name('statistiche.get_anni_json');
+Route::Get('statistiche/albi-pubblicati-mese-anno/{mese}/{anno}', 'StatisticheController@ListaAlbiMeseAnno')->name('statistiche.get_albi_mese_anno');
 
 Route::get('ricerca', 'RicercaController@index')->name('ricerca.index');
 Route::get('ricerca/search', 'RicercaController@search')->name('cerca.search');

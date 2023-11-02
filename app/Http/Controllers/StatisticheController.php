@@ -56,7 +56,7 @@ class StatisticheController extends Controller
             'num_albi_per_mese' => $num_albi_per_mese,
             'primo_anno' => $primo_anno,
             'ultimo_anno' => $ultimo_anno,
-            'num_albi_anno' => $num_albi_anno
+            'num_albi_anno' => $num_albi_anno,
         ]);
     }
 
@@ -83,5 +83,24 @@ class StatisticheController extends Controller
             $num_albi_per_anno[$i] = Albo::AlbiPubblicatiAnno($i)->count();
         }
         return json_encode($num_albi_per_anno);
+    }
+
+    public function listaAlbiMeseAnno($mese, $anno) {
+        $sort_by = 'data_pubblicazione';
+        $order = 'asc';
+        $per_page = 10;
+
+        $albi = Albo::AlbiPubblicatiMeseAnno($mese, $anno)->orderBy($sort_by, $order)->paginate($per_page);
+
+        return view('albo.index', 
+            [ 'albi' => $albi,
+            'cerca_in' => '',
+            'cerca_per' => '', 
+            'search' => '',
+            'ricerca_esatta' => '',
+            'stato_lettura' => '',
+            'data_pub_iniziale' => '',
+            'data_pub_finale' => ''
+            ]);
     }
 }

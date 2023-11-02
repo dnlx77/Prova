@@ -22,7 +22,7 @@
         <tbody>
             <tr>
                 @foreach ($num_albi_per_mese AS $mese => $numero_albi)
-                    <td> {{ $numero_albi }}</td>
+                    <td> <a href="{{ route('statistiche.get_albi_mese_anno', array( date('m',strtotime($mese)), last(request()->segments()) ) ) }}">{{ $numero_albi }}</a></td>
                 @endforeach
             </tr>
         </tbody>

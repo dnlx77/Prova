@@ -8,7 +8,6 @@ use App\Autore;
 use App\Collana;
 use App\Storia;
 use App\Ruolo;
-use App\StoriaLetture;
 
 class RicercaController extends Controller
 {
@@ -16,7 +15,7 @@ class RicercaController extends Controller
 
         $lista_campi_ricerca = ['albi','autori','storie'];
         $lista_campi_per_albo = ['numero', 'titolo', 'collana', 'tutto'];
-        $lista_campi_per_autore = ['nome', 'cognome', 'pseudonimo', 'tutto'];
+        $lista_campi_per_autore = ['cognome', 'nome', 'pseudonimo', 'tutto'];
         $lista_campi_per_storia = ['nome', 'autore', 'tutto'];
         $lista_collane = Collana::all();
         $lista_autori = Autore::all();
