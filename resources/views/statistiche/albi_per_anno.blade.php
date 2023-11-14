@@ -45,7 +45,8 @@
                     datasets: [{
                     label: '# albi per anno',
                     data: Object.values(result),
-                    border199Width: 1
+                    backgroundColor: '#78faff',
+                    borderWidth: 0,
                     }]
                 },
                 options: {

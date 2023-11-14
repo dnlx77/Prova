@@ -51,8 +51,15 @@ class StatisticheController extends Controller
         $num_albi_per_mese = [];
         for ($i=1; $i<13; $i++) 
             $num_albi_per_mese[date('F', mktime(0, 0, 0, $i, 1))] = Albo::AlbiPubblicatiMeseAnno($i,$anno)->count();
+
+        $sort_by = 'data_pubblicazione';
+        $order = 'asc';
+        $per_page = 10;
+        
+        $albi = Albo::AlbiPubblicatiAnno($anno)->orderBy($sort_by, $order)->paginate($per_page);
             
         return view('statistiche.albi_per_mese', [
+            'albi' => $albi,
             'num_albi_per_mese' => $num_albi_per_mese,
             'primo_anno' => $primo_anno,
             'ultimo_anno' => $ultimo_anno,
