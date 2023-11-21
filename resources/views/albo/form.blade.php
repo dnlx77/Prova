@@ -74,11 +74,8 @@
     $(document).ready(function(){
         $('[name=data_pubblicazione]').datepicker({
             format: 'dd-mm-yyyy',
-            todayHighlight: true
-        });
-        $('[name=data_lettura]').datepicker({
-            format: 'dd-mm-yyyy',
-            todayHighlight: true
+            todayHighlight: true,
+            weekStart: 1
         });
         $('#collana-select').select2();
             var collana_select_default = "{{ !empty(old('collana')) ? old('collana') : (!empty($albo->collana_id) ? $albo->collana_id : '') }}";

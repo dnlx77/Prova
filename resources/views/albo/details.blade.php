@@ -143,7 +143,8 @@
 
             $('[name=data_lettura]').datepicker({
             format: 'dd-mm-yyyy',
-            todayHighlight: true
+            todayHighlight: true,
+            weekStart: 1
             });
         });
     </script>

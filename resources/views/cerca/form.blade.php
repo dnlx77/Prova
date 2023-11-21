@@ -92,7 +92,8 @@
 
         $('.data-pub').datepicker({
             format: 'yyyy-mm-dd',
-            todayHighlight: true
+            todayHighlight: true,
+            weekStart: 1
         })
 
         $('#cerca-storie-autori').select2();
