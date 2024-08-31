@@ -85,7 +85,7 @@
                     success:function(result){
                         $('.modal-title').html(result.titolo);
                         $('.modal-body').html(result.storie);
-                        console.log(result[0]);
+                        console.log(result);
                     },
                     error:function() {
                         console.log();

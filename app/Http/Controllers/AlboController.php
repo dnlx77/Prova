@@ -72,12 +72,14 @@ class AlboController extends Controller
             $storiaAlbo->save();
         }
 
-        foreach ($request->get('autori_copertina') as $autore_copertina) {
-            $autoreCopertinaalbo = new RelAlboAUtoricopertina();
-            $autoreCopertinaalbo->albo_id = $albo->id;
-            $autoreCopertinaalbo->autore_id = $autore_copertina;
-            $autoreCopertinaalbo->save();
-        }
+        if($request->get('autori_copertina')) {
+            foreach ($request->get('autori_copertina') as $autore_copertina) {
+                $autoreCopertinaalbo = new RelAlboAUtoricopertina();
+                $autoreCopertinaalbo->albo_id = $albo->id;
+                $autoreCopertinaalbo->autore_id = $autore_copertina;
+                $autoreCopertinaalbo->save();
+            }
+        }      
         
         return redirect(route('albo.index'))->with('success', 'L\'albo è stata salvato.');
     }
